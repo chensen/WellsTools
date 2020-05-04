@@ -1,0 +1,1525 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F0245C7E-7FA8-4A3E-9237-59567CCD5562}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Wells</RootNamespace>
+    <AssemblyName>Wells</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <NoWarn>0168,1717,0414,0618,1685,</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="hvppledotnet">
+      <HintPath>Dll\hvppledotnet.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>Dll\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="NPOI">
+      <HintPath>Dll\NPOI.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OOXML">
+      <HintPath>Dll\NPOI.OOXML.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXml4Net">
+      <HintPath>Dll\NPOI.OpenXml4Net.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXmlFormats">
+      <HintPath>Dll\NPOI.OpenXmlFormats.dll</HintPath>
+    </Reference>
+    <Reference Include="siyar">
+      <HintPath>Dll\siyar.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Drawing.Design" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="class_Enum.cs" />
+    <Compile Include="class_Hvpple.cs" />
+    <Compile Include="class_Operator.cs" />
+    <Compile Include="class_Public.cs" />
+    <Compile Include="class_Thread.cs" />
+    <Compile Include="class_Win32.cs" />
+    <Compile Include="clsWellsLanguage.cs" />
+    <Compile Include="Comm\clsRS232.cs" />
+    <Compile Include="Comm\clsTCP.cs" />
+    <Compile Include="Controls\Docking\AutoHideStripBase.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\Docking\DockAreasEditor.cs" />
+    <Compile Include="Controls\Docking\DockContent.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\Docking\DockContentCollection.cs" />
+    <Compile Include="Controls\Docking\DockContentEventArgs.cs" />
+    <Compile Include="Controls\Docking\DockContentHandler.cs" />
+    <Compile Include="Controls\Docking\DockOutlineBase.cs" />
+    <Compile Include="Controls\Docking\DockPane.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Docking\DockPane.SplitterControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Docking\DockPaneCaptionBase.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\Docking\DockPaneCollection.cs" />
+    <Compile Include="Controls\Docking\DockPanel.Appearance.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\Docking\DockPanel.AutoHideWindow.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\Docking\DockPanel.cs" />
+    <Compile Include="Controls\Docking\DockPanel.DockDragHandler.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\Docking\DockPanel.DragHandler.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\Docking\DockPanel.FocusManager.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\Docking\DockPanel.MdiClientController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\Docking\DockPanel.Persistor.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\Docking\DockPanel.SplitterDragHandler.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\Docking\DockPanelExtender.cs" />
+    <Compile Include="Controls\Docking\DockPanelSkin.cs" />
+    <Compile Include="Controls\Docking\DockPaneStripBase.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\Docking\DockWindow.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\Docking\DockWindow.SplitterControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\Docking\DockWindowCollection.cs" />
+    <Compile Include="Controls\Docking\DragForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\Docking\DummyControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\Docking\Enums.cs" />
+    <Compile Include="Controls\Docking\FloatWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\Docking\FloatWindowCollection.cs" />
+    <Compile Include="Controls\Docking\Helpers\DockHelper.cs" />
+    <Compile Include="Controls\Docking\Helpers\DrawHelper.cs" />
+    <Compile Include="Controls\Docking\Helpers\ResourceHelper.cs" />
+    <Compile Include="Controls\Docking\Helpers\Win32Helper.cs" />
+    <Compile Include="Controls\Docking\InertButtonBase.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\Docking\Interfaces.cs" />
+    <Compile Include="Controls\Docking\Localization.cs" />
+    <Compile Include="Controls\Docking\Measures.cs" />
+    <Compile Include="Controls\Docking\NestedDockingStatus.cs" />
+    <Compile Include="Controls\Docking\NestedPaneCollection.cs" />
+    <Compile Include="Controls\Docking\Resources.Designer.cs" />
+    <Compile Include="Controls\Docking\Skins\DockPanelSkinBuilder.cs" />
+    <Compile Include="Controls\Docking\Skins\Style.cs" />
+    <Compile Include="Controls\Docking\SplitterBase.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\Docking\Strings.Designer.cs" />
+    <Compile Include="Controls\Docking\VisibleNestedPaneCollection.cs" />
+    <Compile Include="Controls\Docking\VS2005AutoHideStrip.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\Docking\VS2005DockPaneCaption.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\Docking\VS2005DockPaneStrip.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\Docking\Win32\Enums.cs" />
+    <Compile Include="Controls\Docking\Win32\NativeMethods.cs" />
+    <Compile Include="Controls\ImageDoc\Config\Circle.cs" />
+    <Compile Include="Controls\ImageDoc\Config\CircularArc.cs" />
+    <Compile Include="Controls\ImageDoc\Config\HRegionEntry.cs" />
+    <Compile Include="Controls\ImageDoc\Config\Line.cs" />
+    <Compile Include="Controls\ImageDoc\Config\Rectangle1.cs" />
+    <Compile Include="Controls\ImageDoc\Config\Rectangle2.cs" />
+    <Compile Include="Controls\ImageDoc\ImageDoc.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ImageDoc\ImageDoc.Designer.cs">
+      <DependentUpon>ImageDoc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ImageDoc\Model\GraphicsContext.cs" />
+    <Compile Include="Controls\ImageDoc\Model\HObjectEntry.cs" />
+    <Compile Include="Controls\ImageDoc\Model\HWndCtrl.cs" />
+    <Compile Include="Controls\ImageDoc\Model\HWndMessage.cs" />
+    <Compile Include="Controls\ImageDoc\Model\IViewWindow.cs" />
+    <Compile Include="Controls\ImageDoc\Model\Mode.cs" />
+    <Compile Include="Controls\ImageDoc\Model\ROI.cs" />
+    <Compile Include="Controls\ImageDoc\Model\ROICircle.cs" />
+    <Compile Include="Controls\ImageDoc\Model\ROICircularArc.cs" />
+    <Compile Include="Controls\ImageDoc\Model\ROIController.cs" />
+    <Compile Include="Controls\ImageDoc\Model\RoiData.cs" />
+    <Compile Include="Controls\ImageDoc\Model\ROILine.cs" />
+    <Compile Include="Controls\ImageDoc\Model\ROINurbs.cs" />
+    <Compile Include="Controls\ImageDoc\Model\ROIRectangle1.cs" />
+    <Compile Include="Controls\ImageDoc\Model\ROIRectangle2.cs" />
+    <Compile Include="Controls\ImageView\AreaView.cs" />
+    <Compile Include="Controls\ImageView\CameraView.cs" />
+    <Compile Include="Controls\ImageView\ConstData.cs" />
+    <Compile Include="Controls\ImageView\ImageView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\ImageView\ImageView.Designer.cs">
+      <DependentUpon>ImageView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ImageView\LiveView.cs" />
+    <Compile Include="Controls\ImageView\LiveView1.cs" />
+    <Compile Include="Controls\ImageView\PCB.cs" />
+    <Compile Include="Controls\InspectView\InspectViewNew.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\InspectView\InspectViewNew.designer.cs">
+      <DependentUpon>InspectViewNew.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ThresholdUnit\ThresholdPlot.cs" />
+    <Compile Include="Controls\ThresholdUnit\ThresholdUnit.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ThresholdUnit\ThresholdUnit.designer.cs">
+      <DependentUpon>ThresholdUnit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\VisionInspect\clsAreaView.cs" />
+    <Compile Include="Controls\VisionInspect\clsCameraView.cs" />
+    <Compile Include="Controls\VisionInspect\clsEnum.cs" />
+    <Compile Include="Controls\VisionInspect\clsImage.cs" />
+    <Compile Include="Controls\VisionInspect\clsInspectObject.cs" />
+    <Compile Include="Controls\VisionInspect\clsPart.cs" />
+    <Compile Include="Controls\VisionInspect\clsPCB.cs" />
+    <Compile Include="Controls\VisionInspect\clsPublic.cs" />
+    <Compile Include="Controls\VisionInspect\ImageDoc.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\VisionInspect\ImageDoc.designer.cs">
+      <DependentUpon>ImageDoc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmType\frmInput.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmType\frmInput.Designer.cs">
+      <DependentUpon>frmInput.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmType\frmProgressBar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmType\frmProgressBar.Designer.cs">
+      <DependentUpon>frmProgressBar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tools\clsCRC16.cs" />
+    <Compile Include="Tools\clsFps.cs" />
+    <Compile Include="Tools\clsList.cs" />
+    <Compile Include="Tools\clsLockBitmap.cs" />
+    <Compile Include="Tools\clsPointBitmap.cs" />
+    <Compile Include="FrmType\frm_Log.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmType\frm_Log.Designer.cs">
+      <DependentUpon>frm_Log.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\InspectView\InspectView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\InspectView\InspectView.designer.cs">
+      <DependentUpon>InspectView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="FrmType\frm_Exit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmType\frm_Exit.Designer.cs">
+      <DependentUpon>frm_Exit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmType\frm_Loading.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmType\frm_Loading.Designer.cs">
+      <DependentUpon>frm_Loading.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmType\frm_Waiting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmType\frm_Waiting.designer.cs">
+      <DependentUpon>frm_Waiting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tools\clsAutoSizeForm.cs" />
+    <Compile Include="Tools\clsFolderBrowserDialog.cs" />
+    <Compile Include="Tools\clsCNDate.cs" />
+    <Compile Include="Tools\clsConvert.cs" />
+    <Compile Include="Tools\clsCsv.cs" />
+    <Compile Include="Tools\clsDataSort.cs" />
+    <Compile Include="Tools\clsFile.cs" />
+    <Compile Include="Tools\clsFormMove.cs" />
+    <Compile Include="Tools\clsFormShowFadeout.cs" />
+    <Compile Include="Tools\clsFtp.cs" />
+    <Compile Include="Tools\clsGlobalHook.cs" />
+    <Compile Include="Tools\clsHook.cs" />
+    <Compile Include="Tools\clsImageConvert.cs" />
+    <Compile Include="Tools\clsImage.cs" />
+    <Compile Include="Tools\clsIni.cs" />
+    <Compile Include="Tools\clsMedia.cs" />
+    <Compile Include="Tools\clsNet.cs" />
+    <Compile Include="Tools\clsExcelNPOI.cs" />
+    <Compile Include="Tools\clsPsd.cs" />
+    <Compile Include="Tools\clsPinyin.cs" />
+    <Compile Include="Tools\clsQueue.cs" />
+    <Compile Include="Tools\clsRandom.cs" />
+    <Compile Include="Tools\clsSerialize.cs" />
+    <Compile Include="Tools\clsSerialPort.cs" />
+    <Compile Include="Tools\clsSql.cs" />
+    <Compile Include="Tools\clsStopWatch.cs" />
+    <Compile Include="Tools\clsTime.cs" />
+    <Compile Include="Tools\clsWebService.cs" />
+    <Compile Include="Tools\clsWellsInt.cs" />
+    <Compile Include="Tools\clsXml.cs" />
+    <Compile Include="Tools\clsYzm.cs" />
+    <Compile Include="WebService\Service_Dayi.cs" />
+    <Compile Include="WellsFrameWork.Design\Components\WellsMetroStyleManagerDesigner.cs" />
+    <Compile Include="WellsFrameWork.Design\Controls\WellsMetroButtonDesigner.cs" />
+    <Compile Include="WellsFrameWork.Design\Controls\WellsMetroCheckBoxDesigner.cs" />
+    <Compile Include="WellsFrameWork.Design\Controls\WellsMetroLabelDesigner.cs" />
+    <Compile Include="WellsFrameWork.Design\Controls\WellsMetroLinkDesigner.cs" />
+    <Compile Include="WellsFrameWork.Design\Controls\WellsMetroPanelDesigner.cs" />
+    <Compile Include="WellsFrameWork.Design\Controls\WellsMetroProgressBarDesigner.cs" />
+    <Compile Include="WellsFrameWork.Design\Controls\WellsMetroProgressSpinnerDesigner.cs" />
+    <Compile Include="WellsFrameWork.Design\Controls\WellsMetroRadioButtonDesigner.cs" />
+    <Compile Include="WellsFrameWork.Design\Controls\WellsMetroScrollBarDesigner.cs" />
+    <Compile Include="WellsFrameWork.Design\Controls\WellsMetroTabControlDesigner.cs" />
+    <Compile Include="WellsFrameWork.Design\Controls\WellsMetroTabPageCollectionEditor.cs" />
+    <Compile Include="WellsFrameWork.Design\Controls\WellsMetroTabPageDesigner.cs" />
+    <Compile Include="WellsFrameWork.Design\Controls\WellsMetroTextBoxDesigner.cs" />
+    <Compile Include="WellsFrameWork.Design\Controls\WellsMetroTileDesigner.cs" />
+    <Compile Include="WellsFrameWork.Design\Controls\WellsMetroToggleDesigner.cs" />
+    <Compile Include="WellsFrameWork.Fonts\FontResolver.cs" />
+    <Compile Include="WellsFrameWork\Animation\AnimationBase.cs" />
+    <Compile Include="WellsFrameWork\Animation\ColorBlendAnimation.cs" />
+    <Compile Include="WellsFrameWork\Animation\DelayedCall.cs" />
+    <Compile Include="WellsFrameWork\Animation\ExpandAnimation.cs" />
+    <Compile Include="WellsFrameWork\Animation\MoveAnimation.cs" />
+    <Compile Include="WellsFrameWork\Animation\TransitionType.cs" />
+    <Compile Include="WellsFrameWork\Components\WellsMetroStyleExtender.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WellsFrameWork\Components\WellsMetroStyleManager.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WellsFrameWork\Components\WellsMetroToolTip.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WellsFrameWork\Controls\WellsMetroButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WellsFrameWork\Controls\WellsMetroCheckBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WellsFrameWork\Controls\WellsMetroComboBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WellsFrameWork\Controls\WellsMetroContextMenu.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WellsFrameWork\Controls\WellsMetroLabel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WellsFrameWork\Controls\WellsMetroLink.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WellsFrameWork\Controls\WellsMetroPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WellsFrameWork\Controls\WellsMetroProgressBar.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WellsFrameWork\Controls\WellsMetroProgressSpinner.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WellsFrameWork\Controls\WellsMetroRadioButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WellsFrameWork\Controls\WellsMetroScrollBar.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WellsFrameWork\Controls\WellsMetroTabControl.cs" />
+    <Compile Include="WellsFrameWork\Controls\WellsMetroTabPage.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WellsFrameWork\Controls\WellsMetroTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WellsFrameWork\Controls\WellsMetroTile.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WellsFrameWork\Controls\WellsMetroToggle.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WellsFrameWork\Controls\WellsMetroTrackBar.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WellsFrameWork\Controls\WellsMetroUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WellsFrameWork\Drawing\Html\CssAnonymousBlockBox.cs" />
+    <Compile Include="WellsFrameWork\Drawing\Html\CssAnonymousBox.cs" />
+    <Compile Include="WellsFrameWork\Drawing\Html\CssBlock.cs" />
+    <Compile Include="WellsFrameWork\Drawing\Html\CssBox.cs" />
+    <Compile Include="WellsFrameWork\Drawing\Html\CssBoxWord.cs" />
+    <Compile Include="WellsFrameWork\Drawing\Html\CssBoxWordSplitter.cs" />
+    <Compile Include="WellsFrameWork\Drawing\Html\CssConstants.cs" />
+    <Compile Include="WellsFrameWork\Drawing\Html\CssDefaults.cs" />
+    <Compile Include="WellsFrameWork\Drawing\Html\CssDrawingHelper.cs" />
+    <Compile Include="WellsFrameWork\Drawing\Html\CssLayoutEngine.cs" />
+    <Compile Include="WellsFrameWork\Drawing\Html\CssLength.cs" />
+    <Compile Include="WellsFrameWork\Drawing\Html\CssLineBox.cs" />
+    <Compile Include="WellsFrameWork\Drawing\Html\CssPropertyAttribute.cs" />
+    <Compile Include="WellsFrameWork\Drawing\Html\CssPropertyInheritedAttribute.cs" />
+    <Compile Include="WellsFrameWork\Drawing\Html\CssRectangle.cs" />
+    <Compile Include="WellsFrameWork\Drawing\Html\CssTable.cs" />
+    <Compile Include="WellsFrameWork\Drawing\Html\CssValue.cs" />
+    <Compile Include="WellsFrameWork\Drawing\Html\HtmlConstants.cs" />
+    <Compile Include="WellsFrameWork\Drawing\Html\HtmlLabel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WellsFrameWork\Drawing\Html\HtmlPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WellsFrameWork\Drawing\Html\HtmlRenderer.cs" />
+    <Compile Include="WellsFrameWork\Drawing\Html\HtmlTag.cs" />
+    <Compile Include="WellsFrameWork\Drawing\Html\HtmlToolTip.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WellsFrameWork\Drawing\Html\InitialContainer.cs" />
+    <Compile Include="WellsFrameWork\Drawing\Html\Parser.cs" />
+    <Compile Include="WellsFrameWork\Drawing\WellsMetroBackBuffer.cs" />
+    <Compile Include="WellsFrameWork\Drawing\WellsMetroPaint.cs" />
+    <Compile Include="WellsFrameWork\Forms\WellsMetroForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WellsFrameWork\Forms\WellsMetroMessageBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WellsFrameWork\Forms\WellsMetroTaskWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WellsFrameWork\Interfaces\IWellsMetroComponent.cs" />
+    <Compile Include="WellsFrameWork\Interfaces\IWellsMetroControl.cs" />
+    <Compile Include="WellsFrameWork\Interfaces\IWellsMetroForm.cs" />
+    <Compile Include="WellsFrameWork\Localization\WellsMetroLocalize.cs" />
+    <Compile Include="WellsFrameWork\MessageBox\WellsMetroMessageBox.cs" />
+    <Compile Include="WellsFrameWork\MessageBox\WellsMetroMessageBoxControl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WellsFrameWork\MessageBox\WellsMetroMessageBoxControl.Designer.cs">
+      <DependentUpon>WellsMetroMessageBoxControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WellsFrameWork\MessageBox\WellsMetroMessageBoxProperties.cs" />
+    <Compile Include="WellsFrameWork\Native\DwmApi.cs" />
+    <Compile Include="WellsFrameWork\Native\SubClass.cs" />
+    <Compile Include="WellsFrameWork\Native\Taskbar.cs" />
+    <Compile Include="WellsFrameWork\Native\WinApi.cs" />
+    <Compile Include="WellsFrameWork\Native\WinCaret.cs" />
+    <Compile Include="WellsFrameWork\WellsMetroBrushes.cs" />
+    <Compile Include="WellsFrameWork\WellsMetroColors.cs" />
+    <Compile Include="WellsFrameWork\WellsMetroColorStyle.cs" />
+    <Compile Include="WellsFrameWork\WellsMetroDefaults.cs" />
+    <Compile Include="WellsFrameWork\WellsMetroFonts.cs" />
+    <Compile Include="WellsFrameWork\WellsMetroImage.cs" />
+    <Compile Include="WellsFrameWork\WellsMetroPens.cs" />
+    <Compile Include="WellsFrameWork\WellsMetroThemeStyle.cs" />
+    <Compile Include="WellsMaterialSkin\Animations\AnimationDirection.cs" />
+    <Compile Include="WellsMaterialSkin\Animations\AnimationManager.cs" />
+    <Compile Include="WellsMaterialSkin\Animations\Animations.cs" />
+    <Compile Include="WellsMaterialSkin\ColorScheme.cs" />
+    <Compile Include="WellsMaterialSkin\Controls\MaterialCheckbox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WellsMaterialSkin\Controls\MaterialContextMenuStrip.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WellsMaterialSkin\Controls\MaterialDivider.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WellsMaterialSkin\Controls\MaterialFlatButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WellsMaterialSkin\Controls\MaterialForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WellsMaterialSkin\Controls\MaterialLabel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WellsMaterialSkin\Controls\MaterialListView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WellsMaterialSkin\Controls\MaterialProgressBar.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WellsMaterialSkin\Controls\MaterialRadioButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WellsMaterialSkin\Controls\MaterialRaisedButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WellsMaterialSkin\Controls\MaterialSingleLineTextField.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WellsMaterialSkin\Controls\MaterialTabControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WellsMaterialSkin\Controls\MaterialTabSelector.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WellsMaterialSkin\DrawHelper.cs" />
+    <Compile Include="WellsMaterialSkin\IMaterialControl.cs" />
+    <Compile Include="WellsMaterialSkin\MaterialSkinManager.cs" />
+    <Compile Include="WellsMetroControl\Colors\BasisColors.cs" />
+    <Compile Include="WellsMetroControl\Colors\BorderColors.cs" />
+    <Compile Include="WellsMetroControl\Colors\ColorEnums.cs" />
+    <Compile Include="WellsMetroControl\Colors\ColorExt.cs" />
+    <Compile Include="WellsMetroControl\Colors\GradientColors.cs" />
+    <Compile Include="WellsMetroControl\Colors\LineColors.cs" />
+    <Compile Include="WellsMetroControl\Colors\StatusColors.cs" />
+    <Compile Include="WellsMetroControl\Colors\TableColors.cs" />
+    <Compile Include="WellsMetroControl\Colors\TextColors.cs" />
+    <Compile Include="WellsMetroControl\Controls\BtnsGroup\UCBtnsGroup.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\BtnsGroup\UCBtnsGroup.Designer.cs">
+      <DependentUpon>UCBtnsGroup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\Btn\UCBtnExt.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\Btn\UCBtnExt.Designer.cs">
+      <DependentUpon>UCBtnExt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\Btn\UCBtnFillet.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\Btn\UCBtnFillet.Designer.cs">
+      <DependentUpon>UCBtnFillet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\Btn\UCBtnImg.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\Btn\UCBtnImg.Designer.cs">
+      <DependentUpon>UCBtnImg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\Btn\UCDropDownBtn.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\Btn\UCDropDownBtn.Designer.cs">
+      <DependentUpon>UCDropDownBtn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\Charts\AuxiliaryLable.cs" />
+    <Compile Include="WellsMetroControl\Controls\Charts\AuxiliaryLine.cs" />
+    <Compile Include="WellsMetroControl\Controls\Charts\FunnelChart\FunelChartAlignment.cs" />
+    <Compile Include="WellsMetroControl\Controls\Charts\FunnelChart\FunelChartDirection.cs" />
+    <Compile Include="WellsMetroControl\Controls\Charts\FunnelChart\FunelChartItem.cs" />
+    <Compile Include="WellsMetroControl\Controls\Charts\FunnelChart\UCFunnelChart.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\Charts\MarkText.cs" />
+    <Compile Include="WellsMetroControl\Controls\Charts\MarkTextPositionStyle.cs" />
+    <Compile Include="WellsMetroControl\Controls\Charts\RadarChart\RadarLine.cs" />
+    <Compile Include="WellsMetroControl\Controls\Charts\RadarChart\RadarPosition.cs" />
+    <Compile Include="WellsMetroControl\Controls\Charts\RadarChart\UCRadarChart.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\Charts\ZoomType.cs" />
+    <Compile Include="WellsMetroControl\Controls\Checkbox\UCCheckBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\Checkbox\UCCheckBox.Designer.cs">
+      <DependentUpon>UCCheckBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\ComboBox\UCCombox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\ComboBox\UCCombox.Designer.cs">
+      <DependentUpon>UCCombox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\ComboBox\UCComboxGrid.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\ComboBox\UCComboxGrid.Designer.cs">
+      <DependentUpon>UCComboxGrid.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\ComboBox\UCComboxGridPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\ComboBox\UCComboxGridPanel.Designer.cs">
+      <DependentUpon>UCComboxGridPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\DataGridView\DataGridViewCellEntity.cs" />
+    <Compile Include="WellsMetroControl\Controls\DataGridView\DataGridViewCellEventArgs.cs" />
+    <Compile Include="WellsMetroControl\Controls\DataGridView\DataGridViewCellEventHandler.cs" />
+    <Compile Include="WellsMetroControl\Controls\DataGridView\DataGridViewColumnEntity.cs" />
+    <Compile Include="WellsMetroControl\Controls\DataGridView\DataGridViewRowCustomEventArgs.cs" />
+    <Compile Include="WellsMetroControl\Controls\DataGridView\IDataGridViewCustomCell.cs" />
+    <Compile Include="WellsMetroControl\Controls\DataGridView\IDataGridViewRow.cs" />
+    <Compile Include="WellsMetroControl\Controls\DataGridView\UCDataGridView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\DataGridView\UCDataGridView.Designer.cs">
+      <DependentUpon>UCDataGridView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\DataGridView\UCDataGridViewRow.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\DataGridView\UCDataGridViewRow.Designer.cs">
+      <DependentUpon>UCDataGridViewRow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\DataGridView\UCDataGridViewTreeRow.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\DataGridView\UCDataGridViewTreeRow.Designer.cs">
+      <DependentUpon>UCDataGridViewTreeRow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\DateTime\DateTimePickerType.cs" />
+    <Compile Include="WellsMetroControl\Controls\DateTime\UCDatePickerExt.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\DateTime\UCDatePickerExt.Designer.cs">
+      <DependentUpon>UCDatePickerExt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\DateTime\UCDateTimeSelectPan.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\DateTime\UCDateTimeSelectPan.Designer.cs">
+      <DependentUpon>UCDateTimeSelectPan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\DateTime\UCTimePanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\DateTime\UCTimePanel.Designer.cs">
+      <DependentUpon>UCTimePanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\FactoryControls\Arrow\UCArrow.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\FactoryControls\Blower\UCBlower.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\FactoryControls\Bottle\UCBottle.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\FactoryControls\Conduit\UCConduit.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\FactoryControls\Conveyor\UCConveyor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\FactoryControls\Lamp\UCAlarmLamp.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\FactoryControls\Lamp\UCSignalLamp.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\FactoryControls\Meter\UCMeter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\FactoryControls\MindMapping\MindMappingItemEntity.cs" />
+    <Compile Include="WellsMetroControl\Controls\FactoryControls\MindMapping\UCMindMapping.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\FactoryControls\MindMapping\UCMindMappingPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\FactoryControls\MindMapping\UCMindMappingPanel.Designer.cs">
+      <DependentUpon>UCMindMappingPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\FactoryControls\Pond\UCPond.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\FactoryControls\Thermometer\UCThermometer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\FactoryControls\Valve\UCValve.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\GraphicalOverlay\GraphicalOverlayComponent.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\GraphicalOverlay\GraphicalOverlayComponent.designer.cs">
+      <DependentUpon>GraphicalOverlayComponent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\KeyBord\UCKeyBorderAll.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\KeyBord\UCKeyBorderAll.Designer.cs">
+      <DependentUpon>UCKeyBorderAll.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\KeyBord\UCKeyBorderNum.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\KeyBord\UCKeyBorderNum.Designer.cs">
+      <DependentUpon>UCKeyBorderNum.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\KeyBord\UCKeyBorderPay.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\KeyBord\UCKeyBorderPay.Designer.cs">
+      <DependentUpon>UCKeyBorderPay.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\LED\UCLEDData.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\LED\UCLEDData.Designer.cs">
+      <DependentUpon>UCLEDData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\LED\UCLEDDataTime.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\LED\UCLEDDataTime.Designer.cs">
+      <DependentUpon>UCLEDDataTime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\LED\UCLEDNum.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\LED\UCLEDNums.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\LED\UCLEDNums.Designer.cs">
+      <DependentUpon>UCLEDNums.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\LED\UCLEDTime.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\LED\UCLEDTime.Designer.cs">
+      <DependentUpon>UCLEDTime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\List\IListViewItem.cs" />
+    <Compile Include="WellsMetroControl\Controls\List\UCHorizontalList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\List\UCHorizontalList.Designer.cs">
+      <DependentUpon>UCHorizontalList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\List\UCHorizontalListItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\List\UCHorizontalListItem.Designer.cs">
+      <DependentUpon>UCHorizontalListItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\List\UCListExt.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\List\UCListExt.Designer.cs">
+      <DependentUpon>UCListExt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\List\UCListItemExt.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\List\UCListItemExt.Designer.cs">
+      <DependentUpon>UCListItemExt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\List\UCListView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\List\UCListView.Designer.cs">
+      <DependentUpon>UCListView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\List\UCListViewItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\List\UCListViewItem.Designer.cs">
+      <DependentUpon>UCListViewItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\Menu\IMenuItem.cs" />
+    <Compile Include="WellsMetroControl\Controls\Menu\MenuItemEntity.cs" />
+    <Compile Include="WellsMetroControl\Controls\Menu\UCMenu.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\Menu\UCMenu.Designer.cs">
+      <DependentUpon>UCMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\Menu\UCMenuChildrenItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\Menu\UCMenuChildrenItem.Designer.cs">
+      <DependentUpon>UCMenuChildrenItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\Menu\UCMenuParentItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\Menu\UCMenuParentItem.Designer.cs">
+      <DependentUpon>UCMenuParentItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\NavigationMenu\NavigationMenuItem.cs" />
+    <Compile Include="WellsMetroControl\Controls\NavigationMenu\NavigationMenuItemBase.cs" />
+    <Compile Include="WellsMetroControl\Controls\NavigationMenu\NavigationMenuItemExt.cs" />
+    <Compile Include="WellsMetroControl\Controls\NavigationMenu\UCNavigationMenu.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\NavigationMenu\UCNavigationMenu.Designer.cs">
+      <DependentUpon>UCNavigationMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\NavigationMenu\UCNavigationMenuExt.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\NavigationMenu\UCNavigationMenuExt.Designer.cs">
+      <DependentUpon>UCNavigationMenuExt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\NavigationMenu\UCNavigationMenuOffice.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\NavigationMenu\UCNavigationMenuOffice.Designer.cs">
+      <DependentUpon>UCNavigationMenuOffice.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\Navigation\CrumbNavigationClickEventArgs.cs" />
+    <Compile Include="WellsMetroControl\Controls\Navigation\CrumbNavigationItem.cs" />
+    <Compile Include="WellsMetroControl\Controls\Navigation\UCCrumbNavigation.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\Navigation\UCCrumbNavigation.Designer.cs">
+      <DependentUpon>UCCrumbNavigation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\Page\IPageControl.cs" />
+    <Compile Include="WellsMetroControl\Controls\Page\PageControlEventHandler.cs" />
+    <Compile Include="WellsMetroControl\Controls\Page\PageModel.cs" />
+    <Compile Include="WellsMetroControl\Controls\Page\UCPagerControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\Page\UCPagerControl.Designer.cs">
+      <DependentUpon>UCPagerControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\Page\UCPagerControl2.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\Page\UCPagerControl2.Designer.cs">
+      <DependentUpon>UCPagerControl2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\Page\UCPagerControlBase.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\Panel\UCPanelQuote.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\Panel\UCPanelTitle.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\Panel\UCPanelTitle.Designer.cs">
+      <DependentUpon>UCPanelTitle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\Process\UCProcessEllipse.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\Process\UCProcessEllipse.Designer.cs">
+      <DependentUpon>UCProcessEllipse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\Process\UCProcessExt.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\Process\UCProcessExt.Designer.cs">
+      <DependentUpon>UCProcessExt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\Process\UCProcessLine.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\Process\UCProcessLineExt.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\Process\UCProcessLineExt.Designer.cs">
+      <DependentUpon>UCProcessLineExt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\Process\UCProcessWave.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\Process\UCProcessWave.Designer.cs">
+      <DependentUpon>UCProcessWave.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\RadioButton\UCRadioButton.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\RadioButton\UCRadioButton.Designer.cs">
+      <DependentUpon>UCRadioButton.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\Roll\UCRollText.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\Sampling\UCSampling.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\ScrollBar\ScrollbarComponent.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\ScrollBar\ScrollbarControlDesigner.cs" />
+    <Compile Include="WellsMetroControl\Controls\ScrollBar\UCHScrollbar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\ScrollBar\UCVScrollbar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\Shadow\ShadowComponent.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\SplitLabel\UCSplitLabel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\Split\UCSplitLine_H.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\Split\UCSplitLine_H.Designer.cs">
+      <DependentUpon>UCSplitLine_H.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\Split\UCSplitLine_V.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\Split\UCSplitLine_V.Designer.cs">
+      <DependentUpon>UCSplitLine_V.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\Step\UCStep.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\Step\UCStep.Designer.cs">
+      <DependentUpon>UCStep.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\Switch\UCSwitch.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\Switch\UCSwitch.Designer.cs">
+      <DependentUpon>UCSwitch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\Tab\TabControlExt.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\Text\KeyBoardType.cs" />
+    <Compile Include="WellsMetroControl\Controls\Text\TextBoxEx.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\Text\TextBoxEx.Designer.cs">
+      <DependentUpon>TextBoxEx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\Text\TextBoxTransparent.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\Text\UCNumTextBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\Text\UCNumTextBox.Designer.cs">
+      <DependentUpon>UCNumTextBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\Text\UCTextBoxEx.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\Text\UCTextBoxEx.Designer.cs">
+      <DependentUpon>UCTextBoxEx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\Text\win32.cs" />
+    <Compile Include="WellsMetroControl\Controls\TimeLine\UCTimeLine.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\TimeLine\UCTimeLine.Designer.cs">
+      <DependentUpon>UCTimeLine.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\TrackBar\UCTrackBar.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\Transfer\TransferEventArgs.cs" />
+    <Compile Include="WellsMetroControl\Controls\Transfer\UCTransfer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\Transfer\UCTransfer.Designer.cs">
+      <DependentUpon>UCTransfer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\Treeview\TreeViewEx.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\UCControlBase.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\UCControlBase.Designer.cs">
+      <DependentUpon>UCControlBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\Verification\VerificationAttribute.cs" />
+    <Compile Include="WellsMetroControl\Controls\Verification\VerificationComponent.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\Verification\VerificationEventArgs.cs" />
+    <Compile Include="WellsMetroControl\Controls\Verification\VerificationModel.cs" />
+    <Compile Include="WellsMetroControl\Controls\Wave\UCWave.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WellsMetroControl\Controls\Wave\UCWaveChart.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WellsMetroControl\Forms\FrmAnchor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WellsMetroControl\Forms\FrmAnchor.Designer.cs">
+      <DependentUpon>FrmAnchor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WellsMetroControl\Forms\FrmAnchorTips.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WellsMetroControl\Forms\FrmAnchorTips.Designer.cs">
+      <DependentUpon>FrmAnchorTips.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WellsMetroControl\Forms\FrmBack.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WellsMetroControl\Forms\FrmBack.Designer.cs">
+      <DependentUpon>FrmBack.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WellsMetroControl\Forms\FrmBase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WellsMetroControl\Forms\FrmBase.Designer.cs">
+      <DependentUpon>FrmBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WellsMetroControl\Forms\FrmDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WellsMetroControl\Forms\FrmDialog.Designer.cs">
+      <DependentUpon>FrmDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WellsMetroControl\Forms\FrmInputs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WellsMetroControl\Forms\FrmInputs.Designer.cs">
+      <DependentUpon>FrmInputs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WellsMetroControl\Forms\FrmLoading.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WellsMetroControl\Forms\FrmLoading.Designer.cs">
+      <DependentUpon>FrmLoading.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WellsMetroControl\Forms\FrmTips.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WellsMetroControl\Forms\FrmTips.Designer.cs">
+      <DependentUpon>FrmTips.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WellsMetroControl\Forms\FrmTransparent.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WellsMetroControl\Forms\FrmTransparent.Designer.cs">
+      <DependentUpon>FrmTransparent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WellsMetroControl\Forms\FrmWaiting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WellsMetroControl\Forms\FrmWaiting.Designer.cs">
+      <DependentUpon>FrmWaiting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WellsMetroControl\Forms\FrmWithOKCancel1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WellsMetroControl\Forms\FrmWithOKCancel1.Designer.cs">
+      <DependentUpon>FrmWithOKCancel1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WellsMetroControl\Forms\FrmWithOKCancel2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WellsMetroControl\Forms\FrmWithOKCancel2.Designer.cs">
+      <DependentUpon>FrmWithOKCancel2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WellsMetroControl\Forms\FrmWithTitle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WellsMetroControl\Forms\FrmWithTitle.Designer.cs">
+      <DependentUpon>FrmWithTitle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WellsMetroControl\Helpers\ControlHelper.cs" />
+    <Compile Include="WellsMetroControl\Helpers\Ext.cs" />
+    <Compile Include="WellsMetroControl\Helpers\GraphDirection.cs" />
+    <Compile Include="WellsMetroControl\Helpers\ITheme.cs" />
+    <Compile Include="WellsMetroControl\Helpers\MouseHook.cs" />
+    <Compile Include="WellsMetroControl\Helpers\NativeMethods.cs" />
+    <Compile Include="WellsMetroControl\Helpers\TextInputType.cs" />
+    <Compile Include="WellsMetroControl\Helpers\WindowsHook.cs" />
+    <Compile Include="WellsMetroControl\IconFont\FontIcons.cs" />
+    <Compile Include="WellsMetroControl\IconFont\FontImages.cs" />
+    <Compile Include="WellsMetroControl\UIEditor\FrmSelectImage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WellsMetroControl\UIEditor\FrmSelectImage.Designer.cs">
+      <DependentUpon>FrmSelectImage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WellsMetroControl\UIEditor\ImagePropertyEditor.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="WellsMetroControl\Controls\BtnsGroup\UCBtnsGroup.resx">
+      <DependentUpon>UCBtnsGroup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WellsMetroControl\Controls\Btn\UCBtnExt.resx">
+      <DependentUpon>UCBtnExt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WellsMetroControl\Controls\Btn\UCBtnFillet.resx">
+      <DependentUpon>UCBtnFillet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WellsMetroControl\Controls\Btn\UCBtnImg.resx">
+      <DependentUpon>UCBtnImg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WellsMetroControl\Controls\Btn\UCDropDownBtn.resx">
+      <DependentUpon>UCDropDownBtn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WellsMetroControl\Controls\Checkbox\UCCheckBox.resx">
+      <DependentUpon>UCCheckBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WellsMetroControl\Controls\ComboBox\UCCombox.resx">
+      <DependentUpon>UCCombox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WellsMetroControl\Controls\ComboBox\UCComboxGrid.resx">
+      <DependentUpon>UCComboxGrid.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WellsMetroControl\Controls\ComboBox\UCComboxGridPanel.resx">
+      <DependentUpon>UCComboxGridPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WellsMetroControl\Controls\DataGridView\UCDataGridView.resx">
+      <DependentUpon>UCDataGridView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WellsMetroControl\Controls\DataGridView\UCDataGridViewRow.resx">
+      <DependentUpon>UCDataGridViewRow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WellsMetroControl\Controls\DataGridView\UCDataGridViewTreeRow.resx">
+      <DependentUpon>UCDataGridViewTreeRow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WellsMetroControl\Controls\DateTime\UCDatePickerExt.resx">
+      <DependentUpon>UCDatePickerExt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WellsMetroControl\Controls\DateTime\UCDateTimeSelectPan.resx">
+      <DependentUpon>UCDateTimeSelectPan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WellsMetroControl\Controls\DateTime\UCTimePanel.resx">
+      <DependentUpon>UCTimePanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WellsMetroControl\Controls\FactoryControls\MindMapping\UCMindMappingPanel.resx">
+      <DependentUpon>UCMindMappingPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WellsMetroControl\Controls\KeyBord\UCKeyBorderAll.resx">
+      <DependentUpon>UCKeyBorderAll.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WellsMetroControl\Controls\KeyBord\UCKeyBorderNum.resx">
+      <DependentUpon>UCKeyBorderNum.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WellsMetroControl\Controls\KeyBord\UCKeyBorderPay.resx">
+      <DependentUpon>UCKeyBorderPay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WellsMetroControl\Controls\LED\UCLEDData.resx">
+      <DependentUpon>UCLEDData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WellsMetroControl\Controls\LED\UCLEDDataTime.resx">
+      <DependentUpon>UCLEDDataTime.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WellsMetroControl\Controls\LED\UCLEDNums.resx">
+      <DependentUpon>UCLEDNums.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WellsMetroControl\Controls\LED\UCLEDTime.resx">
+      <DependentUpon>UCLEDTime.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WellsMetroControl\Controls\List\UCHorizontalList.resx">
+      <DependentUpon>UCHorizontalList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WellsMetroControl\Controls\List\UCHorizontalListItem.resx">
+      <DependentUpon>UCHorizontalListItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WellsMetroControl\Controls\List\UCListExt.resx">
+      <DependentUpon>UCListExt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WellsMetroControl\Controls\List\UCListItemExt.resx">
+      <DependentUpon>UCListItemExt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WellsMetroControl\Controls\List\UCListView.resx">
+      <DependentUpon>UCListView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WellsMetroControl\Controls\List\UCListViewItem.resx">
+      <DependentUpon>UCListViewItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WellsMetroControl\Controls\Menu\UCMenu.resx">
+      <DependentUpon>UCMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WellsMetroControl\Controls\Menu\UCMenuChildrenItem.resx">
+      <DependentUpon>UCMenuChildrenItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WellsMetroControl\Controls\Menu\UCMenuParentItem.resx">
+      <DependentUpon>UCMenuParentItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WellsMetroControl\Controls\NavigationMenu\UCNavigationMenu.resx">
+      <DependentUpon>UCNavigationMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WellsMetroControl\Controls\NavigationMenu\UCNavigationMenuExt.resx">
+      <DependentUpon>UCNavigationMenuExt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WellsMetroControl\Controls\NavigationMenu\UCNavigationMenuOffice.resx">
+      <DependentUpon>UCNavigationMenuOffice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WellsMetroControl\Controls\Navigation\UCCrumbNavigation.resx">
+      <DependentUpon>UCCrumbNavigation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WellsMetroControl\Controls\Page\UCPagerControl.resx">
+      <DependentUpon>UCPagerControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WellsMetroControl\Controls\Page\UCPagerControl2.resx">
+      <DependentUpon>UCPagerControl2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WellsMetroControl\Controls\Page\UCPagerControlBase.resx">
+      <DependentUpon>UCPagerControlBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WellsMetroControl\Controls\Panel\UCPanelTitle.resx">
+      <DependentUpon>UCPanelTitle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WellsMetroControl\Controls\Process\UCProcessEllipse.resx">
+      <DependentUpon>UCProcessEllipse.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WellsMetroControl\Controls\Process\UCProcessExt.resx">
+      <DependentUpon>UCProcessExt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WellsMetroControl\Controls\Process\UCProcessLineExt.resx">
+      <DependentUpon>UCProcessLineExt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WellsMetroControl\Controls\Process\UCProcessWave.resx">
+      <DependentUpon>UCProcessWave.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WellsMetroControl\Controls\RadioButton\UCRadioButton.resx">
+      <DependentUpon>UCRadioButton.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WellsMetroControl\Controls\ScrollBar\UCVScrollbar.resx">
+      <DependentUpon>UCVScrollbar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WellsMetroControl\Controls\Split\UCSplitLine_H.resx">
+      <DependentUpon>UCSplitLine_H.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WellsMetroControl\Controls\Split\UCSplitLine_V.resx">
+      <DependentUpon>UCSplitLine_V.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WellsMetroControl\Controls\Step\UCStep.resx">
+      <DependentUpon>UCStep.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WellsMetroControl\Controls\Switch\UCSwitch.resx">
+      <DependentUpon>UCSwitch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WellsMetroControl\Controls\Text\TextBoxTransparent.resx">
+      <DependentUpon>TextBoxTransparent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WellsMetroControl\Controls\Text\UCNumTextBox.resx">
+      <DependentUpon>UCNumTextBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WellsMetroControl\Controls\Text\UCTextBoxEx.resx">
+      <DependentUpon>UCTextBoxEx.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WellsMetroControl\Controls\TimeLine\UCTimeLine.resx">
+      <DependentUpon>UCTimeLine.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WellsMetroControl\Controls\Transfer\UCTransfer.resx">
+      <DependentUpon>UCTransfer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WellsMetroControl\Controls\UCControlBase.resx">
+      <DependentUpon>UCControlBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WellsMetroControl\Forms\FrmAnchor.resx">
+      <DependentUpon>FrmAnchor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WellsMetroControl\Forms\FrmAnchorTips.resx">
+      <DependentUpon>FrmAnchorTips.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WellsMetroControl\Forms\FrmBack.resx">
+      <DependentUpon>FrmBack.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WellsMetroControl\Forms\FrmBase.resx">
+      <DependentUpon>FrmBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WellsMetroControl\Forms\FrmDialog.resx">
+      <DependentUpon>FrmDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WellsMetroControl\Forms\FrmInputs.resx">
+      <DependentUpon>FrmInputs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WellsMetroControl\Forms\FrmLoading.resx">
+      <DependentUpon>FrmLoading.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WellsMetroControl\Forms\FrmTips.resx">
+      <DependentUpon>FrmTips.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WellsMetroControl\Forms\FrmTransparent.resx">
+      <DependentUpon>FrmTransparent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WellsMetroControl\Forms\FrmWaiting.resx">
+      <DependentUpon>FrmWaiting.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WellsMetroControl\Forms\FrmWithOKCancel1.resx">
+      <DependentUpon>FrmWithOKCancel1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WellsMetroControl\Forms\FrmWithOKCancel2.resx">
+      <DependentUpon>FrmWithOKCancel2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WellsMetroControl\Forms\FrmWithTitle.resx">
+      <DependentUpon>FrmWithTitle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WellsMetroControl\UIEditor\FrmSelectImage.resx">
+      <DependentUpon>FrmSelectImage.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Controls\Docking\Resources\Thumbs.db" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="WellsFrameWork.Fonts\Resources\Open Sans License.txt" />
+    <None Include="WellsFrameWork\WellsFramework.pfx" />
+    <EmbeddedResource Include="Controls\Docking\DockContent.resx">
+      <DependentUpon>DockContent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Docking\FloatWindow.resx">
+      <DependentUpon>FloatWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Docking\Resources.resx" />
+    <EmbeddedResource Include="Controls\Docking\Strings.resx" />
+    <EmbeddedResource Include="Controls\ImageDoc\ImageDoc.en-US.resx">
+      <DependentUpon>ImageDoc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ImageDoc\ImageDoc.resx">
+      <DependentUpon>ImageDoc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ImageView\ImageView.en-US.resx">
+      <DependentUpon>ImageView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ImageView\ImageView.resx">
+      <DependentUpon>ImageView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\InspectView\InspectView.en-US.resx">
+      <DependentUpon>InspectView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\InspectView\InspectViewNew.en-US.resx">
+      <DependentUpon>InspectViewNew.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\InspectView\InspectViewNew.resx">
+      <DependentUpon>InspectViewNew.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ThresholdUnit\ThresholdUnit.en-US.resx">
+      <DependentUpon>ThresholdUnit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ThresholdUnit\ThresholdUnit.resx">
+      <DependentUpon>ThresholdUnit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\VisionInspect\ImageDoc.en-US.resx">
+      <DependentUpon>ImageDoc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\VisionInspect\ImageDoc.resx">
+      <DependentUpon>ImageDoc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmType\frmInput.resx">
+      <DependentUpon>frmInput.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmType\frmProgressBar.en-US.resx">
+      <DependentUpon>frmProgressBar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmType\frmProgressBar.resx">
+      <DependentUpon>frmProgressBar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmType\frm_Exit.en-US.resx">
+      <DependentUpon>frm_Exit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmType\frm_Exit.resx">
+      <DependentUpon>frm_Exit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmType\frm_Loading.resx">
+      <DependentUpon>frm_Loading.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmType\frm_Log.en-US.resx">
+      <DependentUpon>frm_Log.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmType\frm_Log.resx">
+      <DependentUpon>frm_Log.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmType\frm_Waiting.en-US.resx">
+      <DependentUpon>frm_Waiting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmType\frm_Waiting.resx">
+      <DependentUpon>frm_Waiting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\InspectView\InspectView.resx">
+      <DependentUpon>InspectView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WellsFrameWork\MessageBox\WellsMetroMessageBoxControl.en-US.resx">
+      <DependentUpon>WellsMetroMessageBoxControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WellsMaterialSkin\Resources\Roboto-Medium.ttf" />
+    <EmbeddedResource Include="WellsMaterialSkin\Resources\Roboto-Regular.ttf" />
+    <None Include="WellsMetroControl\IconFont\ElegantIcons.ttf" />
+    <None Include="WellsMetroControl\IconFont\FontAwesome.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="WellsMetroControl\Resources\alarm.png" />
+    <Content Include="WellsMetroControl\Resources\back.png" />
+    <Content Include="WellsMetroControl\Resources\caret-down.png" />
+    <Content Include="WellsMetroControl\Resources\caret-right.png" />
+    <Content Include="WellsMetroControl\Resources\checkbox0.png" />
+    <Content Include="WellsMetroControl\Resources\checkbox00.png" />
+    <Content Include="WellsMetroControl\Resources\checkbox1.png" />
+    <Content Include="WellsMetroControl\Resources\checkbox10.png" />
+    <Content Include="WellsMetroControl\Resources\chevron-left.png" />
+    <Content Include="WellsMetroControl\Resources\chevron-right.png" />
+    <Content Include="WellsMetroControl\Resources\ComboBox.png" />
+    <Content Include="WellsMetroControl\Resources\dateRight.png" />
+    <Content Include="WellsMetroControl\Resources\datetLeft.png" />
+    <Content Include="WellsMetroControl\Resources\dialog_close.png" />
+    <Content Include="WellsMetroControl\Resources\down.png" />
+    <Content Include="WellsMetroControl\Resources\end.png" />
+    <Content Include="WellsMetroControl\Resources\error.png" />
+    <Content Include="WellsMetroControl\Resources\first.png" />
+    <Content Include="WellsMetroControl\Resources\handinput.exe" />
+    <Content Include="WellsMetroControl\Resources\help.png" />
+    <Content Include="WellsMetroControl\Resources\ic_add_black_18dp.png" />
+    <Content Include="WellsMetroControl\Resources\ic_remove_black_18dp.png" />
+    <Content Include="WellsMetroControl\Resources\ic_search_black_24dp.png" />
+    <Content Include="WellsMetroControl\Resources\input_clear.png" />
+    <Content Include="WellsMetroControl\Resources\keyboard.png" />
+    <Content Include="WellsMetroControl\Resources\keyboard_bs.png" />
+    <Content Include="WellsMetroControl\Resources\left.png" />
+    <Content Include="WellsMetroControl\Resources\list_add.png" />
+    <Content Include="WellsMetroControl\Resources\list_subtract.png" />
+    <Content Include="WellsMetroControl\Resources\loading.gif" />
+    <Content Include="WellsMetroControl\Resources\more1.png" />
+    <Content Include="WellsMetroControl\Resources\qty_delete.png" />
+    <Content Include="WellsMetroControl\Resources\radioButton0.png" />
+    <Content Include="WellsMetroControl\Resources\radioButton00.png" />
+    <Content Include="WellsMetroControl\Resources\radioButton1.png" />
+    <Content Include="WellsMetroControl\Resources\radioButton10.png" />
+    <Content Include="WellsMetroControl\Resources\right.png" />
+    <Content Include="WellsMetroControl\Resources\rigth.png" />
+    <Content Include="WellsMetroControl\Resources\sanjiao1.png" />
+    <Content Include="WellsMetroControl\Resources\sanjiao2.png" />
+    <Content Include="WellsMetroControl\Resources\success.png" />
+    <Content Include="WellsMetroControl\Resources\tips.png" />
+    <Content Include="WellsMetroControl\Resources\up.png" />
+    <Content Include="WellsMetroControl\Resources\warning.png" />
+    <None Include="Resources\_return.gif" />
+    <None Include="Resources\bg.jpg" />
+    <None Include="Resources\Cancel.gif" />
+    <None Include="Resources\waiting.gif" />
+    <None Include="ModifyHistory.txt" />
+    <None Include="Resources\btnGreen.png" />
+    <None Include="Resources\btnGreen2.png" />
+    <None Include="Resources\btnRed.png" />
+    <None Include="Resources\btnYellow.png" />
+    <None Include="Resources\_frm_Log.png" />
+    <None Include="Resources\write.png" />
+    <Content Include="Controls\Docking\DockPanel.bmp" />
+    <Content Include="Controls\Docking\Resources\DockIndicator_PaneDiamond.bmp" />
+    <Content Include="Controls\Docking\Resources\DockIndicator_PaneDiamond_Bottom.bmp" />
+    <Content Include="Controls\Docking\Resources\Dockindicator_PaneDiamond_Fill.bmp" />
+    <Content Include="Controls\Docking\Resources\DockIndicator_PaneDiamond_Hotspot.bmp" />
+    <Content Include="Controls\Docking\Resources\DockIndicator_PaneDiamond_HotspotIndex.bmp" />
+    <Content Include="Controls\Docking\Resources\DockIndicator_PaneDiamond_Left.bmp" />
+    <Content Include="Controls\Docking\Resources\DockIndicator_PaneDiamond_Right.bmp" />
+    <Content Include="Controls\Docking\Resources\DockIndicator_PaneDiamond_Top.bmp" />
+    <Content Include="Controls\Docking\Resources\DockIndicator_PanelBottom.bmp" />
+    <Content Include="Controls\Docking\Resources\DockIndicator_PanelBottom_Active.bmp" />
+    <Content Include="Controls\Docking\Resources\DockIndicator_PanelFill.bmp" />
+    <Content Include="Controls\Docking\Resources\DockIndicator_PanelFill_Active.bmp" />
+    <Content Include="Controls\Docking\Resources\DockIndicator_PanelLeft.bmp" />
+    <Content Include="Controls\Docking\Resources\DockIndicator_PanelLeft_Active.bmp" />
+    <Content Include="Controls\Docking\Resources\DockIndicator_PanelRight.bmp" />
+    <Content Include="Controls\Docking\Resources\DockIndicator_PanelRight_Active.bmp" />
+    <Content Include="Controls\Docking\Resources\DockIndicator_PanelTop.bmp" />
+    <Content Include="Controls\Docking\Resources\DockIndicator_PanelTop_Active.bmp" />
+    <Content Include="Controls\Docking\Resources\DockPane_AutoHide.bmp" />
+    <Content Include="Controls\Docking\Resources\DockPane_Close.bmp" />
+    <Content Include="Controls\Docking\Resources\DockPane_Dock.bmp" />
+    <Content Include="Controls\Docking\Resources\DockPane_Option.bmp" />
+    <Content Include="Controls\Docking\Resources\DockPane_OptionOverflow.bmp" />
+    <Content Include="WellsFrameWork\Localization\de\WellsMetroToggle.xml" />
+    <Content Include="WellsFrameWork\Localization\en\WellsMetroToggle.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WellsFrameWork.Fonts\Resources\Open_Sans.ttf" />
+    <EmbeddedResource Include="WellsFrameWork.Fonts\Resources\Open_Sans_Bold.ttf" />
+    <EmbeddedResource Include="WellsFrameWork.Fonts\Resources\Open_Sans_Light.ttf" />
+    <EmbeddedResource Include="WellsFrameWork\Forms\WellsMetroForm.resx">
+      <DependentUpon>WellsMetroForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WellsFrameWork\Forms\WellsMetroMessageBox.resx">
+      <DependentUpon>WellsMetroMessageBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WellsFrameWork\MessageBox\WellsMetroMessageBoxControl.resx">
+      <DependentUpon>WellsMetroMessageBoxControl.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
