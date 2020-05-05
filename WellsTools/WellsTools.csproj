@@ -63,8 +63,8 @@
     <Reference Include="NPOI.OpenXmlFormats">
       <HintPath>Dll\NPOI.OpenXmlFormats.dll</HintPath>
     </Reference>
-    <Reference Include="siyar">
-      <HintPath>Dll\siyar.dll</HintPath>
+    <Reference Include="Qting">
+      <HintPath>Dll\Qting.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
@@ -254,6 +254,12 @@
     </Compile>
     <Compile Include="Controls\VisionInspect\ImageDoc.designer.cs">
       <DependentUpon>ImageDoc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmType\frmBaseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmType\frmBaseForm.Designer.cs">
+      <DependentUpon>frmBaseForm.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmType\frmInput.cs">
       <SubType>Form</SubType>
@@ -1112,6 +1118,9 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <EmbeddedResource Include="FrmType\frmBaseForm.resx">
+      <DependentUpon>frmBaseForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="WellsMetroControl\Controls\BtnsGroup\UCBtnsGroup.resx">
       <DependentUpon>UCBtnsGroup.cs</DependentUpon>
     </EmbeddedResource>

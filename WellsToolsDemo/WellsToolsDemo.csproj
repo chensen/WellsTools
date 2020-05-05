@@ -35,8 +35,8 @@
     <Reference Include="hvppledotnet">
       <HintPath>..\WellsTools\Dll\hvppledotnet.dll</HintPath>
     </Reference>
-    <Reference Include="siyar">
-      <HintPath>..\WellsTools\bin\Debug\siyar.dll</HintPath>
+    <Reference Include="Qting">
+      <HintPath>..\WellsTools\Dll\Qting.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
