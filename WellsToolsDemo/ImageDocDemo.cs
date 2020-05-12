@@ -11,12 +11,12 @@ using Wells.Controls.ImageDoc;
 
 namespace WellsToolsDemo
 {
-    public partial class Form1 : Form
+    public partial class ImageDocDemo : Form
     {
         //Wells.Tools.clsXmlEx xml = new Wells.Tools.clsXmlEx("xml.xml");
         List<ROI> rois = new List<ROI>();
         HTuple hwnd = null;
-        public Form1()
+        public ImageDocDemo()
         {
             InitializeComponent();
             //imageDoc.setStaticWnd(true);

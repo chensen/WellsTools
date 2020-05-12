@@ -11,6 +11,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WellsToolsDemo", "WellsTool
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WellsToolsMetroDemo", "WellsToolsMetroDemo\WellsToolsMetroDemo.csproj", "{53CCD007-AA85-4CCF-AE81-BBB8B1CBEB1F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{F0245C7E-7FA8-4A3E-9237-59567CCD5562} = {F0245C7E-7FA8-4A3E-9237-59567CCD5562}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

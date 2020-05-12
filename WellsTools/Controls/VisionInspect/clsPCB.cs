@@ -69,6 +69,11 @@ namespace Wells.Controls.VisionInspect
         public int m_uFovSizeY;
 
         /// <summary>
+        /// 指示原图是否为彩色
+        /// </summary>
+        public bool m_bColor;
+
+        /// <summary>
         /// 基板选择坐标系，原点位置，0，左下，1，左上，2，右下，3，右上
         /// </summary>
         public int m_iCoordinateType;
@@ -149,7 +154,7 @@ namespace Wells.Controls.VisionInspect
             #endregion
         }
 
-        public void initialize(int uSizeX, int uSizeY, int uResolutionX, int uResolutionY, int pWidth, int pHeight, Point ptOriginOffset, int type = tagCoordinateType.LeftDown, int imagetype = tagImageCoordinateType.LeftUp)
+        public void initialize(int uSizeX, int uSizeY, int uResolutionX, int uResolutionY, int pWidth, int pHeight, Point ptOriginOffset, int type = tagCoordinateType.LeftDown, int imagetype = tagImageCoordinateType.LeftUp, bool bColor = false)
         {
             #region 初始化各参数
 
@@ -163,6 +168,7 @@ namespace Wells.Controls.VisionInspect
             m_uFovSizeY = (int)Math.Round((decimal)m_pFovPixelHeight / 1000 * m_uResolutionY);
             m_iCoordinateType = type;
             m_iImageCoordinateType = imagetype;
+            m_bColor = bColor;
 
             m_xFovNum = m_uSizeX / m_uFovSizeX + 1;
             m_yFovNum = m_uSizeY / m_uFovSizeY + 1;
@@ -230,8 +236,7 @@ namespace Wells.Controls.VisionInspect
                             pView.m_lptCenter = pt;
                             pView.m_image.Width = m_pFovPixelWidth;
                             pView.m_image.Height = m_pFovPixelHeight;
-                            pView.m_image.Stride = m_pFovPixelWidth;
-                            pView.m_image.ImgBufferSize = m_pFovPixelWidth * m_pFovPixelHeight;
+                            pView.m_image.Color = m_bColor;
                             pView.linkToView(imageDoc);
                             m_CameraViewList.Add(pView);
                         }
@@ -246,8 +251,7 @@ namespace Wells.Controls.VisionInspect
                             pView.m_lptCenter = pt;
                             pView.m_image.Width = m_pFovPixelWidth;
                             pView.m_image.Height = m_pFovPixelHeight;
-                            pView.m_image.Stride = m_pFovPixelWidth;
-                            pView.m_image.ImgBufferSize = m_pFovPixelWidth * m_pFovPixelHeight;
+                            pView.m_image.Color = m_bColor;
                             pView.linkToView(imageDoc);
                             m_CameraViewList.Add(pView);
                         }

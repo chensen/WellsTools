@@ -17,7 +17,7 @@ namespace WellsToolsDemo
             Application.SetCompatibleTextRenderingDefault(false);
             Wells.clsWellsLanguage.setLanguageType(0);
             Wells.FrmType.frm_Log.InitDlg();
-            Application.Run(new Form1());
+            Application.Run(new ImageDocDemo2());
         }
     }
 }

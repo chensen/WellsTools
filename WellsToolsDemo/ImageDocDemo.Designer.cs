@@ -1,6 +1,6 @@
 ﻿namespace WellsToolsDemo
 {
-    partial class Form1
+    partial class ImageDocDemo
     {
         /// <summary>
         /// Required designer variable.

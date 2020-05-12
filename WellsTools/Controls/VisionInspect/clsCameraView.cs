@@ -357,7 +357,16 @@ namespace Wells.Controls.VisionInspect
                 pt = LpToVp(pt);
                 if (pt.X >= 0 && pt.Y >= 0 && pt.X < m_image.Width && pt.Y < m_image.Height)
                 {
-                    R = G = B = m_image.ImgBuffer[pt.Y * m_image.Width + pt.X];
+                    if (m_image.Color)
+                    {
+                        B = m_image.ImgBuffer[(pt.Y * m_image.Width + pt.X) * 3];
+                        G = m_image.ImgBuffer[(pt.Y * m_image.Width + pt.X) * 3 + 1];
+                        R = m_image.ImgBuffer[(pt.Y * m_image.Width + pt.X) * 3 + 2];
+                    }
+                    else
+                    {
+                        R = G = B = m_image.ImgBuffer[pt.Y * m_image.Width + pt.X];
+                    }
                     ret = true;
                 }
             }

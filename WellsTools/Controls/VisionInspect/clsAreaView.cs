@@ -67,6 +67,7 @@ namespace Wells.Controls.VisionInspect
             m_vrcScreenArea = new Rectangle(0, 0, 300, 200);
             m_vrcPCBImageArea = new Rectangle(0, 0, 300, 200);
             m_image = new clsImage();
+            m_image.Color = clsPCB.m_pPCB.m_bColor;
             imageDoc = null;
 
             #endregion
@@ -347,8 +348,7 @@ namespace Wells.Controls.VisionInspect
             {
                 m_image.Width = m_vrcPCBImageArea.Width;
                 m_image.Height = m_vrcPCBImageArea.Height;
-                m_image.Stride = m_image.Width;
-                m_image.ImgBufferSize = m_image.Width * m_image.Height;
+                m_image.Color = clsPCB.m_pPCB.m_bColor;
                 m_image.ImgBuffer = new byte[m_image.ImgBufferSize];
 
                 Point pt = new Point(0, 0);
@@ -364,8 +364,19 @@ namespace Wells.Controls.VisionInspect
 
                         pt = VpToLp(pt);
 
-                        R = G = B = clsPCB.m_pPCB.getPixelPCBImage(pt, out R, out G, out B) ? R : tmp;
-                        m_image.ImgBuffer[j * m_image.Width + i] = R;
+                        if (!clsPCB.m_pPCB.getPixelPCBImage(pt, out R, out G, out B))
+                            R = G = B = tmp;
+
+                        if (m_image.Color)
+                        {
+                            m_image.ImgBuffer[(j * m_image.Width + i )* 3] = B;
+                            m_image.ImgBuffer[(j * m_image.Width + i )* 3 + 1] = G;
+                            m_image.ImgBuffer[(j * m_image.Width + i )* 3 + 2] = R;
+                        }
+                        else
+                        {
+                            m_image.ImgBuffer[j * m_image.Width + i] = R;
+                        }
                     }
                 }
             }

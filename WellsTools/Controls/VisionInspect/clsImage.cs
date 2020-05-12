@@ -8,21 +8,16 @@ namespace Wells.Controls.VisionInspect
     public class clsImage : ICloneable
     {
         public byte[] ImgBuffer;
-        public int ImgBufferSize { get; set; }
+        public int ImgBufferSize { get { return Width * Height * (Color ? 3 : 1); } }
         public int Width { get; set; }
-        public int Stride { get; set; }
         public int Height { get; set; }
-        public int Chanels { get; set; }
         public bool Color { get; set; }
 
         public clsImage()
         {
             Width = 0;
             Height = 0;
-            Stride = 0;
             Color = false;
-            Chanels = 1;
-            ImgBufferSize = 0;
             ImgBuffer = null;
         }
 
@@ -31,10 +26,7 @@ namespace Wells.Controls.VisionInspect
             clsImage instance = new clsImage();
             instance.Width = this.Width;
             instance.Height = this.Height;
-            instance.Stride = this.Stride;
-            instance.Chanels = this.Chanels;
             instance.Color = this.Color;
-            instance.ImgBufferSize = this.ImgBufferSize;
             if (this.ImgBuffer != null)
             {
                 instance.ImgBuffer = new byte[this.ImgBuffer.Length];
@@ -56,9 +48,7 @@ namespace Wells.Controls.VisionInspect
         {
             if (ImgBuffer == null)
                 return false;
-            if (Width <= 0 || Height <= 0 || ImgBufferSize <= 0 || Stride <= 0)
-                return false;
-            if (ImgBufferSize != Height * Stride)
+            if (Width <= 0 || Height <= 0)
                 return false;
             return true;
         }

@@ -337,6 +337,7 @@
     <Compile Include="Tools\clsMedia.cs" />
     <Compile Include="Tools\clsNet.cs" />
     <Compile Include="Tools\clsExcelNPOI.cs" />
+    <Compile Include="Tools\clsPropertyManage.cs" />
     <Compile Include="Tools\clsPsd.cs" />
     <Compile Include="Tools\clsPinyin.cs" />
     <Compile Include="Tools\clsQueue.cs" />
@@ -1418,8 +1419,8 @@
     </EmbeddedResource>
     <EmbeddedResource Include="WellsMaterialSkin\Resources\Roboto-Medium.ttf" />
     <EmbeddedResource Include="WellsMaterialSkin\Resources\Roboto-Regular.ttf" />
-    <None Include="WellsMetroControl\IconFont\ElegantIcons.ttf" />
-    <None Include="WellsMetroControl\IconFont\FontAwesome.ttf" />
+    <EmbeddedResource Include="WellsMetroControl\IconFont\ElegantIcons.ttf" />
+    <EmbeddedResource Include="WellsMetroControl\IconFont\FontAwesome.ttf" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="WellsMetroControl\Resources\alarm.png" />

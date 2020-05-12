@@ -37,7 +37,19 @@ namespace Wells.Controls.VisionInspect
             byte[] byteData = new byte[fs.Length];
             fs.Read(byteData, 0, byteData.Length);
             fs.Close();
-            return byteData;
+
+            byte[] ret = null;
+            if(byteData[29]==0&&byteData[28]==8)//gray
+            {
+                ret = new byte[byteData.Length - 1078];
+                Array.Copy(byteData, 1078, ret, 0, ret.Length);
+            }
+            else if (byteData[29] == 0 && byteData[28] == 24)//color
+            {
+                ret = new byte[byteData.Length - 54];
+                Array.Copy(byteData, 54, ret, 0, ret.Length);
+            }
+            return ret;
         }
 
         public static byte[] getImageData(System.Drawing.Image imgPhoto)
@@ -94,6 +106,59 @@ namespace Wells.Controls.VisionInspect
             return bmp;
 
         }
+
+        public static System.Drawing.Bitmap getColorBitmap(clsImage image)
+        {
+            //// 申请目标位图的变量，并将其内存区域锁定
+            try
+            {
+                //// 申请目标位图的变量，并将其内存区域锁定  
+                Bitmap bmp = new Bitmap(image.Width, image.Height, PixelFormat.Format24bppRgb);
+                BitmapData bmpData = bmp.LockBits(new Rectangle(0, 0, image.Width, image.Height), ImageLockMode.WriteOnly, PixelFormat.Format24bppRgb);
+
+                //// 获取图像参数  
+                int stride = bmpData.Stride;  // 扫描线的宽度  
+                int offset = stride - image.Width*3;  // 显示宽度与扫描线宽度的间隙  
+                IntPtr iptr = bmpData.Scan0;  // 获取bmpData的内存起始位置  
+                int scanBytes = stride * image.Height;// 用stride宽度，表示这是内存区域的大小 
+
+                //// 下面把原始的显示大小字节数组转换为内存中实际存放的字节数组  
+                int posScan = 0, posReal = 0;// 分别设置两个位置指针，指向源数组和目标数组  
+                byte[] pixelValues = new byte[scanBytes];  //为目标数组分配内存  
+
+                for (int x = 0; x < image.Height; x++)
+                {
+                    //// 下面的循环节是模拟行扫描  
+                    for (int y = 0; y < image.Width; y++)
+                    {
+                        pixelValues[posScan++] = image.ImgBuffer[posReal++];
+                        pixelValues[posScan++] = image.ImgBuffer[posReal++];
+                        pixelValues[posScan++] = image.ImgBuffer[posReal++];
+                    }
+                    posScan += offset;  //行扫描结束，要将目标位置指针移过那段“间隙”  
+                }
+
+                //// 用Marshal的Copy方法，将刚才得到的内存字节数组复制到BitmapData中  
+                System.Runtime.InteropServices.Marshal.Copy(pixelValues, 0, iptr, scanBytes);
+
+                //// 用Marshal的Copy方法，将刚才得到的内存字节数组复制到BitmapData中  
+                //System.Runtime.InteropServices.Marshal.Copy(image.ImgBuffer, 0, iptr, image.ImgBufferSize);
+                bmp.UnlockBits(bmpData);  // 解锁内存区域  
+
+                //// 算法到此结束，返回结果
+                return bmp;
+            }
+            catch (System.Exception ex)
+            {
+                return null;
+            }
+        }
+
+        public static System.Drawing.Bitmap GetBitmap(clsImage image)
+        {
+            if (image.Color) return getColorBitmap(image);
+            else return getGrayBitmap(image);
+        }
     }
 
     public static class GraphicsEx
@@ -110,12 +175,12 @@ namespace Wells.Controls.VisionInspect
 
         public static void drawImage(this Graphics g, clsImage img, int x, int y, int width, int height)
         {
-            g.DrawImage(clsPublic.getGrayBitmap(img), new Rectangle(x, y, width, height));
+            g.DrawImage(clsPublic.GetBitmap(img), new Rectangle(x, y, width, height));
         }
 
         public static void drawImage(this Graphics g, clsImage img, Rectangle dstRect)
         {
-            g.DrawImage(clsPublic.getGrayBitmap(img), dstRect);
+            g.DrawImage(clsPublic.GetBitmap(img), dstRect);
         }
     }
 }
