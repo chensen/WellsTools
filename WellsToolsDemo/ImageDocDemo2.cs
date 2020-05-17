@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using Wells.Controls.ImageDoc;
 using Wells.Controls.VisionInspect;
 using hvppleDotNet;
+using System.Collections;
 
 namespace WellsToolsDemo
 {
@@ -18,8 +19,10 @@ namespace WellsToolsDemo
         public ImageDocDemo2()
         {
             InitializeComponent();
-            var pcb = clsPCB.m_pPCB;
-            clsPCB.m_pPCB.initialize(55000, 55000, 8000, 8000, 2456, 2056, Point.Empty, 0, 0, true);
+            imageDoc1.m_pcb.initialize(55000, 55000, 8000, 8000, 2456, 2056, Point.Empty, 0, 0, true);
+            HObject img = imageDoc1.m_pcb.createPcbImage();
+            imageDoc1.Image = new HImage(img);
+            img.Dispose();
         }
 
         private void ImageDocDemo2_Load(object sender, EventArgs e)
@@ -29,45 +32,50 @@ namespace WellsToolsDemo
 
         private void button1_Click(object sender, EventArgs e)
         {
-            objList = new HObject[12];
-            for (int igg = 0; igg < 12; igg++)
-                HOperatorSet.ReadImage(out objList[igg], "D:\\" + (igg + 1).ToString("00") + ".bmp");
-        }
 
+            for (int igg = 0; igg < imageDoc1.m_pcb.m_CameraViewList.Count; igg++)
+            {
+                if (imageDoc1.m_pcb.m_CameraViewList[igg].m_image.hObj != null)
+                    imageDoc1.m_pcb.m_CameraViewList[igg].m_image.hObj.Dispose();
+                HOperatorSet.ReadImage(out imageDoc1.m_pcb.m_CameraViewList[igg].m_image.hObj, "D:\\" + (igg + 1).ToString("00") + ".bmp");
+            }
+            imageDoc1.m_pcb.prepareTileParam();
+            using (var obj = imageDoc1.m_pcb.createPcbImage())
+            {
+                imageDoc1.Image = new HImage(obj);
+            }
+        }
+        List<Wells.Controls.ImageDocEx.ROI> roiList = new List<Wells.Controls.ImageDocEx.ROI>();
         private void button2_Click(object sender, EventArgs e)
         {
-            int row = int.Parse(textBox1.Text);
-            int col = int.Parse(textBox2.Text);
+            button2.Enabled = false;
+            imageDoc1.setStaticWnd(true);
+            double row1, row2, col1, col2;
+            imageDoc1.HWindow.SetColor("green");
+            imageDoc1.HWindow.DrawRectangle1(out row1, out col1, out row2, out col2);
+            imageDoc1.genRect1(row1, col1, row2, col2, ref roiList);
+            imageDoc1.setStaticWnd(false);
+            button2.Enabled = true;
+        }
 
-            int width = (2456 - col * 2) * clsPCB.m_pPCB.m_xFovNum;
-            int height = (2056 - row * 2) * clsPCB.m_pPCB.m_yFovNum;
-            int _W = (2456 - col * 2);
-            int _H = (2056 - row * 2);
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Wells.FrmType.frm_Log.Log("我们都有一个家，名字叫中国");
+            Wells.FrmType.frm_Log.Log("我们都有一个家，名字叫中国", 1);
+            Wells.FrmType.frm_Log.Log("我们都有一个家，名字叫中国", 2);
+            Wells.FrmType.frm_Log.LogCache("我们都有一个家，名字叫中国cache1");
+            Wells.FrmType.frm_Log.LogCache("我们都有一个家，名字叫中国cache2");
+        }
 
-            HTuple offsetRow = new HTuple();
-            HTuple offsetCol = new HTuple();
-            HTuple Row1 = new HTuple();
-            HTuple Col1 = new HTuple();
-            HTuple Row2 = new HTuple();
-            HTuple Col2 = new HTuple();
-            HObject imgs = new HObject();
-            HOperatorSet.GenEmptyObj(out imgs);
-            for (int igg = 0; igg < 12; igg++) HOperatorSet.ConcatObj(imgs, objList[igg], out imgs);
-            for (int jgg = 0; jgg < clsPCB.m_pPCB.m_yFovNum; jgg++)
-            {
-                for (int igg = 0; igg < clsPCB.m_pPCB.m_xFovNum; igg++)
-                {
-                    offsetRow[jgg * clsPCB.m_pPCB.m_xFovNum + igg] = height - (jgg + 1) * _H;
-                    offsetCol[jgg * clsPCB.m_pPCB.m_xFovNum + igg] = 0 + igg  * _W;
-                    Row1[jgg * clsPCB.m_pPCB.m_xFovNum + igg] = row;
-                    Col1[jgg * clsPCB.m_pPCB.m_xFovNum + igg] =col;
-                    Row2[jgg * clsPCB.m_pPCB.m_xFovNum + igg] =2056-row;
-                    Col2[jgg * clsPCB.m_pPCB.m_xFovNum + igg] = 2456 - col;
-                }
-            }
-            HObject tiledImage = null;
-            HOperatorSet.TileImagesOffset(imgs, out tiledImage, offsetRow, offsetCol, Row1, Col1, Row2, Col2, width, height);
-            imageDoc1.Image = new HImage(tiledImage);
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            long memo = System.Diagnostics.Process.GetCurrentProcess().WorkingSet64;
+            label3.Text = (memo / 1024.0 / 1024.0).ToString("0.00") + "MB";
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            Wells.FrmType.frm_Log.ShowDlg(true);
         }
     }
 }

@@ -15,6 +15,20 @@ namespace Wells.Tools
     /// </summary>
     public class clsPropertyManage : CollectionBase, ICustomTypeDescriptor
     {
+        private System.Windows.Forms.PropertyGrid _propertyGrid;
+
+        public System.Windows.Forms.PropertyGrid propertyGrid
+        {
+            get
+            {
+                return _propertyGrid;
+            }
+            set
+            {
+                _propertyGrid = value;
+            }
+        }
+
         /// <summary>
         /// 添加一个属性表
         /// </summary>
@@ -66,7 +80,9 @@ namespace Wells.Tools
             #region ***** 移除一个属性表 *****
 
             if (value != null && base.List.Count > 0)
+            {
                 base.List.Remove(value);
+            }
 
             #endregion
         }
@@ -92,6 +108,23 @@ namespace Wells.Tools
             #endregion
         }
 
+        public Property this[string name]
+        {
+            get
+            {
+                foreach (var obj in base.List)
+                {
+                    if (((Property)obj).Name == name)
+                        return (Property)obj;
+                }
+                return null;
+            }
+            set
+            {
+                Add(value);
+            }
+        }
+        
         #region ***** ICustomTypeDescriptor 成员  *****
 
         public AttributeCollection GetAttributes()
@@ -178,18 +211,13 @@ namespace Wells.Tools
         private string _displayname = string.Empty;
         private string _description = string.Empty;
 
-        public Property(string sName, object sValue)
-        {
-            this._name = sName;
-            this._value = sValue;
-        }
+        //visiable属性没用，不知道为啥
 
-        public Property(string sName, object sValue, bool sReadonly, bool sVisible)
+        public Property(string sName, object sValue, bool bReadOnly = false)
         {
             this._name = sName;
             this._value = sValue;
-            this._readonly = sReadonly;
-            this._visible = sVisible;
+            this._readonly = bReadOnly;
         }
         
         /// <summary>
@@ -393,6 +421,14 @@ namespace Wells.Tools
             get
             {
                 return m_Property.ReadOnly;
+            }
+        }
+
+        public override bool IsBrowsable
+        {
+            get
+            {
+                return m_Property.Visible;
             }
         }
 

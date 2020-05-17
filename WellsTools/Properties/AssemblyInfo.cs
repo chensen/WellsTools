@@ -43,7 +43,7 @@ internal static class WellsAssembly
     internal const string Version = "1.0.0.0";
     internal const string Description = "Wells Personal Tools";
     internal const string Copyright = "Copyright  2017 Wells.  All rights reserved.";
-    internal const string Company = "Siyar";
+    internal const string Company = "Wells";
     internal const string Product = "Wells";
 }
 

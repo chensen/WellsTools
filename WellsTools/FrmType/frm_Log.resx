@@ -126,7 +126,7 @@
     <value>宋体, 12pt, style=Bold</value>
   </data>
   <data name="btnOpenLog.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 3</value>
+    <value>3, 44</value>
   </data>
   <data name="btnOpenLog.Size" type="System.Drawing.Size, System.Drawing">
     <value>123, 32</value>
@@ -148,7 +148,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnOpenLog.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>3</value>
   </data>
   <data name="btnClearLog.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -157,7 +157,7 @@
     <value>宋体, 12pt, style=Bold</value>
   </data>
   <data name="btnClearLog.Location" type="System.Drawing.Point, System.Drawing">
-    <value>130, 3</value>
+    <value>130, 44</value>
   </data>
   <data name="btnClearLog.Size" type="System.Drawing.Size, System.Drawing">
     <value>123, 32</value>
@@ -178,7 +178,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnClearLog.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>2</value>
   </data>
   <data name="btnShowCache.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -187,7 +187,7 @@
     <value>宋体, 12pt, style=Bold</value>
   </data>
   <data name="btnShowCache.Location" type="System.Drawing.Point, System.Drawing">
-    <value>259, 3</value>
+    <value>259, 44</value>
   </data>
   <data name="btnShowCache.Size" type="System.Drawing.Size, System.Drawing">
     <value>101, 32</value>
@@ -208,36 +208,6 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnShowCache.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="chkTopMost.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="chkTopMost.Font" type="System.Drawing.Font, System.Drawing">
-    <value>宋体, 12pt, style=Bold</value>
-  </data>
-  <data name="chkTopMost.Location" type="System.Drawing.Point, System.Drawing">
-    <value>441, 10</value>
-  </data>
-  <data name="chkTopMost.Size" type="System.Drawing.Size, System.Drawing">
-    <value>95, 20</value>
-  </data>
-  <data name="chkTopMost.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="chkTopMost.Text" xml:space="preserve">
-    <value>总是最前</value>
-  </data>
-  <data name="&gt;&gt;chkTopMost.Name" xml:space="preserve">
-    <value>chkTopMost</value>
-  </data>
-  <data name="&gt;&gt;chkTopMost.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;chkTopMost.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;chkTopMost.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
   <data name="libView.Font" type="System.Drawing.Font, System.Drawing">
@@ -253,10 +223,10 @@
     <value>18</value>
   </data>
   <data name="libView.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 41</value>
+    <value>4, 82</value>
   </data>
   <data name="libView.Size" type="System.Drawing.Size, System.Drawing">
-    <value>533, 526</value>
+    <value>533, 508</value>
   </data>
   <data name="libView.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -271,11 +241,38 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;libView.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>4</value>
   </data>
   <metadata name="timer1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
+  <data name="chkTopMost.Font" type="System.Drawing.Font, System.Drawing">
+    <value>宋体, 12pt</value>
+  </data>
+  <data name="chkTopMost.Location" type="System.Drawing.Point, System.Drawing">
+    <value>433, 45</value>
+  </data>
+  <data name="chkTopMost.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>1, 1, 1, 1</value>
+  </data>
+  <data name="chkTopMost.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 30</value>
+  </data>
+  <data name="chkTopMost.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;chkTopMost.Name" xml:space="preserve">
+    <value>chkTopMost</value>
+  </data>
+  <data name="&gt;&gt;chkTopMost.Type" xml:space="preserve">
+    <value>Wells.WellsMetroControl.Controls.UCCheckBox, Wells, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;chkTopMost.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;chkTopMost.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
@@ -286,7 +283,7 @@
     <value>GrowAndShrink</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>541, 572</value>
+    <value>541, 595</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -364,9 +361,6 @@
         AAPgAAAH8AAAD/gAAB/8AAA//gAAf/+AAf8=
 </value>
   </data>
-  <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
-    <value>CenterScreen</value>
-  </data>
   <data name="$this.Text" xml:space="preserve">
     <value>日志记录</value>
   </data>
@@ -380,6 +374,6 @@
     <value>frm_Log</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>Wells.FrmType.frmBaseForm, Wells, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
 </root>

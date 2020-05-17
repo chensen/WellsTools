@@ -189,6 +189,36 @@
     </Compile>
     <Compile Include="Controls\Docking\Win32\Enums.cs" />
     <Compile Include="Controls\Docking\Win32\NativeMethods.cs" />
+    <Compile Include="Controls\ImageDocEx\Config\Circle.cs" />
+    <Compile Include="Controls\ImageDocEx\Config\CircularArc.cs" />
+    <Compile Include="Controls\ImageDocEx\Config\HRegionEntry.cs" />
+    <Compile Include="Controls\ImageDocEx\Config\Line.cs" />
+    <Compile Include="Controls\ImageDocEx\Config\Rectangle1.cs" />
+    <Compile Include="Controls\ImageDocEx\Config\Rectangle2.cs" />
+    <Compile Include="Controls\ImageDocEx\ImageDocEx.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ImageDocEx\ImageDocEx.designer.cs">
+      <DependentUpon>ImageDocEx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ImageDocEx\Model\GraphicsContext.cs" />
+    <Compile Include="Controls\ImageDocEx\Model\HObjectEntry.cs" />
+    <Compile Include="Controls\ImageDocEx\Model\HWndCtrl.cs" />
+    <Compile Include="Controls\ImageDocEx\Model\HWndMessage.cs" />
+    <Compile Include="Controls\ImageDocEx\Model\IViewWindow.cs" />
+    <Compile Include="Controls\ImageDocEx\Model\Mode.cs" />
+    <Compile Include="Controls\ImageDocEx\Model\ROI.cs" />
+    <Compile Include="Controls\ImageDocEx\Model\ROICircle.cs" />
+    <Compile Include="Controls\ImageDocEx\Model\ROICircularArc.cs" />
+    <Compile Include="Controls\ImageDocEx\Model\ROIController.cs" />
+    <Compile Include="Controls\ImageDocEx\Model\RoiData.cs" />
+    <Compile Include="Controls\ImageDocEx\Model\ROILine.cs" />
+    <Compile Include="Controls\ImageDocEx\Model\ROINurbs.cs" />
+    <Compile Include="Controls\ImageDocEx\Model\ROIRectangle1.cs" />
+    <Compile Include="Controls\ImageDocEx\Model\ROIRectangle2.cs" />
+    <Compile Include="Controls\ImageDocEx\qtCameraView.cs" />
+    <Compile Include="Controls\ImageDocEx\qtImage.cs" />
+    <Compile Include="Controls\ImageDocEx\qtPCB.cs" />
     <Compile Include="Controls\ImageDoc\Config\Circle.cs" />
     <Compile Include="Controls\ImageDoc\Config\CircularArc.cs" />
     <Compile Include="Controls\ImageDoc\Config\HRegionEntry.cs" />
@@ -1119,6 +1149,12 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <EmbeddedResource Include="Controls\ImageDocEx\ImageDocEx.en-US.resx">
+      <DependentUpon>ImageDocEx.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ImageDocEx\ImageDocEx.resx">
+      <DependentUpon>ImageDocEx.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmType\frmBaseForm.resx">
       <DependentUpon>frmBaseForm.cs</DependentUpon>
     </EmbeddedResource>

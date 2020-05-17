@@ -117,7 +117,80 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="timer1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="tsbtn_fitWindow.Size" type="System.Drawing.Size, System.Drawing">
+    <value>234, 22</value>
+  </data>
+  <data name="tsbtn_fitWindow.Text" xml:space="preserve">
+    <value>Fit Window</value>
+  </data>
+  <data name="toolStripSeparator1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>231, 6</value>
+  </data>
+  <data name="tsbtn_saveOriginImage.Size" type="System.Drawing.Size, System.Drawing">
+    <value>234, 22</value>
+  </data>
+  <data name="tsbtn_saveOriginImage.Text" xml:space="preserve">
+    <value>Save Origin Image</value>
+  </data>
+  <data name="tsbtn_saveDumpWindow.Size" type="System.Drawing.Size, System.Drawing">
+    <value>234, 22</value>
+  </data>
+  <data name="tsbtn_saveDumpWindow.Text" xml:space="preserve">
+    <value>Save Window Dump Image</value>
+  </data>
+  <data name="toolStripSeparator2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>231, 6</value>
+  </data>
+  <data name="tsbtn_showMessage.Size" type="System.Drawing.Size, System.Drawing">
+    <value>234, 22</value>
+  </data>
+  <data name="tsbtn_showMessage.Text" xml:space="preserve">
+    <value>Show Text</value>
+  </data>
+  <data name="tsbtn_showROI.Size" type="System.Drawing.Size, System.Drawing">
+    <value>234, 22</value>
+  </data>
+  <data name="tsbtn_showROI.Text" xml:space="preserve">
+    <value>Show ROI</value>
+  </data>
+  <data name="tsbtn_showRegion.Size" type="System.Drawing.Size, System.Drawing">
+    <value>234, 22</value>
+  </data>
+  <data name="tsbtn_showRegion.Text" xml:space="preserve">
+    <value>Show Region</value>
+  </data>
+  <data name="tsbtn_showHat.Size" type="System.Drawing.Size, System.Drawing">
+    <value>234, 22</value>
+  </data>
+  <data name="tsbtn_showHat.Text" xml:space="preserve">
+    <value>Show Hat</value>
+  </data>
+  <data name="tsbtn_showStatusBar.Size" type="System.Drawing.Size, System.Drawing">
+    <value>234, 22</value>
+  </data>
+  <data name="tsbtn_showStatusBar.Text" xml:space="preserve">
+    <value>Show StatusBar</value>
+  </data>
+  <data name="toolStripSeparator3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>231, 6</value>
+  </data>
+  <data name="tsbtn_showHisto.Size" type="System.Drawing.Size, System.Drawing">
+    <value>234, 22</value>
+  </data>
+  <data name="tsbtn_showHisto.Text" xml:space="preserve">
+    <value>Gray Histo</value>
+  </data>
+  <data name="tsbtn_MeasureDistance.Size" type="System.Drawing.Size, System.Drawing">
+    <value>234, 22</value>
+  </data>
+  <data name="tsbtn_MeasureDistance.Text" xml:space="preserve">
+    <value>Measure Distance</value>
+  </data>
+  <data name="toolStripSeparator4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>231, 6</value>
+  </data>
+  <data name="hv_MenuStrip.Size" type="System.Drawing.Size, System.Drawing">
+    <value>235, 248</value>
+  </data>
 </root>

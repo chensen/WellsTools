@@ -30,6 +30,7 @@
         {
             this.propertyGrid1 = new System.Windows.Forms.PropertyGrid();
             this.propertyGrid2 = new System.Windows.Forms.PropertyGrid();
+            this.propertyGrid3 = new System.Windows.Forms.PropertyGrid();
             this.SuspendLayout();
             // 
             // propertyGrid1
@@ -53,10 +54,23 @@
             // 
             // propertyGrid2
             // 
-            this.propertyGrid2.Location = new System.Drawing.Point(327, 12);
+            this.propertyGrid2.Location = new System.Drawing.Point(563, 12);
             this.propertyGrid2.Name = "propertyGrid2";
             this.propertyGrid2.Size = new System.Drawing.Size(211, 426);
             this.propertyGrid2.TabIndex = 1;
+            // 
+            // propertyGrid3
+            // 
+            this.propertyGrid3.CategoryForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
+            this.propertyGrid3.HelpVisible = false;
+            this.propertyGrid3.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
+            this.propertyGrid3.Location = new System.Drawing.Point(271, 12);
+            this.propertyGrid3.Name = "propertyGrid3";
+            this.propertyGrid3.Size = new System.Drawing.Size(211, 426);
+            this.propertyGrid3.TabIndex = 1;
+            this.propertyGrid3.ToolbarVisible = false;
+            this.propertyGrid3.ViewBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
+            this.propertyGrid3.ViewForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(215)))), ((int)(((byte)(215)))));
             // 
             // PropertyManageDemo
             // 
@@ -64,6 +78,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.propertyGrid3);
             this.Controls.Add(this.propertyGrid2);
             this.Controls.Add(this.propertyGrid1);
             this.Name = "PropertyManageDemo";
@@ -77,5 +92,6 @@
 
         private System.Windows.Forms.PropertyGrid propertyGrid1;
         private System.Windows.Forms.PropertyGrid propertyGrid2;
+        private System.Windows.Forms.PropertyGrid propertyGrid3;
     }
 }

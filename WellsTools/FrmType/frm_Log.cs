@@ -12,7 +12,7 @@ using System.IO;
 
 namespace Wells.FrmType
 {
-    public partial class frm_Log : Form
+    public partial class frm_Log : frmBaseForm
     {
         public static frm_Log pCurrentForm;
         private static long m_lShowCount = 0;
@@ -46,7 +46,7 @@ namespace Wells.FrmType
                     if (listDrawMode[e.Index] == 0)
                         e.Graphics.DrawString(str, libView.Font, new SolidBrush(Color.White), e.Bounds);
                     else if(listDrawMode[e.Index] == 1)
-                        e.Graphics.DrawString(str, libView.Font, new SolidBrush(Color.DarkOrange), e.Bounds);
+                        e.Graphics.DrawString(str, libView.Font, new SolidBrush(Color.Lime), e.Bounds);
                     else if (listDrawMode[e.Index] == 2)
                         e.Graphics.DrawString(str, libView.Font, new SolidBrush(Color.Red), e.Bounds);
                     else
@@ -72,7 +72,7 @@ namespace Wells.FrmType
                 listDrawMode.Add(iDrawMode);
                 Graphics graphics = libView.CreateGraphics();
                 graphics.PageUnit = GraphicsUnit.Pixel;
-                string strAdd = time == "" ? ("[" + GetTimeNow(3) + "]：" + item) : ("[" + time + "]：" + item);
+                string strAdd = time == "" ? ("[" + GetTimeNow(3) + "]" + item) : ("[" + time + "]" + item);
                 SizeF size = graphics.MeasureString(strAdd, libView.Font, 2000, strFormat);
                 //if (size.Width > (float)(iShowWidth - 120))
                 //{
@@ -197,8 +197,8 @@ namespace Wells.FrmType
             }
             #endregion
         }
-
-        private void chkTopMost_Click(object sender, EventArgs e)
+        
+        private void chkTopMost_CheckedChangeEvent(object sender, EventArgs e)
         {
             #region 窗口置顶
             base.TopMost = chkTopMost.Checked ? true : false;
