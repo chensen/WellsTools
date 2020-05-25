@@ -58,25 +58,25 @@
             // label4
             // 
             resources.ApplyResources(this.label4, "label4");
-            this.label4.ForeColor = System.Drawing.Color.Black;
+            this.label4.ForeColor = System.Drawing.Color.White;
             this.label4.Name = "label4";
             // 
             // label3
             // 
             resources.ApplyResources(this.label3, "label3");
-            this.label3.ForeColor = System.Drawing.Color.Black;
+            this.label3.ForeColor = System.Drawing.Color.White;
             this.label3.Name = "label3";
             // 
             // label2
             // 
             resources.ApplyResources(this.label2, "label2");
-            this.label2.ForeColor = System.Drawing.Color.Black;
+            this.label2.ForeColor = System.Drawing.Color.White;
             this.label2.Name = "label2";
             // 
             // label1
             // 
             resources.ApplyResources(this.label1, "label1");
-            this.label1.ForeColor = System.Drawing.Color.Black;
+            this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Name = "label1";
             // 
             // btnRestartComputer
@@ -167,9 +167,7 @@
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.CaptionBackColorBottom = System.Drawing.Color.DodgerBlue;
-            this.CaptionBackColorTop = System.Drawing.Color.DodgerBlue;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
             this.Controls.Add(this.panel1);
             this.EffectBack = System.Drawing.Color.Black;
             this.InnerBorderColor = System.Drawing.Color.Black;
@@ -178,7 +176,6 @@
             this.Name = "frm_Exit";
             this.ShowDrawIcon = false;
             this.ShowIcon = false;
-            this.TitleColor = System.Drawing.Color.Black;
             this.Shown += new System.EventHandler(this.frm_Exit_Shown);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

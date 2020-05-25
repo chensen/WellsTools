@@ -117,128 +117,11 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="&gt;&gt;label4.Name" xml:space="preserve">
-    <value>label4</value>
-  </data>
-  <data name="&gt;&gt;label4.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label4.Parent" xml:space="preserve">
-    <value>panel1</value>
-  </data>
-  <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;label3.Name" xml:space="preserve">
-    <value>label3</value>
-  </data>
-  <data name="&gt;&gt;label3.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label3.Parent" xml:space="preserve">
-    <value>panel1</value>
-  </data>
-  <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;label2.Name" xml:space="preserve">
-    <value>label2</value>
-  </data>
-  <data name="&gt;&gt;label2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label2.Parent" xml:space="preserve">
-    <value>panel1</value>
-  </data>
-  <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;label1.Name" xml:space="preserve">
-    <value>label1</value>
-  </data>
-  <data name="&gt;&gt;label1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
-    <value>panel1</value>
-  </data>
-  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;btnRestartComputer.Name" xml:space="preserve">
-    <value>btnRestartComputer</value>
-  </data>
-  <data name="&gt;&gt;btnRestartComputer.Type" xml:space="preserve">
-    <value>CCWin.SkinControl.SkinButton, siyar, Version=16.1.14.2, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;btnRestartComputer.Parent" xml:space="preserve">
-    <value>panel1</value>
-  </data>
-  <data name="&gt;&gt;btnRestartComputer.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;btnCloseComputer.Name" xml:space="preserve">
-    <value>btnCloseComputer</value>
-  </data>
-  <data name="&gt;&gt;btnCloseComputer.Type" xml:space="preserve">
-    <value>CCWin.SkinControl.SkinButton, siyar, Version=16.1.14.2, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;btnCloseComputer.Parent" xml:space="preserve">
-    <value>panel1</value>
-  </data>
-  <data name="&gt;&gt;btnCloseComputer.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;btnRestartProgram.Name" xml:space="preserve">
-    <value>btnRestartProgram</value>
-  </data>
-  <data name="&gt;&gt;btnRestartProgram.Type" xml:space="preserve">
-    <value>CCWin.SkinControl.SkinButton, siyar, Version=16.1.14.2, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;btnRestartProgram.Parent" xml:space="preserve">
-    <value>panel1</value>
-  </data>
-  <data name="&gt;&gt;btnRestartProgram.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="&gt;&gt;btnCloseProgram.Name" xml:space="preserve">
-    <value>btnCloseProgram</value>
-  </data>
-  <data name="&gt;&gt;btnCloseProgram.Type" xml:space="preserve">
-    <value>CCWin.SkinControl.SkinButton, siyar, Version=16.1.14.2, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;btnCloseProgram.Parent" xml:space="preserve">
-    <value>panel1</value>
-  </data>
-  <data name="&gt;&gt;btnCloseProgram.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="panel1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 41</value>
-  </data>
-  <data name="panel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>261, 247</value>
-  </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="panel1.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;panel1.Name" xml:space="preserve">
-    <value>panel1</value>
-  </data>
-  <data name="&gt;&gt;panel1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;panel1.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;panel1.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
   <data name="label4.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="label4.Font" type="System.Drawing.Font, System.Drawing">
     <value>宋体, 20pt, style=Bold, Underline</value>
   </data>
@@ -379,7 +262,7 @@
     <value>btnRestartComputer</value>
   </data>
   <data name="&gt;&gt;btnRestartComputer.Type" xml:space="preserve">
-    <value>CCWin.SkinControl.SkinButton, siyar, Version=16.1.14.2, Culture=neutral, PublicKeyToken=null</value>
+    <value>CCWin.SkinControl.SkinButton, Qting, Version=16.1.14.2, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;btnRestartComputer.Parent" xml:space="preserve">
     <value>panel1</value>
@@ -409,7 +292,7 @@
     <value>btnCloseComputer</value>
   </data>
   <data name="&gt;&gt;btnCloseComputer.Type" xml:space="preserve">
-    <value>CCWin.SkinControl.SkinButton, siyar, Version=16.1.14.2, Culture=neutral, PublicKeyToken=null</value>
+    <value>CCWin.SkinControl.SkinButton, Qting, Version=16.1.14.2, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;btnCloseComputer.Parent" xml:space="preserve">
     <value>panel1</value>
@@ -439,7 +322,7 @@
     <value>btnRestartProgram</value>
   </data>
   <data name="&gt;&gt;btnRestartProgram.Type" xml:space="preserve">
-    <value>CCWin.SkinControl.SkinButton, siyar, Version=16.1.14.2, Culture=neutral, PublicKeyToken=null</value>
+    <value>CCWin.SkinControl.SkinButton, Qting, Version=16.1.14.2, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;btnRestartProgram.Parent" xml:space="preserve">
     <value>panel1</value>
@@ -469,13 +352,34 @@
     <value>btnCloseProgram</value>
   </data>
   <data name="&gt;&gt;btnCloseProgram.Type" xml:space="preserve">
-    <value>CCWin.SkinControl.SkinButton, siyar, Version=16.1.14.2, Culture=neutral, PublicKeyToken=null</value>
+    <value>CCWin.SkinControl.SkinButton, Qting, Version=16.1.14.2, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;btnCloseProgram.Parent" xml:space="preserve">
     <value>panel1</value>
   </data>
   <data name="&gt;&gt;btnCloseProgram.ZOrder" xml:space="preserve">
     <value>7</value>
+  </data>
+  <data name="panel1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 41</value>
+  </data>
+  <data name="panel1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>261, 247</value>
+  </data>
+  <data name="panel1.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;panel1.Name" xml:space="preserve">
+    <value>panel1</value>
+  </data>
+  <data name="&gt;&gt;panel1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;panel1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;panel1.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -496,6 +400,6 @@
     <value>frm_Exit</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>CCWin.Skin_Color, siyar, Version=16.1.14.2, Culture=neutral, PublicKeyToken=null</value>
+    <value>Wells.FrmType.frmBaseForm, Wells, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
 </root>

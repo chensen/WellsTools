@@ -112,6 +112,13 @@ namespace Wells.Controls.ImageDocEx
         /// </summary>
         internal ImageDocEx imageDocEx = null;
 
+        /// <summary>
+        /// 拼图时显示图片的缩放比例，如果不缩放，拼接成的图将会超级大，一张原图1.5M，同时拼图张数大于11*11的情况下，内存会爆炸
+        /// </summary>
+        public double BoardScale = 1.0;
+
+        public HObject TiledImage = null;
+
         #region ***** 图片拼接参数 *****
 
         public HTuple offsetRow, offsetCol, row1, row2, col1, col2;
@@ -119,7 +126,7 @@ namespace Wells.Controls.ImageDocEx
         public int Width, Height;
         public int actualFovWidth, actualFovHeight;
         HObject imageList;
-
+        
         #endregion
 
         #endregion
@@ -159,6 +166,8 @@ namespace Wells.Controls.ImageDocEx
 
             prepareTileParam();
 
+            createPcbImage();
+            
             #endregion
         }
 
@@ -178,6 +187,12 @@ namespace Wells.Controls.ImageDocEx
             m_yFovNum = m_uSizeY / m_uFovSizeY + 1;
             m_xStep = m_uSizeX / m_xFovNum;
             m_yStep = m_uSizeY / m_yFovNum;
+
+            preparePCBView();
+
+            prepareTileParam();
+
+            createPcbImage();
 
             #endregion
         }
@@ -301,17 +316,30 @@ namespace Wells.Controls.ImageDocEx
             Width = actualFovWidth * m_xFovNum;
             Height = actualFovHeight * m_yFovNum;
 
+            actualFovWidth = (int)(actualFovWidth / BoardScale);
+            actualFovHeight = (int)(actualFovHeight / BoardScale);
+            row = (int)(row / BoardScale);
+            col = (int)(col / BoardScale);
+            Width = (int)(Width / BoardScale);
+            Height = (int)(Height / BoardScale);
+
             for (int jgg = 0; jgg < m_yFovNum; jgg++) 
             {
                 for (int igg = 0; igg < m_xFovNum; igg++)
                 {
                     int index = jgg * m_xFovNum + igg;
-                    HObject obj = m_CameraViewList[index].m_image.hObj;
 
-                    if (obj == null)
-                        HOperatorSet.GenImageConst(out obj, "byte", m_CameraViewList[index].m_image.Width, m_CameraViewList[index].m_image.Height);
+                    HObject obj = null;
+
+                    if (m_CameraViewList[index].m_image.hObj != null)
+                        obj = m_CameraViewList[index].m_image.hObj.Clone();
+                    else
+                        HOperatorSet.GenImageConst(out obj, "byte", m_pFovPixelWidth, m_pFovPixelHeight);
+
+                    HOperatorSet.ZoomImageSize(obj, out obj, new HTuple(m_pFovPixelWidth / BoardScale), new HTuple(m_pFovPixelHeight / BoardScale), "constant");
 
                     HOperatorSet.ConcatObj(imageList, obj, out imageList);
+                    obj.Dispose();
 
                     if (m_iCoordinateType == tagCoordinateType.LeftDown)
                     {
@@ -348,12 +376,15 @@ namespace Wells.Controls.ImageDocEx
         {
             #region ***** 生成拼接大图 *****
 
-            HObject tiledImage;
-            HOperatorSet.GenEmptyObj(out tiledImage);
+            if (TiledImage != null) TiledImage.Dispose();
 
-            HOperatorSet.TileImagesOffset(imageList, out tiledImage, offsetRow, offsetCol, row1, col1, row2, col2, Width, Height);
+            HOperatorSet.GenEmptyObj(out TiledImage);
 
-            return tiledImage;
+            HOperatorSet.TileImagesOffset(imageList, out TiledImage, offsetRow, offsetCol, row1, col1, row2, col2, Width, Height);
+
+            imageDocEx.setImage(TiledImage);
+
+            return TiledImage;
 
             #endregion
         }
@@ -371,7 +402,7 @@ namespace Wells.Controls.ImageDocEx
             hv_LineStype = window.GetLineStyle();
 
             window.SetLineWidth(1);//设置线宽
-            window.SetLineStyle(new HTuple(20,7));
+            window.SetLineStyle(new HTuple(2,2));
             window.SetColor("dim gray");//十字架显示颜色
             
 

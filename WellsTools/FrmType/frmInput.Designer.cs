@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmInput));
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.btnCancel = new System.Windows.Forms.Button();
@@ -40,7 +41,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("宋体", 15F, System.Drawing.FontStyle.Bold);
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(12, 36);
+            this.label1.Location = new System.Drawing.Point(12, 60);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(75, 20);
             this.label1.TabIndex = 0;
@@ -49,7 +50,7 @@
             // textBox1
             // 
             this.textBox1.Font = new System.Drawing.Font("宋体", 15F);
-            this.textBox1.Location = new System.Drawing.Point(15, 65);
+            this.textBox1.Location = new System.Drawing.Point(12, 95);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(392, 30);
             this.textBox1.TabIndex = 1;
@@ -57,13 +58,14 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.BackColor = System.Drawing.Color.DimGray;
-            this.btnCancel.FlatAppearance.BorderColor = System.Drawing.Color.DodgerBlue;
-            this.btnCancel.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Yellow;
+            this.btnCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
+            this.btnCancel.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnCancel.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(9)))), ((int)(((byte)(140)))), ((int)(((byte)(188)))));
+            this.btnCancel.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(90)))), ((int)(((byte)(90)))));
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancel.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnCancel.ForeColor = System.Drawing.Color.Black;
-            this.btnCancel.Location = new System.Drawing.Point(413, 65);
+            this.btnCancel.ForeColor = System.Drawing.Color.White;
+            this.btnCancel.Location = new System.Drawing.Point(413, 95);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(76, 28);
             this.btnCancel.TabIndex = 304;
@@ -73,13 +75,14 @@
             // 
             // btnOK
             // 
-            this.btnOK.BackColor = System.Drawing.Color.DimGray;
-            this.btnOK.FlatAppearance.BorderColor = System.Drawing.Color.DodgerBlue;
-            this.btnOK.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Yellow;
+            this.btnOK.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
+            this.btnOK.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnOK.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(9)))), ((int)(((byte)(140)))), ((int)(((byte)(188)))));
+            this.btnOK.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(90)))), ((int)(((byte)(90)))));
             this.btnOK.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOK.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnOK.ForeColor = System.Drawing.Color.Black;
-            this.btnOK.Location = new System.Drawing.Point(413, 28);
+            this.btnOK.ForeColor = System.Drawing.Color.White;
+            this.btnOK.Location = new System.Drawing.Point(413, 58);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(76, 28);
             this.btnOK.TabIndex = 303;
@@ -93,12 +96,12 @@
             this.btnInput.BackgroundImage = global::Wells.Properties.Resources.write;
             this.btnInput.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnInput.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.btnInput.FlatAppearance.BorderColor = System.Drawing.Color.DodgerBlue;
+            this.btnInput.FlatAppearance.BorderColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnInput.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.btnInput.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Yellow;
             this.btnInput.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnInput.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.btnInput.Location = new System.Drawing.Point(379, 66);
+            this.btnInput.Location = new System.Drawing.Point(375, 96);
             this.btnInput.Name = "btnInput";
             this.btnInput.Size = new System.Drawing.Size(26, 27);
             this.btnInput.TabIndex = 661;
@@ -109,13 +112,14 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.DimGray;
-            this.ClientSize = new System.Drawing.Size(496, 104);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
+            this.ClientSize = new System.Drawing.Size(496, 135);
             this.Controls.Add(this.btnInput);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmInput";

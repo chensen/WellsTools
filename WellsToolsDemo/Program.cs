@@ -17,9 +17,7 @@ namespace WellsToolsDemo
             Application.SetCompatibleTextRenderingDefault(false);
             Wells.clsWellsLanguage.setLanguageType(0);
             Wells.FrmType.frm_Log.InitDlg();
-            //Application.Run(new ImageDocDemo2());
-
-            byte[] tmp = Wells.Controls.VisionInspect.clsPublic.getImageData(@"E:\min_normal.png");
+            Application.Run(new ImageDocExDemo());
         }
     }
 }

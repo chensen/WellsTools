@@ -39,12 +39,14 @@ namespace Wells.Controls.ImageDocEx
             this.showSize = size;
             this.coordSystem = coord;
         }
+
         public HWndMessage(string message, int row, int colunm)
         {
             this.message = message;
             this.row = row;
             this.colunm = colunm;
         }
+
         public double changeDisplayFontSize(HTuple Window, double zoom, double sizeOld)
         {
             double currentSize = size * zoom;
@@ -55,6 +57,7 @@ namespace Wells.Controls.ImageDocEx
             showSize = currentSize;
             return currentSize;
         }
+
         public void DispMessage(HTuple Window, string coordSystem)
         {
             string[] msg = message.Split('#');
@@ -64,6 +67,7 @@ namespace Wells.Controls.ImageDocEx
                 class_Hvpple.dispMessage(Window, msg[igg], coordSystem, row + igg * (showSize + 2), colunm, color, "false");
             }
         }
+
         public void DispMessage(HTuple Window, string coordSystem, double zoom)
         {
             class_Hvpple.setDisplayFont(Window, size * zoom, "serif", "true", "false");
@@ -74,8 +78,6 @@ namespace Wells.Controls.ImageDocEx
             {
                 class_Hvpple.dispMessage(Window, msg[igg], coordSystem, row + igg * (showSize + 2), colunm, color, "false");
             }
-
         }
-        
     }
 }

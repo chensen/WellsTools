@@ -12,36 +12,122 @@ namespace Wells.Controls.ImageDocEx
 {
     public partial class ImageDocEx : UserControl
     {
-        #region 私有变量定义.
+        #region ***** 程序字段定义 *****
 
-        private HWindow /**/                 hv_window;                                       //halcon窗体控件的句柄 this.mCtrl_HWindow.HalconWindow;
-        private HImage  /**/                 hv_image;                                        //缩放时操作的图片  此处千万不要使用hv_image = new HImage(),不然在生成控件dll的时候,会导致无法序列化,去你妈隔壁,还好老子有版本控制,不然都找不到这种恶心问题
-        private int /**/                     hv_imageWidth, hv_imageHeight;                   //图片宽,高
-        private string /**/                  str_imgSize;                                     //图片尺寸大小 5120X3840
-        private bool    /**/                 staticWnd = false;                                //作为普通显示窗口,不允许缩放和鼠标右键菜单
+        /// <summary>
+        /// 窗体控件的句柄
+        /// </summary>
+        public HWindow HWindow { get; }
+
+        /// <summary>
+        /// 缩放时操作的图片  此处千万不要使用hv_image = new HImage(),不然在生成控件dll的时候,会导致无法序列化
+        /// </summary>
+        private HImage Image = null;
+
+        /// <summary>
+        /// 图片宽
+        /// </summary>
+        public int ImageWidth { get; set; }
+
+        /// <summary>
+        /// 图片高
+        /// </summary>
+        public int ImageHeight { get; set; }
+
+        /// <summary>
+        /// 作为普通显示窗口,不允许缩放和鼠标右键菜单
+        /// </summary>
+        public bool StaticWnd { get; set; }
         
-        public HWindowControl hWindowControl;   /**/                                           // 当前halcon窗口
+        /// <summary>
+        /// 绑定PCB量
+        /// </summary>
+        public qtPCB Pcb { get; }
 
-        public HWndCtrl _hWndControl;
+        /// <summary>
+        /// 图片显示模式，Origin和Strech
+        /// </summary>
+        public ImageMode ImageMode { get; set; }
 
-        public ROIController _roiController;
+        /// <summary>
+        /// 图片显示边界
+        /// </summary>
+        public double ImgRow1, ImgCol1, ImgRow2, ImgCol2;
 
-        public qtPCB m_pcb;
+        /// <summary>
+        /// 控件一个长度代表多少像素
+        /// </summary>
+        private double xScale, yScale, originScale;
+
+        /// <summary>
+        /// 图片显示长宽
+        /// </summary>
+        public int imageShowWidth, imageShowHeight;
+
+        /// <summary>
+        /// 图片外额外显示比例
+        /// </summary>
+        private double SHOW_DELTA = 0.4;
+
+        /// <summary>
+        /// 左键按下状态
+        /// </summary>
+        private bool mouseLeftPressed = false;
+
+        /// <summary>
+        /// 右键按下状态
+        /// </summary>
+        private bool mouseRightPressed = false;
+
+        /// <summary>
+        /// 记录鼠标当前坐标
+        /// </summary>
+        private double startX, startY;
+
+        /// <summary>
+        /// 存储ROI列表
+        /// </summary>
+        public List<ROI> m_roiList = new List<ROI>();
+
+        /// <summary>
+        /// 即将要进行更新的ROI列表
+        /// </summary>
+        public List<ROI> m_l2updateList = new List<ROI>();
+        
+        /// <summary>
+        /// 拖动轨迹
+        /// </summary>
+        public Tracker m_tracker = new Tracker();
+
+        /// <summary>
+        /// 指示当前选中roi的序号，-2表示没有，-1表示多个，其他表示单一选择项的序号
+        /// </summary>
+        private int iMoveROINum = -1;
+
+        public double handleWidth = 0;
+
+        public delegate void HMouseDown(int index);
+        public HMouseDown qtHMouseDown;
+
+        public delegate void HMouseUp(int index);
+        public HMouseUp qtHMouseUp;
 
         #endregion
-        
+
         public ImageDocEx()
         {
+            #region ***** 构造函数 *****
+            
             InitializeComponent();
-
-            _hWndControl = new HWndCtrl(mCtrl_HWindow);
-            _hWndControl.setContextMenuStrip(hv_MenuStrip);
-            _roiController = new ROIController();
-            _hWndControl.setROIController(_roiController);
-            _hWndControl.setViewState(HWndCtrl.MODE_VIEW_NONE);
-            _hWndControl.showZoomPercent = new HWndCtrl.ShowZoomPercent(showZoomPercent);
-            hWindowControl = this.mCtrl_HWindow;
-            try { hv_window = this.mCtrl_HWindow.hvppleWindow; } catch (Exception) { }//这里添加控件库时会报异常，运行不会，不知道为什么
+            
+            try { HWindow = this.m_Ctrl_HWindow.hvppleWindow; } catch (Exception) { }//这里添加控件库时会报异常，运行不会，不知道为什么
+            ImageWidth = 2448;
+            ImageHeight = 2048;
+            StaticWnd = false;
+            //HObject obj;
+            //HOperatorSet.GenImageConst(out obj, "byte", ImageWidth, ImageHeight);
+            //Image = new HImage(obj);
+            //obj.Dispose();
 
             //设定鼠标按下时图标的形状
             //'arrow'箭头
@@ -60,220 +146,427 @@ namespace Wells.Controls.ImageDocEx
 
             //hv_window.SetMshape("hand");
 
-            if (hv_window != null)
-                hv_window.SetWindowParam("background_color", "dim gray");
+            if (HWindow != null)
+                HWindow.SetWindowParam("background_color", "dim gray");
 
-            m_CtrlHStatusLabelCtrl.Visible = false;
+            showStatusBar(true);
+            
+            Pcb = new qtPCB();
+            Pcb.imageDocEx = this;
+            //if(!DesignMode)
+            //{
+            //    Pcb.initialize(55000, 55000, 8000, 8000, 2448, 2048, Point.Empty, 0, 0, true);
+            //}
 
-            m_pcb = new qtPCB();
-            m_pcb.imageDocEx = this;
-            _hWndControl.showPcbInfo = new HWndCtrl.ShowPcbInfo(m_pcb.showPcbInfo);
-
+            #endregion
         }
 
-        /// <summary>
-        /// 绘制模式下,不允许缩放和鼠标右键菜单
-        /// </summary>
-        public bool StaticWnd
+        public void setImageFromPcb()
         {
-            get { return staticWnd; }
-            set
-            {
-                //缩放控制
-                setStaticWnd(value);
-                staticWnd = value;
-            }
+            #region ***** 从PCB获取图片 *****
+
+            Pcb.prepareTileParam();
+            Pcb.createPcbImage();
+
+            #endregion
         }
 
-        private bool editMode = true;
-
-        /// <summary>
-        /// 绘制的图形是否可以编辑
-        /// </summary>
-        public bool EditMode
+        public void setImage(HImage img)
         {
-            get
+            #region ***** 设置显示图片 *****
+
+            if (img == null)
+                return;
+
+            lock (this)
             {
-                return editMode;
+                if (Image != null)
+                {
+                    Image.Dispose();
+                    Image = null;
+                }
+
+                Image = img.Clone();
+
+                setImagePart();
             }
-            set
+
+            Invalidate();
+
+            #endregion
+        }
+
+        public void setImage(HObject img)
+        {
+            #region ***** 设置显示图片 *****
+
+            if (img == null)
+                return;
+
+            lock (this)
             {
-                setEditModel(value);
-                editMode = value;
+                if (Image != null)
+                {
+                    Image.Dispose();
+                    Image = null;
+                }
+
+                Image = new HImage(img);
+
+                setImagePart();
             }
+
+            Invalidate();
+
+            #endregion
+        }
+
+        public HImage GetImage()
+        {
+            #region ***** 获取显示图片 *****
+
+            return Image;
+
+            #endregion
         }
         
-        /// <summary>
-        /// 设置image,初始化控件参数
-        /// </summary>
-        public HImage Image
+        /// 左键功能：1.单击空白区域，取消所有选中状态；2.单击元件，如果没有选中（可能其他选件被选中，一个或者多个），则变成选中状态，如果已经被选中（唯一），实行拖动或者尺寸改变功能，
+        /// 如果已经被选中（且不唯一），可以实行拖动功能
+        /// 
+        /// 
+        private void m_Ctrl_HWindow_HMouseDown(object sender, HMouseEventArgs e)
         {
-            get
+            #region ***** 鼠标按下事件 *****
+
+            //关闭缩放事件
+            if (StaticWnd)
+                return;
+
+            if (e.Button == MouseButtons.Right)
+                mouseRightPressed = true;
+            if (e.Button == MouseButtons.Left)
+                mouseLeftPressed = true;
+
+            if (e.Button == MouseButtons.Left)
             {
-                return this.hv_image;
-            }
-            set
-            {
-                lock (this)
+                bool bHasChooseOne = false;
+                int iChooseIndex = -1;
+
+                for (int igg = 0; igg < m_roiList.Count; igg++)
                 {
-                    if (value != null)
+                    if (0 <= m_roiList[igg].ptLocation(e.X, e.Y, ImageWidth, ImageHeight))
                     {
-                        if (this.hv_image != null)
-                        {
-                            this.hv_image.Dispose();
-                            this.hv_image = null;
-                        }
-
-                        this.hv_image = value;
-                        hv_image.GetImageSize(out hv_imageWidth, out hv_imageHeight);
-                        str_imgSize = String.Format("{0}X{1}", hv_imageWidth, hv_imageHeight);
-
-                        setImage(hv_image);
+                        bHasChooseOne = true;
+                        iChooseIndex = igg;
+                        break;
                     }
                 }
+
+                if (bHasChooseOne)//选中一个，判断下是本身有多个选中还是一个，也可能是0个
+                {
+                    if(m_l2updateList.Contains(m_roiList[iChooseIndex]))//判断是否在选中列表中
+                    {
+                        if (m_l2updateList.Count == 1)
+                            iMoveROINum = iChooseIndex;
+                        else
+                            iMoveROINum = -1;
+                    }
+                    else//不在列表中，直接选中当前项
+                    {
+                        for (int igg = 0; igg < m_l2updateList.Count; igg++)
+                            m_l2updateList[igg].Selected = false;
+                        m_l2updateList.Clear();
+                        m_roiList[iChooseIndex].Selected = true;
+                        m_l2updateList.Add(m_roiList[iChooseIndex]);
+
+                        iMoveROINum = iChooseIndex;
+                    }
+                }
+                else//没有选中任何roi，清除所有选中roi
+                {
+                    for (int igg = 0; igg < m_l2updateList.Count; igg++)
+                        m_l2updateList[igg].Selected = false;
+                    m_l2updateList.Clear();
+
+                    iMoveROINum = -2;
+                }
             }
+
+            qtHMouseDown?.Invoke(iMoveROINum);//用户自定义委托
+            
+            startX = e.X;
+            startY = e.Y;
+            m_tracker.Row1 = e.Y;
+            m_tracker.Col1 = e.X;
+
+            #endregion
         }
 
-        private ImageMode imageMode = ImageMode.Origin;
-
-        /// <summary>
-        /// 图像显示模式
-        /// </summary>
-        public ImageMode ImageMode
+        private void m_Ctrl_HWindow_HMouseUp(object sender, HMouseEventArgs e)
         {
-            get
+            #region ***** 鼠标松开事件 *****
+
+            if (StaticWnd)
+                return;
+
+            if (e.Button == MouseButtons.Right)
+                mouseRightPressed = false;
+            if (e.Button == MouseButtons.Left)
+                mouseLeftPressed = false;
+            
+            m_tracker.Actived = false;
+
+            if(e.Button == MouseButtons.Left)
             {
-                return this.imageMode;
+                if (m_l2updateList.Count == 0)
+                {
+                    iMoveROINum = -2;
+                }
+                else if (m_l2updateList.Count == 1)
+                {
+                    iMoveROINum = m_roiList.IndexOf(m_l2updateList[0]);
+                }
+                else
+                {
+                    iMoveROINum = -1;
+                }
             }
-            set
+
+            qtHMouseUp?.Invoke(iMoveROINum);//用户自定义回调委托
+
+            HWindow.SetMshape("default");
+
+            Invalidate();
+
+            #endregion
+        }
+
+        private void m_Ctrl_HWindow_HMouseMove(object sender, HMouseEventArgs e)
+        {
+            #region ***** 鼠标移动事件 *****
+
+            if (StaticWnd)
+                return;
+
+            double motionX = 0, motionY = 0;
+            double posX, posY;
+            double zoomZone;
+            int ptLocation = 0;
+            double distance = 0;
+
+            if (iMoveROINum == -1)//多选
             {
-                imageMode = value;
-                _hWndControl.ImageMode = value;
-                dispImageFit();
+                bool bInROI = false;
+                for (int igg = 0; igg < m_l2updateList.Count; igg++) 
+                {
+                    ptLocation = m_l2updateList[igg].ptLocation(e.X, e.Y, ImageWidth, ImageHeight);
+                    if (0 <= ptLocation)
+                    {
+                        bInROI = true;
+                        break;
+                    }
+                }
+                if (bInROI)
+                    HWindow.SetMshape("Size All");
+                else
+                    HWindow.SetMshape("default");
             }
-        }
-
-        /// <summary>
-        /// 获得halcon窗体控件的句柄
-        /// </summary>
-        public IntPtr HWindowHandle
-        {
-            get { return this.mCtrl_HWindow.hvppleID; }
-        }
-
-        public HWindow HWindow
-        {
-            get { return this.mCtrl_HWindow.hvppleWindow; }
-        }
-
-        public HWindowControl getHWindowControl()
-        {
-            return this.mCtrl_HWindow;
-        }
-
-        public void useContextMenuStrip(bool value)
-        {
-            mCtrl_HWindow.ContextMenuStrip = value ? hv_MenuStrip : null;
-        }
-
-        /// <summary>
-        /// 状态条 显示/隐藏
-        /// </summary>
-        public void showStatusBar(bool bShow)
-        {
-            this.SuspendLayout();
-
-            if (bShow)
+            else if(iMoveROINum >= 0)//单选
             {
-                m_CtrlHStatusLabelCtrl.Visible = true;
-                mCtrl_HWindow.HMouseMove += HWindowControl_HMouseMove;
+                ptLocation = m_roiList[iMoveROINum].ptLocation(e.X, e.Y, ImageWidth, ImageHeight);
+                //distance = m_roiList[iMoveROINum].distToClosestHandle(e.X, e.Y);
+
+                if (0 == ptLocation || 2 == ptLocation)//inside
+                {
+                    HWindow.SetMshape("Size All");
+                }
+                else if(1 == ptLocation)//onside
+                {
+                    string name = m_roiList[iMoveROINum].GetType().Name;
+
+                    //if (distance > 4 * handleWidth)
+                    //    m_roiList[iMoveROINum].activeHandleIdx = -1;
+                    //if (m_roiList[iMoveROINum].activeHandleIdx == 0)
+                    //    m_roiList[iMoveROINum].activeHandleIdx = -1;
+                    
+                    if (name == "ROIRectangle1")
+                    {
+                        switch (m_roiList[iMoveROINum].activeHandleIdx)
+                        {
+                            case 0://中心
+                                HWindow.SetMshape("Size All");
+                                break;
+                            case 1://左上
+                                HWindow.SetMshape("Size NWSE");
+                                break;
+                            case 2://右上
+                                HWindow.SetMshape("Size NESW");
+                                break;
+                            case 3://右下
+                                HWindow.SetMshape("Size NWSE");
+                                break;
+                            case 4://左下
+                                HWindow.SetMshape("Size NESW");
+                                break;
+                            case 5://上中
+                                HWindow.SetMshape("Size S");
+                                break;
+                            case 6://右中
+                                HWindow.SetMshape("Size WE");
+                                break;
+                            case 7://下中
+                                HWindow.SetMshape("Size S");
+                                break;
+                            case 8://左中
+                                HWindow.SetMshape("Size WE");
+                                break;
+                            default://
+                                HWindow.SetMshape("default");
+                                break;
+                        }
+                    }
+                    else if (name == "ROICircle")
+                    {
+                        switch (m_roiList[iMoveROINum].activeHandleIdx)
+                        {
+                            case 0://中心
+                                HWindow.SetMshape("Size All");
+                                break;
+                            case 1:
+                                {
+                                    double x = ((ROICircle)m_roiList[iMoveROINum]).Column;
+                                    double y = ((ROICircle)m_roiList[iMoveROINum]).Row;
+                                    double dx = Math.Abs(e.X - x);
+                                    double dy = Math.Abs(e.Y - y);
+                                    double delta = 2 * m_roiList[iMoveROINum].getHandleWidth(ImageWidth, ImageHeight);
+                                    if (dx < delta)//上中//下中
+                                        HWindow.SetMshape("Size S");
+                                    else if (dy < delta)//右中//左中
+                                        HWindow.SetMshape("Size WE");
+                                    else if ((e.X < x && e.Y < y) || (e.X > x && e.Y > y)) //左上//右下
+                                        HWindow.SetMshape("Size NWSE");
+                                    else if ((e.X < x && e.Y > y) || (e.X > x && e.Y < y))//左下//右上
+                                        HWindow.SetMshape("Size NESW");
+                                    else
+                                        HWindow.SetMshape("default");
+                                }
+                                break;
+                            default://
+                                HWindow.SetMshape("default");
+                                break;
+                        }
+                    }
+                }
+                else
+                {
+                    HWindow.SetMshape("default");
+                }
             }
             else
             {
-                m_CtrlHStatusLabelCtrl.Visible = false;
-                mCtrl_HWindow.HMouseMove -= HWindowControl_HMouseMove;
+                HWindow.SetMshape("default");
             }
-
-            tsbtn_showStatusBar.Checked = bShow;
             
-            this.ResumeLayout(false);
-            this.PerformLayout();
-        }
-
-        /// <summary>
-        /// 保存窗体截图到本地
-        /// </summary>
-        private void saveWindowDump()
-        {
-            SaveFileDialog sfd = new SaveFileDialog();
-            sfd.Filter = "PNG Image|*.png|All Files|*.*";
-
-            if (sfd.ShowDialog() == DialogResult.OK)
+            if (mouseRightPressed)
             {
-                if (String.IsNullOrEmpty(sfd.FileName))
-                    return;
-
-                try
+                if (imageShowWidth > m_Ctrl_HWindow.Width || imageShowHeight > m_Ctrl_HWindow.Height)
                 {
-                    //截取窗口图
-                    HOperatorSet.DumpWindow(HWindowHandle, "png best", sfd.FileName);
-                }
-                catch (Exception) { }
-            }
-        }
-
-        /// <summary>
-        /// 保存原始图片到本地
-        /// </summary>
-        private void saveImage()
-        {
-            SaveFileDialog sfd = new SaveFileDialog();
-            sfd.Filter = "BMP Image|*.bmp|All Files|*.*";
-
-            if (sfd.ShowDialog() == DialogResult.OK)
-            {
-                if (String.IsNullOrEmpty(sfd.FileName))
-                {
-                    return;
-                }
-                lock (this)
-                {
-                    try
+                    motionX = e.X - startX;
+                    motionY = e.Y - startY;
+                    if (((int)motionX != 0) || ((int)motionY != 0))
                     {
-                        HOperatorSet.WriteImage(hv_image, "bmp", 0, sfd.FileName);
+                        moveImage(motionX, motionY);
+                        startX = e.X - motionX;//移动图片时，图片坐标系在变换，记录坐标需要加上偏移
+                        startY = e.Y - motionY;
                     }
-                    catch (Exception) { }
                 }
             }
+
+            if(mouseLeftPressed)
+            {
+                if (iMoveROINum == -2)//没有选中，显示轨迹
+                {
+                    m_tracker.Actived = true;
+                    m_tracker.Row2 = e.Y;
+                    m_tracker.Col2 = e.X;
+                    RectangleF rect = m_tracker.getRect();
+                    for (int igg = 0; igg < m_roiList.Count; igg++)
+                    {
+                        if (m_roiList[igg].isInRect(rect))
+                        {
+                            m_roiList[igg].Selected = true;
+                            if (!m_l2updateList.Contains(m_roiList[igg]))
+                                m_l2updateList.Add(m_roiList[igg]);
+                        }
+                        else
+                        {
+                            m_roiList[igg].Selected = false;
+                            if (m_l2updateList.Contains(m_roiList[igg]))
+                                m_l2updateList.Remove(m_roiList[igg]);
+                        }
+                    }
+                }
+                else if (iMoveROINum == -1) //多个一起被选中，一起执行move动作，无法执行resize动作
+                {
+                    motionX = e.X - startX;
+                    motionY = e.Y - startY;
+                    moveROI(motionX, motionY);
+                    startX = e.X;//移动roi时，图片坐标系没有变更，只是roi坐标偏移，记录坐标记录当前鼠标坐标即可
+                    startY = e.Y;
+                }
+                else if(iMoveROINum >= 0)//单一被选中，执行move或者resize动作
+                {
+                    ptLocation = m_roiList[iMoveROINum].ptLocation(e.X, e.Y, ImageWidth, ImageHeight);
+
+                    if (0 == ptLocation)
+                    {
+                        motionX = e.X - startX;
+                        motionY = e.Y - startY;
+                        moveROI(motionX, motionY);
+                        startX = e.X;//移动roi时，图片坐标系没有变更，只是roi坐标偏移，记录坐标记录当前鼠标坐标即可
+                        startY = e.Y;
+                    }
+                    else if (1 == ptLocation)
+                    {
+                        m_roiList[iMoveROINum].resize(e.X, e.Y);
+                    }
+                }
+            }
+
+            Invalidate();
+
+            #endregion
+        }
+        
+        private void m_Ctrl_HWindow_HMouseWheel(object sender, HMouseEventArgs e)
+        {
+            #region ***** 鼠标滚轮事件 *****
+
+            //关闭缩放事件
+            if (StaticWnd)
+            {
+                return;
+            }
+
+            double scale;
+
+            if (e.Delta > 0)
+                scale = 0.9;
+            else
+                scale = 1 / 0.9;
+
+            zoomImage(e.X, e.Y, scale);
+
+            Invalidate();
+
+            #endregion
         }
 
-        /// <summary>
-        /// 图片适应大小显示在窗体
-        /// </summary>
-        /// <param name="hw_Ctrl">halcon窗体控件</param>
-        public void dispImageFit()
+        private void m_Ctrl_HWindow_HMouseMove_2(object sender, HMouseEventArgs e)
         {
+            #region ***** 鼠标移动事件2 *****
 
-            try
-            {
-                resetWindowImage();
-            }
-            catch (Exception)
-            {
-
-            }
-        }
-
-
-        /// <summary>
-        /// 鼠标在空间窗体里滑动,显示鼠标所在位置的灰度值
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void HWindowControl_HMouseMove(object sender, HMouseEventArgs e)
-        {
-
-            if (hv_image != null)
+            if (Image != null)
             {
                 try
                 {
@@ -284,20 +577,20 @@ namespace Wells.Controls.ImageDocEx
                     bool _isXOut = true, _isYOut = true;
                     HTuple channel_count;
 
-                    HOperatorSet.CountChannels(hv_image, out channel_count);
+                    HOperatorSet.CountChannels(Image, out channel_count);
 
-                    hv_window.GetMpositionSubPix(out positionY, out positionX, out button_state);
+                    HWindow.GetMpositionSubPix(out positionY, out positionX, out button_state);
                     str_position = String.Format("X: {0:0000.0}, Y: {1:0000.0}", positionX, positionY);
 
-                    _isXOut = (positionX < 0 || positionX >= hv_imageWidth);
-                    _isYOut = (positionY < 0 || positionY >= hv_imageHeight);
+                    _isXOut = (positionX < 0 || positionX >= ImageWidth);
+                    _isYOut = (positionY < 0 || positionY >= ImageHeight);
 
                     if (!_isXOut && !_isYOut)
                     {
                         if ((int)channel_count == 1)
                         {
                             double grayVal;
-                            grayVal = hv_image.GetGrayval((int)positionY, (int)positionX);
+                            grayVal = Image.GetGrayval((int)positionY, (int)positionX);
                             str_value = String.Format("Gray: {0:000.0}", grayVal);
                         }
                         else if ((int)channel_count == 3)
@@ -306,9 +599,9 @@ namespace Wells.Controls.ImageDocEx
 
                             HImage _RedChannel, _GreenChannel, _BlueChannel;
 
-                            _RedChannel = hv_image.AccessChannel(1);
-                            _GreenChannel = hv_image.AccessChannel(2);
-                            _BlueChannel = hv_image.AccessChannel(3);
+                            _RedChannel = Image.AccessChannel(1);
+                            _GreenChannel = Image.AccessChannel(2);
+                            _BlueChannel = Image.AccessChannel(3);
 
                             grayValRed = _RedChannel.GetGrayval((int)positionY, (int)positionX);
                             grayValGreen = _GreenChannel.GetGrayval((int)positionY, (int)positionX);
@@ -325,7 +618,8 @@ namespace Wells.Controls.ImageDocEx
                             str_value = "";
                         }
                     }
-                    m_CtrlHStatusLabelCtrl.Text = str_imgSize + "    " + str_position + "    " + str_value;
+                    m_Ctrl_HStatusLabel.Text = string.Format("{0}*{1}", ImageWidth, ImageHeight) + "|" + str_position + "|" + str_value;
+                    //m_Ctrl_HStatusLabel.Text = "选中ROI:" + m_l2updateList.Count.ToString() + "|" + "当前序号:" + iMoveROINum.ToString() + "|";
                 }
                 catch (Exception ex)
                 {
@@ -333,554 +627,264 @@ namespace Wells.Controls.ImageDocEx
                 }
             }
 
+            #endregion
         }
-        public void resetWindow()
+
+        private void ImageDocEx_Paint(object sender, PaintEventArgs e)
         {
+            #region ***** 刷新界面，绘图 *****
+
+            if (DesignMode) return;
+
+            HSystem.SetSystem("flush_graphic", "false");
+            HWindow.ClearWindow();
+
             try
             {
-                this.Invoke(new Action(
-                        () =>
-                        {
-                            m_CtrlHStatusLabelCtrl.Visible = false;
-                            mCtrl_HWindow.hvppleWindow.ClearWindow();
-                            clearWindow();
-                        }
-                    ));
+                if (Image != null)
+                    HWindow.DispObj(Image);
+
+                foreach (var obj in m_roiList)
+                {
+                    obj.draw(HWindow, ImageWidth, ImageHeight);
+                }
+
+                m_tracker.draw(HWindow);
+
+                Pcb.showPcbInfo(HWindow);
             }
             catch (Exception ex)
             {
-                //Console.WriteLine(ex.ToString());
+
             }
-
-
-        }
-
-
-        /// <summary>
-        /// Hobject转换为的临时Himage,显示背景图
-        /// </summary>
-        /// <param name="hobject">传递Hobject,必须为图像</param>
-        public void HobjectToHimage(HObject hobject)
-        {
-            if (hobject == null || !hobject.IsInitialized())
+            finally
             {
-                resetWindow();
-                return;
+                HSystem.SetSystem("flush_graphic", "true");
+
+                //注释了下面语句,会导致窗口无法实现缩放和拖动
+                HWindow.SetColor("dim gray");
+                HWindow.DispLine(-100.0, -100.0, -101.0, -101.0);
             }
 
-            this.Image = new HImage(hobject);
-
-        }
-        
-
-        /// <summary>
-        /// 鼠标离开事件
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void mCtrl_HWindow_MouseLeave(object sender, EventArgs e)
-        {
-            //避免鼠标离开窗口,再返回的时候,图表随着鼠标移动
-            mouseleave();
+            #endregion
         }
 
-        private void mCtrl_HWindow_DoubleClick(object sender, EventArgs e)
+        private void moveImage(double motionX, double motionY)
         {
+            #region ***** 移动图片 *****
 
+            ImgRow1 += -motionY;
+            ImgRow2 += -motionY;
+
+            ImgCol1 += -motionX;
+            ImgCol2 += -motionX;
+
+            normalImagePart();
+
+            System.Drawing.Rectangle rect = m_Ctrl_HWindow.ImagePart;
+            rect.X = (int)Math.Round(ImgCol1);
+            rect.Y = (int)Math.Round(ImgRow1);
+            rect.Width = (int)Math.Round(ImgCol2 - ImgCol1);
+            rect.Height = (int)Math.Round(ImgRow2 - ImgRow1);
+            m_Ctrl_HWindow.ImagePart = rect;
+
+            #endregion
         }
 
-        private void mCtrl_HWindow_MouseDoubleClick(object sender, MouseEventArgs e)
+        private void zoomImage(double x, double y, double scale)
         {
-
-        }
-
-        private void mCtrl_HWindow_Click(object sender, EventArgs e)
-        {
-
-        }
-
-
-        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        ///////////////////                                                                                                  ///////////////////
-        //////////////////           把viewwindow的内容移到这里............................                 ///////////////////
-        //////////////////                                                                                                  ////////////////////
-        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-        //清空所有显示内容
-        public void clearWindow(bool bClearImage = true)
-        {
-            //清空显示image
-            _hWndControl.clearList(bClearImage);
-            //清空hobjectList
-            _hWndControl.clearHRegionList();
-
-            _hWndControl.roiManager.reset();
-
-            _hWndControl.repaint();
-        }
-
-        public void clearHRegion()
-        {
-            //清空hobjectList
-            _hWndControl.clearHRegionList();
-            _hWndControl.repaint();
-        }
-
-        public void clearROI()
-        {
-            _hWndControl.roiManager.reset();
-
-            _hWndControl.repaint();
-        }
-
-        public void displayImage(HObject img)
-        {
-            Image = new HImage(img);
-        }
-        
-        protected void setImage(HObject img)
-        {
-            //添加背景图片
-            this._hWndControl.addImageShow(img);
-            //清空roi容器,不让roi显示
-            this._roiController.reset();
-            //显示图片
-            this._roiController.resetWindowImage();
-        }
-
-        public void setSelected(bool value)
-        {
-            //_hWndControl.Selected = value;
-            this.BackColor = value ? Color.Lime : Color.Transparent;
-        }
-
-        public void displayMessage(string message, int row, int colunm)
-        {
-            this._hWndControl.addText(message, row, colunm);
-        }
-
-        public void displayMessage(string message, int row, int colunm, int size, string color)
-        {
-            this._hWndControl.addText(message, row, colunm, size, color);
-        }
-
-        public void displayMessage(string message, int row, int colunm, int size, string color, string coordSystem)
-        {
-            this._hWndControl.addText(message, row, colunm, size, color, coordSystem);
-        }
-
-        public void notDisplayRoi()
-        {
-            this._roiController.reset();
-            //显示图片
-            this._roiController.resetWindowImage();
-        }
-
-        //获取当前窗口显示的roi数量
-        public int getRoiCount()
-        {
-            return _roiController.ROIList.Count;
-        }
-
-        public double getScale()
-        {
-            double tmp = _hWndControl.getOriginScale();
-            return tmp == 0 ? 1 : 1 / tmp;
-        }
-
-        //是否开启缩放事件
-        public void setStaticWnd(bool flag)
-        {
-            _hWndControl.isStaticWnd = flag;
-            useContextMenuStrip(!flag);
-        }
-        //是否开启编辑事件
-        public void setEditModel(bool flag)
-        {
-            _roiController.EditModel = flag;
-        }
-        public void resetWindowImage()
-        {
-            this._hWndControl.resetWindow();
-            this._roiController.resetWindowImage();
-        }
-
-        public void mouseleave()
-        {
-            _hWndControl.raiseMouseLeave();
-        }
-
-        public void zoomWindowImage()
-        {
-            this._roiController.zoomWindowImage();
-        }
-
-        public void moveWindowImage()
-        {
-            this._roiController.moveWindowImage();
-        }
-
-        public void noneWindowImage()
-        {
-            this._roiController.noneWindowImage();
-        }
-
-        public void genRect1(double row1, double col1, double row2, double col2, ref List<ROI> list)
-        {
-            this._roiController.genRect1(row1, col1, row2, col2, ref list);
-        }
-        public void genNurbs(HTuple rows, HTuple cols, ref List<ROI> list)
-        {
-            this._roiController.genNurbs(rows, cols, ref list);
-        }
-        public void genInitRect1(ref List<ROI> list)
-        {
-            this._roiController.genInitRect1(_roiController.viewController.imageHeight, ref list);
-        }
-
-        public void genRect2(double row, double col, double phi, double length1, double length2, ref List<ROI> list)
-        {
-            this._roiController.genRect2(row, col, phi, length1, length2, ref list);
-        }
-        public void genInitRect2(ref List<ROI> list)
-        {
-            this._roiController.genInitRect2(_roiController.viewController.imageHeight, ref list);
-        }
-        public void genCircle(double row, double col, double radius, ref List<ROI> list)
-        {
-            this._roiController.genCircle(row, col, radius, ref list);
-        }
-        public void genCircularArc(double row, double col, double radius, double startPhi, double extentPhi, string direct, ref List<ROI> list)
-        {
-            this._roiController.genCircularArc(row, col, radius, startPhi, extentPhi, direct, ref list);
-        }
-        public void genLine(double beginRow, double beginCol, double endRow, double endCol, ref List<ROI> list)
-        {
-            this._roiController.genLine(beginRow, beginCol, endRow, endCol, ref list);
-        }
-
-        public List<double> smallestActiveROI(out string name, out int index)
-        {
-            List<double> resual = this._roiController.smallestActiveROI(out name, out index);
-            return resual;
-        }
-
-        public ROI smallestActiveROI(out List<double> data, out int index)
-        {
-            ROI roi = this._roiController.smallestActiveROI(out data, out index);
-            return roi;
-        }
-
-        public void selectROI(int index)
-        {
-            this._roiController.selectROI(index);
-        }
-
-        public void selectROI(List<ROI> rois, int index)
-        {
-            //this._roiController.selectROI(index);
-            if ((rois.Count > index) && (index >= 0))
-            {
-                this._hWndControl.resetAll();
-                this._hWndControl.repaint();
-
-                HTuple m_roiData = null;
-                m_roiData = rois[index].getModelData();
-
-                switch (rois[index].Type)
-                {
-                    case "ROIRectangle1":
-
-                        if (m_roiData != null)
-                        {
-                            this._roiController.displayRect1(rois[index].Color, m_roiData[0].D, m_roiData[1].D, m_roiData[2].D, m_roiData[3].D);
-                        }
-                        break;
-                    case "ROIRectangle2":
-
-                        if (m_roiData != null)
-                        {
-                            this._roiController.displayRect2(rois[index].Color, m_roiData[0].D, m_roiData[1].D, m_roiData[2].D, m_roiData[3].D, m_roiData[4].D);
-                        }
-                        break;
-                    case "ROICircle":
-
-                        if (m_roiData != null)
-                        {
-                            this._roiController.displayCircle(rois[index].Color, m_roiData[0].D, m_roiData[1].D, m_roiData[2].D);
-                        }
-                        break;
-                    case "ROICircularArc":
-
-                        if (m_roiData != null)
-                        {
-                            this._roiController.displayCircularArc(rois[index].Color, m_roiData[0].D, m_roiData[1].D, m_roiData[2].D, m_roiData[3].D, m_roiData[4].D);
-                        }
-                        break;
-                    case "ROILine":
-
-                        if (m_roiData != null)
-                        {
-                            this._roiController.displayLine(rois[index].Color, m_roiData[0].D, m_roiData[1].D, m_roiData[2].D, m_roiData[3].D);
-                        }
-                        break;
-                    default:
-                        break;
-                }
-            }
-        }
-
-        public void displayROI(List<ROI> rois)
-        {
-            if (rois == null)
-            {
-                return;
-            }
-            //this._hWndControl.resetAll();
-            //this._hWndControl.repaint();
-
-            foreach (var roi in rois)
-            {
-
-
-                switch (roi.Type)
-                {
-                    case "ROIRectangle1":
-                        HTuple m_roiData = null;
-                        m_roiData = roi.getModelData();
-                        if (m_roiData != null)
-                        {
-                            this._roiController.displayRect1(roi.Color, m_roiData[0].D, m_roiData[1].D, m_roiData[2].D, m_roiData[3].D);
-                        }
-                        break;
-                    case "ROIRectangle2":
-                        m_roiData = null;
-                        m_roiData = roi.getModelData();
-                        if (m_roiData != null)
-                        {
-                            this._roiController.displayRect2(roi.Color, m_roiData[0].D, m_roiData[1].D, m_roiData[2].D, m_roiData[3].D, m_roiData[4].D);
-
-                        }
-                        break;
-                    case "ROICircle":
-                        m_roiData = roi.getModelData();
-                        if (m_roiData != null)
-                        {
-                            this._roiController.displayCircle(roi.Color, m_roiData[0].D, m_roiData[1].D, m_roiData[2].D);
-                        }
-                        break;
-                    case "ROILine":
-                        m_roiData = roi.getModelData();
-                        if (m_roiData != null)
-                        {
-                            this._roiController.displayLine(roi.Color, m_roiData[0].D, m_roiData[1].D, m_roiData[2].D, m_roiData[3].D);
-                        }
-                        break;
-                    case "ROINurbs":
-                        HTuple rows, cols;
-                        roi.getModelData(out rows, out cols);
-                        if (rows != null)
-                        {
-                            this._roiController.displayNurbs(roi.Color, rows, cols);
-                        }
-                        break;
-                    default:
-                        break;
-                }
-            }
-        }
-
-        public void removeActiveROI(ref List<ROI> rois)
-        {
-            this._roiController.removeActiveROI(ref rois);
-        }
-
-        public void setActiveRoi(int index)
-        {
-            this._roiController.activeROIidx = index;
-        }
-        public void saveROI(List<ROI> rois, string fileNmae)
-        {
-            List<RoiData> m_RoiData = new List<RoiData>();
-            for (int i = 0; i < rois.Count; i++)
-            {
-                m_RoiData.Add(new RoiData(i, rois[i]));
-            }
-
-            Wells.Tools.clsSerialize.Save(m_RoiData, fileNmae);
-        }
-
-        public void loadROI(string fileName, out List<ROI> rois)
-        {
-            this._hWndControl.resetAll();
-
-            rois = new List<ROI>();
-            List<RoiData> m_RoiData = new List<RoiData>();
-            m_RoiData = (List<RoiData>)Wells.Tools.clsSerialize.Load(m_RoiData.GetType(), fileName);
-            for (int i = 0; i < m_RoiData.Count; i++)
-            {
-                switch (m_RoiData[i].Name)
-                {
-                    case "Rectangle1":
-                        this._roiController.genRect1(m_RoiData[i].Rectangle1.Row1, m_RoiData[i].Rectangle1.Column1,
-                            m_RoiData[i].Rectangle1.Row2, m_RoiData[i].Rectangle1.Column2, ref rois);
-                        rois.Last().Color = m_RoiData[i].Rectangle1.Color;
-                        break;
-                    case "Rectangle2":
-                        this._roiController.genRect2(m_RoiData[i].Rectangle2.Row, m_RoiData[i].Rectangle2.Column,
-                            m_RoiData[i].Rectangle2.Phi, m_RoiData[i].Rectangle2.Lenth1, m_RoiData[i].Rectangle2.Lenth2, ref rois);
-                        rois.Last().Color = m_RoiData[i].Rectangle2.Color;
-                        break;
-                    case "Circle":
-                        this._roiController.genCircle(m_RoiData[i].Circle.Row, m_RoiData[i].Circle.Column, m_RoiData[i].Circle.Radius, ref rois);
-                        rois.Last().Color = m_RoiData[i].Circle.Color;
-                        break;
-                    case "Line":
-                        this._roiController.genLine(m_RoiData[i].Line.RowBegin, m_RoiData[i].Line.ColumnBegin,
-                            m_RoiData[i].Line.RowEnd, m_RoiData[i].Line.ColumnEnd, ref rois);
-                        rois.Last().Color = m_RoiData[i].Line.Color;
-                        break;
-                    default:
-                        break;
-                }
-            }
-
-
-            this._hWndControl.repaint();
-        }
-
-        #region 专门用于 显示region 和xld的方法
-        public void displayHRegion(HObject obj, string color, string drawmode)
-        {
-            _hWndControl.addRegion(obj, color, drawmode);
-
-        }
-
-        public void displayHRegion(HObject obj, string color, string drawmode, int lineWidth)
-        {
-            _hWndControl.addRegion(obj, color, drawmode, lineWidth);
-
-        }
-
-        public void displayHRegion(HObject obj)
-        {
-            _hWndControl.addRegion(obj);
-        }
-
-        #endregion
-
-        private void showZoomPercent(double per)
-        {
-            int percent = (int)Math.Round(per * 100);
-            tsbtn_ZoomPercent.Text = clsWellsLanguage.getString(131) + "<" + percent.ToString() + "%>";
-        }
-        
-        private void tsbtn_fitWindow_Click(object sender, EventArgs e)
-        {
-            dispImageFit();
-        }
-
-        private void tsbtn_saveOriginImage_Click(object sender, EventArgs e)
-        {
-            saveImage();
-        }
-
-        private void tsbtn_saveDumpWindow_Click(object sender, EventArgs e)
-        {
-            saveWindowDump();
-        }
-
-        private void tsbtn_showMessage_Click(object sender, EventArgs e)
-        {
-            tsbtn_showInfo.Checked = _hWndControl.showMessage();
-        }
-
-        private void tsbtn_showROI_Click(object sender, EventArgs e)
-        {
-            tsbtn_showROI.Checked = _hWndControl.showROI();
-        }
-
-        private void tsbtn_showRegion_Click(object sender, EventArgs e)
-        {
-            tsbtn_showRegion.Checked = _hWndControl.showHRegion();
-        }
-
-        private void tsbtn_showHisto_Click(object sender, EventArgs e)
-        {
-            _hWndControl.funcShowGrayHisto();
-        }
-
-        private void tsbtn_showHat_Click(object sender, EventArgs e)
-        {
-            tsbtn_showHat.Checked = _hWndControl.showCross();
-        }
-
-        private void tsbtn_showStatusBar_Click(object sender, EventArgs e)
-        {
-            showStatusBar(tsbtn_showStatusBar.Checked);
-        }
-
-        private void tsbtn_MeasureDistance_Click(object sender, EventArgs e)
-        {
-            _hWndControl.funcMeasureLineDistance();
-        }
-
-        private void tsbtn_OriginSize_Click(object sender, EventArgs e)
-        {
-            _hWndControl.zoomImageByPercent(1);
-        }
-
-        private void tsbtn_ZoomPercent_Click(object sender, EventArgs e)
-        {
-            string str = Wells.class_Public.getInputInfo(clsWellsLanguage.getString(130), clsWellsLanguage.getString(131), "", false);
-            double per;
-            double.TryParse(str, out per);
-            if (per > 0)
-                _hWndControl.zoomImageByPercent(per/100.0);
-        }
-
-        private void mCtrl_HWindow_SizeChanged(object sender, EventArgs e)
-        {
-            dispImageFit();
-        }
-
-        public void reFresh()
-        {
-            _hWndControl.repaint();
-        }
-
-        public void updateImage(List<object> list)
-        {
-            //清空显示image
-            _hWndControl.clearList(false);
-            //清空hobjectList
-            _hWndControl.clearHRegionList();
-            //清空roi
-            _hWndControl.roiManager.reset();
+            #region ***** 放大图片 *****
             
-            for (int igg = 0; igg < list.Count / 2; igg++)
+            double tmpScale = 1;
+            tmpScale = scale * xScale;
+
+            if (xScale < 0.1 && tmpScale < xScale)
             {
-                string strDrawType = list[igg * 2] as string;
-                if(strDrawType == "message")
+                //超过一定缩放比例就不在缩放
+                //resetWindow();
+                return;
+            }
+            if (xScale > 100 && tmpScale > xScale)
+            {
+                //超过一定缩放比例就不在缩放
+                //resetWindow();
+                return;
+            }
+            xScale = tmpScale;
+            yScale *= scale;
+            
+            double lengthC, lengthR;
+            double percentC, percentR;
+
+            percentC = (x - ImgCol1) / (ImgCol2 - ImgCol1);
+            percentR = (y - ImgRow1) / (ImgRow2 - ImgRow1);
+
+            lengthC = (ImgCol2 - ImgCol1) * scale;
+            lengthR = (ImgRow2 - ImgRow1) * scale;
+
+            ImgCol1 = x - lengthC * percentC;
+            ImgCol2 = x + lengthC * (1 - percentC);
+
+            ImgRow1 = y - lengthR * percentR;
+            ImgRow2 = y + lengthR * (1 - percentR);
+
+            imageShowWidth = (int)(imageShowWidth / scale);
+            imageShowHeight = (int)(imageShowHeight / scale);
+
+            normalImagePart();
+
+            System.Drawing.Rectangle rect = m_Ctrl_HWindow.ImagePart;
+            rect.X = (int)Math.Round(ImgCol1);
+            rect.Y = (int)Math.Round(ImgRow1);
+            rect.Width = (int)Math.Round(ImgCol2 - ImgCol1);
+            rect.Height = (int)Math.Round(ImgRow2 - ImgRow1);
+            m_Ctrl_HWindow.ImagePart = rect;
+
+            #endregion
+        }
+
+        private void moveROI(double dx, double dy)
+        {
+            #region ***** 移动ROI *****
+
+            for (int igg = 0; igg < m_l2updateList.Count; igg++) 
+            {
+                m_l2updateList[igg].move(dx, dy);
+            }
+
+            #endregion
+        }
+        
+        public void fitImage()
+        {
+            setImagePart();
+            Invalidate();
+        }
+
+        public void setImagePart()
+        {
+            #region ***** 设置图片显示区域 *****
+
+            try
+            {
+                int width, height;
+                string type;
+                Image.GetImagePointer1(out type, out width, out height);
+                HTuple chan;
+                HOperatorSet.CountChannels(Image, out chan);
+
+                if (ImageWidth == width && ImageHeight == height)
+                    return;
+
+                ImageWidth = width;
+                ImageHeight = height;
+
+                handleWidth = ImageHeight / 300 + 1;
+                if (handleWidth > 18) handleWidth = 18;
+
+                ImgRow1 = 0;
+                ImgCol1 = 0;
+                ImgRow2 = height;
+                ImgCol2 = width;
+
+                System.Drawing.Rectangle rect = m_Ctrl_HWindow.ImagePart;
+
+                xScale = (double)ImageWidth / m_Ctrl_HWindow.Width;
+                yScale = (double)ImageHeight / m_Ctrl_HWindow.Height;
+
+                if (ImageMode == ImageMode.Origin)
+                    originScale = xScale = yScale = Math.Max(xScale, yScale);
+                else
+                    originScale = xScale;
+
+                ImgCol1 = -(m_Ctrl_HWindow.Width * xScale - ImageWidth) / 2;
+                ImgCol2 = (m_Ctrl_HWindow.Width * xScale - ImageWidth) / 2 + ImageWidth;
+                ImgRow1 = -(m_Ctrl_HWindow.Height * yScale - ImageHeight) / 2;
+                ImgRow2 = (m_Ctrl_HWindow.Height * yScale - ImageHeight) / 2 + ImageHeight;
+
+                imageShowWidth = (int)(ImageWidth / xScale + m_Ctrl_HWindow.Width * SHOW_DELTA);
+                imageShowHeight = (int)(ImageHeight / yScale + m_Ctrl_HWindow.Height * SHOW_DELTA);
+
+
+                rect.X = (int)ImgCol1;
+                rect.Y = (int)ImgRow1;
+                rect.Height = (int)(ImgRow2 - ImgRow1);
+                rect.Width = (int)(ImgCol2 - ImgCol1);
+                m_Ctrl_HWindow.ImagePart = rect;
+            }
+            catch (System.Exception ex)
+            {
+
+            }
+
+            #endregion
+        }
+
+        protected internal void normalImagePart()
+        {
+            #region ***** 归一化图片显示区域 *****
+
+            if (imageShowWidth < m_Ctrl_HWindow.Width)
+            {
+                ImgCol1 = -(m_Ctrl_HWindow.Width * xScale - ImageWidth) / 2;
+                ImgCol2 = (m_Ctrl_HWindow.Width * xScale - ImageWidth) / 2 + ImageWidth;
+            }
+            else
+            {
+                double delta = m_Ctrl_HWindow.Width * SHOW_DELTA * xScale / 2;
+                if (ImgCol1 < -delta)
                 {
-                    HWndMessage msg = list[igg * 2 + 1] as HWndMessage;
-                    if (msg != null)
-                        _hWndControl.HObjImageList.Add(new HObjectEntry(msg));
+                    ImgCol2 += -delta - ImgCol1;
+                    ImgCol1 = -delta;
                 }
-                if(strDrawType == "region")
+                else if (ImgCol2 > ImageWidth + delta)
                 {
-                    HRegionEntry entry = list[igg * 2 + 1] as HRegionEntry;
-                    if (entry != null)
-                        _hWndControl.hRegionList.Add(entry);
+                    ImgCol1 -= ImgCol2 - (ImageWidth + delta);
+                    ImgCol2 = ImageWidth + delta;
                 }
-                if(strDrawType == "roi")
+            }
+            if (imageShowHeight < m_Ctrl_HWindow.Height)
+            {
+                ImgRow1 = -(m_Ctrl_HWindow.Height * yScale - ImageHeight) / 2;
+                ImgRow2 = (m_Ctrl_HWindow.Height * yScale - ImageHeight) / 2 + ImageHeight;
+            }
+            else
+            {
+                double delta = m_Ctrl_HWindow.Height * SHOW_DELTA * yScale / 2;
+                if (ImgRow1 < -delta)
                 {
-                    ROI roi = list[igg * 2 + 1] as ROI;
-                    _hWndControl.roiManager.ROIList.Add(roi);
+                    ImgRow2 += -delta - ImgRow1;
+                    ImgRow1 = -delta;
+                }
+                else if (ImgRow2 > ImageHeight + delta)
+                {
+                    ImgRow1 -= ImgRow2 - (ImageHeight + delta);
+                    ImgRow2 = ImageHeight + delta;
                 }
             }
 
-            _hWndControl.repaint();
+            #endregion
+        }
+        
+        public void showStatusBar(bool bShow)
+        {
+            this.SuspendLayout();
+
+            if (bShow)
+            {
+                m_Ctrl_HStatusLabel.Visible = true;
+                m_Ctrl_HWindow.HMouseMove += m_Ctrl_HWindow_HMouseMove_2;
+            }
+            else
+            {
+                m_Ctrl_HStatusLabel.Visible = false;
+                m_Ctrl_HWindow.HMouseMove -= m_Ctrl_HWindow_HMouseMove_2;
+            }
+
+            //tsbtn_showStatusBar.Checked = bShow;
+            
+            this.ResumeLayout(false);
+            this.PerformLayout();
         }
     }
 }

@@ -2,57 +2,67 @@ using System;
 using hvppleDotNet;
 using System.Xml.Serialization;
 using System.Windows.Forms;
+using System.Drawing;
 
 namespace Wells.Controls.ImageDocEx
 {
-
-	/// <summary>
-	/// This class demonstrates one of the possible implementations for a 
-	/// (simple) rectangularly shaped ROI. To create this rectangle we use 
-	/// a center point (midR, midC), an orientation 'phi' and the half 
-	/// edge lengths 'length1' and 'length2', similar to the HALCON 
-	/// operator gen_rectangle2(). 
-	/// The class ROIRectangle2 inherits from the base class ROI and 
-	/// implements (besides other auxiliary methods) all virtual methods 
-	/// defined in ROI.cs.
-	/// </summary>
-    [Serializable]
     public class ROIRectangle2 : ROI
 	{
-
-        [XmlElement(ElementName = "Row")]
         public double Row
         {
             get { return this.midR; }
-            set { this.midR = value; }
+            set
+            {
+                if (value == this.midR) return;
+                this.midR = value;
+                NotifyPropertyChange("Row");
+            }
         }
-
-        [XmlElement(ElementName = "Column")]
+        
         public double Column
         {
             get { return this.midC; }
-            set { this.midC = value; }
+            set
+            {
+                if (value == this.midC) return;
+                this.midC = value;
+                NotifyPropertyChange("Column");
+            }
         }
-        [XmlElement(ElementName = "Phi")]
+
         public double Phi
         {
             get { return this.phi; }
-            set { this.phi = value; }
+            set
+            {
+                if (value == this.phi) return;
+                this.phi = value;
+                NotifyPropertyChange("Phi");
+            }
         }
-
-        [XmlElement(ElementName = "Length1")]
+        
         public double Lenth1
         {
             get { return this.length1; }
-            set { this.length1 = value; }
+            set
+            {
+                if (value == this.length1) return;
+                this.length1 = value;
+                NotifyPropertyChange("Lenth1");
+            }
         }
-
-        [XmlElement(ElementName = "Length2")]
+        
         public double Lenth2
         {
             get { return this.length2; }
-            set { this.length2 = value; }
+            set
+            {
+                if (value == this.length2) return;
+                this.length2 = value;
+                NotifyPropertyChange("Lenth2");
+            }
         }
+
 		/// <summary>Half length of the rectangle side, perpendicular to phi</summary>
 		private double length1;
 
@@ -82,114 +92,103 @@ namespace Wells.Controls.ImageDocEx
 		{
 			NumHandles = 10; // 4 corners +  1 midpoint + 1 rotationpoint			
 			activeHandleIdx = 4;
-		}
+
+            midR = 25;
+            midC = 25;
+            length1 = 25;
+            length2 = 15;
+            phi = 0;
+
+            rowsInit = new HTuple(new double[] { -1.0, -1.0, 1.0, 1.0, 0.0, 0.0, 0, -1, 0, 1 });
+            colsInit = new HTuple(new double[] { -1.0, 1.0, 1.0, -1.0, 0.0, 1.2, -1, 0, 1, 0 });
+            //order        ul ,  ur,   lr,  ll,   mp, arrowMidpoint
+            hom2D = new HHomMat2D();
+            tmp = new HHomMat2D();
+
+            updateHandlePos();
+
+            Type = "Rectangle2";
+        }
 
         public ROIRectangle2(double row, double col, double phi, double length1, double length2)
         {
-            createRectangle2(row, col, phi, length1, length2);
-        }
+            NumHandles = 10; // 4 corners +  1 midpoint + 1 rotationpoint			
+            activeHandleIdx = 4;
 
-        public override void createRectangle2(double row, double col, double phi, double length1, double length2)
-        {
-            base.createRectangle2(row, col, phi, length1, length2);
             this.midR = row;
             this.midC = col;
             this.length1 = length1;
             this.length2 = length2;
             this.phi = phi;
 
-            rowsInit = new HTuple(new double[] {-1.0, -1.0, 1.0, 
-												   1.0,  0.0, 0.0 ,0,-1,0,1});
-            colsInit = new HTuple(new double[] {-1.0, 1.0,  1.0, 
-												  -1.0, 0.0, 1.2 ,-1,0,1,0});
+            rowsInit = new HTuple(new double[] { -1.0, -1.0, 1.0, 1.0, 0.0, 0.0, 0, -1, 0, 1 });
+            colsInit = new HTuple(new double[] { -1.0, 1.0, 1.0, -1.0, 0.0, 1.2, -1, 0, 1, 0 });
             //order        ul ,  ur,   lr,  ll,   mp, arrowMidpoint
             hom2D = new HHomMat2D();
             tmp = new HHomMat2D();
 
             updateHandlePos();
+
+            Type = "Rectangle2";
         }
-        public override void createInitRectangle2(double imageHeight)
-        {
-            double size = 10.0 * getHandleWidth(0, (int)imageHeight);
-            double length1 = size * 3;
-            double length2 = size * 4;
-
-            base.createRectangle2(midR , midC , phi, length1, length2);
-            this.midR = midR ;
-            this.midC = midC ;
-            this.length1 = length1;
-            this.length2 = length2;
-            this.phi = phi;
-
-            rowsInit = new HTuple(new double[] {-1.0, -1.0, 1.0, 
-												   1.0,  0.0, 0.0 ,0,-1,0,1});
-            colsInit = new HTuple(new double[] {-1.0, 1.0,  1.0, 
-												  -1.0, 0.0, 1.2 ,-1,0,1,0});
-            //order        ul ,  ur,   lr,  ll,   mp, arrowMidpoint
-            hom2D = new HHomMat2D();
-            tmp = new HHomMat2D();
-
-            updateHandlePos();
-        }
-
-		/// <summary>Creates a new ROI instance at the mouse position</summary>
-		/// <param name="midX">
-		/// x (=column) coordinate for interactive ROI
-		/// </param>
-		/// <param name="midY">
-		/// y (=row) coordinate for interactive ROI
-		/// </param>
-		public override void createROI(double midX, double midY)
+        
+		public override void createInitROI(double midX, double midY)
 		{
 			midR = midY;
 			midC = midX;
 
-			length1 = 100;
-			length2 = 50;
+			length1 = 25;
+			length2 = 15;
 
 			phi = 0.0;
 
-			rowsInit = new HTuple(new double[] {-1.0, -1.0, 1.0, 
-												   1.0,  0.0, 0.0 });
-			colsInit = new HTuple(new double[] {-1.0, 1.0,  1.0, 
-												  -1.0, 0.0, 1.2 });
-			//order        ul ,  ur,   lr,  ll,   mp, arrowMidpoint
-			hom2D = new HHomMat2D();
-			tmp = new HHomMat2D();
+            rowsInit = new HTuple(new double[] { -1.0, -1.0, 1.0, 1.0, 0.0, 0.0, 0, -1, 0, 1 });
+            colsInit = new HTuple(new double[] { -1.0, 1.0, 1.0, -1.0, 0.0, 1.2, -1, 0, 1, 0 });
+            //order        ul ,  ur,   lr,  ll,   mp, arrowMidpoint
+            hom2D = new HHomMat2D();
+            tmp = new HHomMat2D();
 
-			updateHandlePos();
-		}
-
-		/// <summary>Paints the ROI into the supplied window</summary>
-		/// <param name="window">HALCON window</param>
-        public override void draw(hvppleDotNet.HWindow window, int imageWidth, int imageHeight)
+            updateHandlePos();
+        }
+        
+        public override void draw(HWindow window, int imageWidth, int imageHeight)
 		{
+            window.SetColor(Color);
+            window.SetDraw(DrawMode);
+            window.SetLineWidth(LineWidth);
+            window.SetLineStyle(LineStyle == "dot" ? new HTuple(2, 2) : new HTuple());
+
             double littleRecSize = getHandleWidth(imageWidth, imageHeight);
 
-            window.DispRectangle2(midR, midC, -phi, length1, length2);
-            window.DispArrow(midR, midC, midR + (Math.Sin(phi) * length1 * 1.2),midC + (Math.Cos(phi) * length1 * 1.2), littleRecSize);
+            window.DispRectangle2(midR, midC, -phi, length1, length2);//body
 
-            window.SetDraw("fill"); 
-            for (int i = 0; i < NumHandles; i++)
+            window.SetDraw("fill");
+            window.DispArrow(midR, midC, midR + (Math.Sin(phi) * length1 * 1.2), midC + (Math.Cos(phi) * length1 * 1.2), littleRecSize);
+
+            if (Selected)
             {
-                window.DispRectangle2(rows[i].D, cols[i].D, -phi, littleRecSize, littleRecSize);
-                Application.DoEvents();
+                for (int i = 0; i < NumHandles; i++)
+                {
+                    window.DispRectangle2(rows[i].D, cols[i].D, -phi, littleRecSize, littleRecSize);
+                    Application.DoEvents();
+                }
             }
-            window.SetDraw("margin");
-
-
 		}
 
-		/// <summary> 
-		/// Returns the distance of the ROI handle being
-		/// closest to the image point(x,y)
-		/// </summary>
-		/// <param name="x">x (=column) coordinate</param>
-		/// <param name="y">y (=row) coordinate</param>
-		/// <returns> 
-		/// Distance of the closest ROI handle.
-		/// </returns>
-		public override double distToClosestHandle(double x, double y, out int iHandleIndex)
+        public override int ptLocation(double x, double y, int imageWidth, int imageHeight)
+        {
+            double width = 2 * getHandleWidth(imageWidth, imageHeight);
+
+            return 0;
+        }
+
+        public override bool isInRect(RectangleF rect)
+        {
+            
+            return false;
+        }
+
+        public override double distToClosestHandle(double x, double y)
 		{
 			double max = 10000;
 			double [] val = new double[NumHandles];
@@ -206,67 +205,17 @@ namespace Wells.Controls.ImageDocEx
 					activeHandleIdx = i;
 				}
             }
-
-            iHandleIndex = activeHandleIdx;
-
+            
             return val[activeHandleIdx];
 		}
 
-		/// <summary> 
-		/// Paints the active handle of the ROI object into the supplied window
-		/// </summary>
-		/// <param name="window">HALCON window</param>
-        public override void displayActive(hvppleDotNet.HWindow window, int imageWidth, int imageHeight)
-		{
-            double littleRecSize = getHandleWidth(imageWidth, imageHeight);
-
-            window.SetDraw("fill"); 
-            window.DispRectangle2(rows[activeHandleIdx].D,
-								  cols[activeHandleIdx].D,
-                                  -phi, littleRecSize, littleRecSize);
-
-			if (activeHandleIdx == 5)
-				window.DispArrow(midR, midC,
-								 midR + (Math.Sin(phi) * length1 * 1.2),
-								 midC + (Math.Cos(phi) * length1 * 1.2),
-                                 littleRecSize);
-            window.SetDraw("margin");
-		}
-
-
-		/// <summary>Gets the HALCON region described by the ROI</summary>
-		public override HRegion getRegion()
-		{
-			HRegion region = new HRegion();
-			region.GenRectangle2(midR, midC, -phi, length1, length2);
-			return region;
-		}
-
-		/// <summary>
-		/// Gets the model information described by 
-		/// the interactive ROI
-		/// </summary> 
-		public override HTuple getModelData()
-		{
-			return new HTuple(new double[] { midR, midC, phi, length1, length2 });
-		}
-        public override HTuple getRowsData()
+        public override void move(double dx, double dy)
         {
-            return new HTuple(rows);
-        }
-        public override HTuple getColsData()
-        {
-            return new HTuple(cols );
+            midR += dy;
+            midC += dx;
         }
 
-		/// <summary> 
-		/// Recalculates the shape of the ROI instance. Translation is 
-		/// performed at the active handle of the ROI object 
-		/// for the image coordinate (x,y)
-		/// </summary>
-		/// <param name="newX">x mouse coordinate</param>
-		/// <param name="newY">y mouse coordinate</param>
-		public override void moveByHandle(double newX, double newY)
+        public override void resize(double newX, double newY)
 		{
 			double vX, vY, x=0, y=0;
 

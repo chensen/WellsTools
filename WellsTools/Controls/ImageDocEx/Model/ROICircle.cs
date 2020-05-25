@@ -1,106 +1,142 @@
 using System;
 using hvppleDotNet;
 using System.Xml.Serialization;
+using System.ComponentModel;
+using System.Drawing;
 
 namespace Wells.Controls.ImageDocEx
 {
-    /// <summary>
-    /// This class demonstrates one of the possible implementations for a 
-    /// circular ROI. ROICircle inherits from the base class ROI and 
-    /// implements (besides other auxiliary methods) all virtual methods 
-    /// defined in ROI.cs.
-    /// </summary>
-    [Serializable]
     public class ROICircle : ROI
     {
-
-        [XmlElement(ElementName = "Row")]
         public double Row
         {
             get { return this.midR; }
-            set { this.midR = value; }
+            set
+            {
+                if (value == this.midR) return;
+                this.midR = value;
+                base.NotifyPropertyChange("Row");
+            }
         }
-
-        [XmlElement(ElementName = "Column")]
+        
         public double Column
         {
             get { return this.midC; }
-            set { this.midC = value; }
+            set
+            {
+                if (value == this.midC) return;
+                this.midC = value;
+                base.NotifyPropertyChange("Column");
+            }
         }
-        [XmlElement(ElementName = "Radius")]
+
         public double Radius
         {
             get { return this.radius; }
-            set { this.radius = value; }
+            set
+            {
+                if (value == this.radius) return;
+                this.radius = value;
+                base.NotifyPropertyChange("Radius");
+            }
         }
-
-
-        private double radius=0;
-        private double row1=0, col1=0;  // first handle
-        private double midR=0, midC=0;  // second handle
+        
+        private double radius;
+        private double row1;// first control handle
+        private double col1;
+        private double midR;// mid handle
+        private double midC;  
 
 
         public ROICircle()
         {
-            NumHandles = 2; // one at corner of circle + midpoint
-            activeHandleIdx = 1;
+            NumHandles = 2; //0,mid;1,circle;
+            activeHandleIdx = 0;
+
+            midR = 25;
+            midC = 25;
+            row1 = 25;
+            col1 = 50;
+            radius = 25;
+
+            Type = "Circle";
         }
 
-        public ROICircle(double row, double col, double radius)
+        public ROICircle(double midX, double midY, double radius)
         {
-            createCircle(row, col, radius);
-        }
+            NumHandles = 2;
+            activeHandleIdx = 0;
 
-
-        public override void createCircle(double row, double col, double radius)
-        {
-            base.createCircle(row, col, radius);
-            midR = row;
-            midC = col;
-
+            this.midR = midY;
+            this.midC = midX;
             this.radius = radius;
+            this.row1 = midY;
+            this.col1 = midX + radius;
 
-            row1 = midR;
-            col1 = midC + radius;
+            Type = "Circle";
         }
-
-        /// <summary>Creates a new ROI instance at the mouse position</summary>
-        public override void createROI(double midX, double midY)
+        
+        public override void createInitROI(double midX, double midY)
         {
-            midR = midY;
-            midC = midX;
+            this.midR = midY;
+            this.midC = midX;
+            this.radius = 25;
+            this.row1 = midY;
+            this.col1 = midX + 25;
 
-            radius = 100;
-
-            row1 = midR;
-            col1 = midC + radius;
+            NumHandles = 2;
+            activeHandleIdx = 0;
         }
-
-        /// <summary>Paints the ROI into the supplied window</summary>
-        /// <param name="window">HALCON window</param>
-        public override void draw(hvppleDotNet.HWindow window, int imageWidth, int imageHeight)
+        
+        public override void draw(HWindow window, int imageWidth, int imageHeight)
         {
-            window.DispCircle(midR, midC, radius);
+            window.SetColor(Color);
+            window.SetDraw(DrawMode);
+            window.SetLineWidth(LineWidth);
+            window.SetLineStyle(LineStyle == "dot" ? new HTuple(2, 2) : new HTuple());
+
+            window.DispCircle(midR, midC, radius);//body
 
             double littleRecSize = getHandleWidth(imageWidth, imageHeight);
 
-            //window.SetDraw("fill");
-            //window.DispRectangle2(row1, col1, 0, littleRecSize, littleRecSize);
-            //window.DispRectangle2(midR, midC, 0, littleRecSize, littleRecSize);
-            //window.SetDraw("margin");
+            window.SetDraw("fill");
+            window.DispRectangle2(midR, midC, 0, littleRecSize, littleRecSize);//0,mid
+
+            if (Selected)
+            {
+                window.DispRectangle2(row1, col1, 0, littleRecSize, littleRecSize);//1,circle
+            }
         }
 
-        /// <summary> 
-        /// Returns the distance of the ROI handle being
-        /// closest to the image point(x,y)
-        /// </summary>
-        public override double distToClosestHandle(double x, double y, out int iHandleIndex)
+        public override int ptLocation(double x, double y, int imageWidth, int imageHeight)
+        {
+            double width = 2 * getHandleWidth(imageWidth, imageHeight);
+            HTuple distance;
+            HOperatorSet.DistancePp(new HTuple(y), new HTuple(x), new HTuple(midR), new HTuple(midC), out distance);
+            if (distance.D > radius + width)//outside
+                return -1;
+            else if (distance.D < radius - width)//inside
+                return 1;
+            else//onside
+                return 0;
+        }
+
+        public override bool isInRect(RectangleF rect)
+        {
+            if (midR - radius > rect.Y && midR + radius < rect.Y + rect.Height && midC - radius > rect.X && midC + radius < rect.X + rect.Width) 
+                return true;
+
+            return false;
+        }
+
+        public override double distToClosestHandle(double x, double y)
         {
             double max = 10000;
             double[] val = new double[NumHandles];
 
-            val[0] = HMisc.DistancePp(y, x, row1, col1); // border handle 
-            val[1] = HMisc.DistancePp(y, x, midR, midC); // midpoint 
+            val[0] = HMisc.DistancePp(y, x, midR, midC);//0,mid
+            val[1] = HMisc.DistancePp(y, x, row1, col1);//1,circle
+            
 
             for (int i = 0; i < NumHandles; i++)
             {
@@ -110,96 +146,46 @@ namespace Wells.Controls.ImageDocEx
                     activeHandleIdx = i;
                 }
             }// end of for 
-
-            iHandleIndex = activeHandleIdx;
-
+            
             return val[activeHandleIdx];
         }
-
-        /// <summary> 
-        /// Paints the active handle of the ROI object into the supplied window 
-        /// </summary>
-        public override void displayActive(hvppleDotNet.HWindow window, int imageWidth, int imageHeight)
+        
+        public override void move(double dx, double dy)
         {
-            double littleRecSize = getHandleWidth(imageWidth, imageHeight);
-
-            window.SetDraw("fill"); 
-            switch (activeHandleIdx)
-            {
-                case 0:
-                    window.DispRectangle2(row1, col1, 0, littleRecSize, littleRecSize);
-                    break;
-                case 1:
-                    window.DispRectangle2(midR, midC, 0, littleRecSize, littleRecSize);
-                    break;
-            }
-            window.SetDraw("margin");
+            midR += dy;
+            midC += dx;
+            row1 += dy;
+            col1 += dx;
         }
 
-        /// <summary>Gets the HALCON region described by the ROI</summary>
-        public override HRegion getRegion()
-        {
-            HRegion region = new HRegion();
-            region.GenCircle(midR, midC, radius);
-            return region;
-        }
-
-        public override double getDistanceFromStartPoint(double row, double col)
-        {
-            double sRow = midR; // assumption: we have an angle starting at 0.0
-            double sCol = midC + 1 * radius;
-
-            double angle = HMisc.AngleLl(midR, midC, sRow, sCol, midR, midC, row, col);
-
-            if (angle < 0)
-                angle += 2 * Math.PI;
-
-            return (radius * angle);
-        }
-
-        /// <summary>
-        /// Gets the model information described by 
-        /// the  ROI
-        /// </summary> 
-        public override HTuple getModelData()
-        {
-            return new HTuple(new double[] { midR, midC, radius });
-        }
-
-        /// <summary> 
-        /// Recalculates the shape of the ROI. Translation is 
-        /// performed at the active handle of the ROI object 
-        /// for the image coordinate (x,y)
-        /// </summary>
-        public override void moveByHandle(double newX, double newY)
+        public override void resize(double newX, double newY)
         {
             HTuple distance;
             double shiftX, shiftY;
 
             switch (activeHandleIdx)
             {
-                case 0: // handle at circle border
+                case 0: //0,mid
+                    {
+                        shiftY = midR - newY;
+                        shiftX = midC - newX;
 
-                    row1 = newY;
-                    col1 = newX;
-                    HOperatorSet.DistancePp(new HTuple(row1), new HTuple(col1),
-                                            new HTuple(midR), new HTuple(midC),
-                                            out distance);
+                        midR = newY;
+                        midC = newX;
 
-                    radius = distance[0].D;
+                        row1 -= shiftY;
+                        col1 -= shiftX;
+                    }
                     break;
-                case 1: // midpoint 
-
-                    shiftY = midR - newY;
-                    shiftX = midC - newX;
-
-                    midR = newY;
-                    midC = newX;
-
-                    row1 -= shiftY;
-                    col1 -= shiftX;
+                case 1: //1,circle
+                    {
+                        row1 = newY;
+                        col1 = newX;
+                        HOperatorSet.DistancePp(new HTuple(row1), new HTuple(col1),new HTuple(midR), new HTuple(midC),out distance);
+                        radius = distance[0].D;
+                    }
                     break;
             }
         }
-    }//end of class
-}//end of namespace
+    }
+}

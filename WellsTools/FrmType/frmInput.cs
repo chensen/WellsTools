@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace Wells.FrmType
 {
-    public partial class frmInput : Form
+    public partial class frmInput : frmBaseForm
     {
         public string strInputText = "";
 

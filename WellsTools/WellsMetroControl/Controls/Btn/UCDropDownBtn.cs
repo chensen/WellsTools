@@ -6,7 +6,6 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using System.Drawing;
 using System.Drawing.Drawing2D;
 
 namespace Wells.WellsMetroControl.Controls

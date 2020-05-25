@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace Wells.FrmType
 {
-    public partial class frm_Exit : CCWin.Skin_Color
+    public partial class frm_Exit : frmBaseForm
     {
         private FormCloseType type = FormCloseType.None;
 

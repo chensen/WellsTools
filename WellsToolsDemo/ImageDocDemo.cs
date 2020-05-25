@@ -15,7 +15,6 @@ namespace WellsToolsDemo
     {
         //Wells.Tools.clsXmlEx xml = new Wells.Tools.clsXmlEx("xml.xml");
         List<ROI> rois = new List<ROI>();
-        HTuple hwnd = null;
         public ImageDocDemo()
         {
             InitializeComponent();
@@ -34,7 +33,7 @@ namespace WellsToolsDemo
 
         private void button2_Click(object sender, EventArgs e)
         {
-            HImage img = new HImage("D:\\111.bmp");
+            HImage img = new HImage("D:\\01.bmp");
             imageDoc1.displayImage(img);
         }
 

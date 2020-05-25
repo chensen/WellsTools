@@ -35,11 +35,18 @@
     <Reference Include="hvppledotnet">
       <HintPath>..\WellsTools\Dll\hvppledotnet.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="NPOI, Version=2.1.3.1, Culture=neutral, PublicKeyToken=0df73ec7942b34e1" />
     <Reference Include="Qting">
       <HintPath>..\WellsTools\Dll\Qting.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -59,20 +66,14 @@
     <Compile Include="ImageDocDemo.Designer.cs">
       <DependentUpon>ImageDocDemo.cs</DependentUpon>
     </Compile>
-    <Compile Include="ImageDocDemo2.cs">
+    <Compile Include="ImageDocExDemo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ImageDocDemo2.Designer.cs">
-      <DependentUpon>ImageDocDemo2.cs</DependentUpon>
+    <Compile Include="ImageDocExDemo.Designer.cs">
+      <DependentUpon>ImageDocExDemo.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="PropertyManageDemo.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PropertyManageDemo.Designer.cs">
-      <DependentUpon>PropertyManageDemo.cs</DependentUpon>
-    </Compile>
     <Compile Include="VisionInspectDemo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -82,8 +83,8 @@
     <EmbeddedResource Include="ImageDocDemo.resx">
       <DependentUpon>ImageDocDemo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ImageDocDemo2.resx">
-      <DependentUpon>ImageDocDemo2.cs</DependentUpon>
+    <EmbeddedResource Include="ImageDocExDemo.resx">
+      <DependentUpon>ImageDocExDemo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -94,9 +95,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="PropertyManageDemo.resx">
-      <DependentUpon>PropertyManageDemo.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="VisionInspectDemo.resx">
       <DependentUpon>VisionInspectDemo.cs</DependentUpon>
     </EmbeddedResource>
@@ -109,6 +107,12 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WellsTools\WellsTools.csproj">
+      <Project>{F0245C7E-7FA8-4A3E-9237-59567CCD5562}</Project>
+      <Name>WellsTools</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
