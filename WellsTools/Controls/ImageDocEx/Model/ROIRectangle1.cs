@@ -169,13 +169,13 @@ namespace Wells.Controls.ImageDocEx
                     activeHandleIdx = 3;
                 else if (x > col1 - 0.2 * width / 2 && x < col1 + 0.2 * width / 2 && y > row2 - 0.2 * height / 2 && y < row2 + 0.2 * height / 2)//左下
                     activeHandleIdx = 4;
-                else if (x > col1 + 0.4 * width / 2 && x < col2 - 0.4 * width / 2 && y > row1 - 0.2 * height / 2 && y < row1 + 0.2 * height / 2)//上中
+                else if (x > col1 + 0.8 * width / 2 && x < col2 - 0.8 * width / 2 && y > row1 - 0.2 * height / 2 && y < row1 + 0.2 * height / 2)//上中
                     activeHandleIdx = 5;
-                else if (x > col2 - 0.2 * width / 2 && x < col2 + 0.2 * width / 2 && y > row1 + 0.4 * height / 2 && y < row2 - 0.4 * height / 2)//右中
+                else if (x > col2 - 0.2 * width / 2 && x < col2 + 0.2 * width / 2 && y > row1 + 0.8 * height / 2 && y < row2 - 0.8 * height / 2)//右中
                     activeHandleIdx = 6;
-                else if (x > col1 + 0.4 * width / 2 && x < col2 - 0.4 * width / 2 && y > row2 - 0.2 * height / 2 && y < row2 + 0.2 * height / 2)//下中
+                else if (x > col1 + 0.8 * width / 2 && x < col2 - 0.8 * width / 2 && y > row2 - 0.2 * height / 2 && y < row2 + 0.2 * height / 2)//下中
                     activeHandleIdx = 7;
-                else if (x > col1 - 0.2 * width / 2 && x < col1 + 0.2 * width / 2 && y > row1 + 0.4 * height / 2 && y < row2 - 0.4 * height / 2)//左中
+                else if (x > col1 - 0.2 * width / 2 && x < col1 + 0.2 * width / 2 && y > row1 + 0.8 * height / 2 && y < row2 - 0.8 * height / 2)//左中
                     activeHandleIdx = 8;
                 return 1;//onside
             }

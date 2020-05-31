@@ -35,6 +35,9 @@
     <ApplicationIcon>log.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="halcondotnetxl">
+      <HintPath>..\WellsTools\Dll\halcondotnetxl.dll</HintPath>
+    </Reference>
     <Reference Include="LiveCharts">
       <HintPath>Dll\LiveCharts.dll</HintPath>
     </Reference>

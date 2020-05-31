@@ -40,11 +40,6 @@ namespace Wells.Controls.ImageDocEx
         public bool StaticWnd { get; set; }
         
         /// <summary>
-        /// 绑定PCB量
-        /// </summary>
-        public qtPCB Pcb { get; }
-
-        /// <summary>
         /// 图片显示模式，Origin和Strech
         /// </summary>
         public ImageMode ImageMode { get; set; }
@@ -99,10 +94,12 @@ namespace Wells.Controls.ImageDocEx
         /// </summary>
         public Tracker m_tracker = new Tracker();
 
+        public List<HRegionEntry> m_regionList = new List<HRegionEntry>();
+
         /// <summary>
         /// 指示当前选中roi的序号，-2表示没有，-1表示多个，其他表示单一选择项的序号
         /// </summary>
-        private int iMoveROINum = -1;
+        private int iMoveROINum = -2;
 
         public double handleWidth = 0;
 
@@ -111,6 +108,9 @@ namespace Wells.Controls.ImageDocEx
 
         public delegate void HMouseUp(int index);
         public HMouseUp qtHMouseUp;
+
+        public delegate void HMouseMove(string strInfo);
+        public HMouseMove qtHMouseMove;
 
         #endregion
 
@@ -149,27 +149,12 @@ namespace Wells.Controls.ImageDocEx
             if (HWindow != null)
                 HWindow.SetWindowParam("background_color", "dim gray");
 
-            showStatusBar(true);
-            
-            Pcb = new qtPCB();
-            Pcb.imageDocEx = this;
-            //if(!DesignMode)
-            //{
-            //    Pcb.initialize(55000, 55000, 8000, 8000, 2448, 2048, Point.Empty, 0, 0, true);
-            //}
+            m_Ctrl_HWindow.HMouseMove += m_Ctrl_HWindow_HMouseMove_2;
 
             #endregion
         }
 
-        public void setImageFromPcb()
-        {
-            #region ***** 从PCB获取图片 *****
-
-            Pcb.prepareTileParam();
-            Pcb.createPcbImage();
-
-            #endregion
-        }
+        #region ***** 内置图片操作，设置、获取 *****
 
         public void setImage(HImage img)
         {
@@ -229,7 +214,11 @@ namespace Wells.Controls.ImageDocEx
 
             #endregion
         }
-        
+
+        #endregion
+
+        #region ***** 鼠标响应事件 *****
+
         /// 左键功能：1.单击空白区域，取消所有选中状态；2.单击元件，如果没有选中（可能其他选件被选中，一个或者多个），则变成选中状态，如果已经被选中（唯一），实行拖动或者尺寸改变功能，
         /// 如果已经被选中（且不唯一），可以实行拖动功能
         /// 
@@ -562,6 +551,8 @@ namespace Wells.Controls.ImageDocEx
             #endregion
         }
 
+        private Point pt = Point.Empty;
+
         private void m_Ctrl_HWindow_HMouseMove_2(object sender, HMouseEventArgs e)
         {
             #region ***** 鼠标移动事件2 *****
@@ -580,7 +571,8 @@ namespace Wells.Controls.ImageDocEx
                     HOperatorSet.CountChannels(Image, out channel_count);
 
                     HWindow.GetMpositionSubPix(out positionY, out positionX, out button_state);
-                    str_position = String.Format("X: {0:0000.0}, Y: {1:0000.0}", positionX, positionY);
+                    
+                    str_position = String.Format("{0}#{1}", (int)positionX, (int)positionY);
 
                     _isXOut = (positionX < 0 || positionX >= ImageWidth);
                     _isYOut = (positionY < 0 || positionY >= ImageHeight);
@@ -591,7 +583,7 @@ namespace Wells.Controls.ImageDocEx
                         {
                             double grayVal;
                             grayVal = Image.GetGrayval((int)positionY, (int)positionX);
-                            str_value = String.Format("Gray: {0:000.0}", grayVal);
+                            str_value = String.Format("#{0}", (int)grayVal);
                         }
                         else if ((int)channel_count == 3)
                         {
@@ -611,15 +603,15 @@ namespace Wells.Controls.ImageDocEx
                             _GreenChannel.Dispose();
                             _BlueChannel.Dispose();
 
-                            str_value = String.Format("R:{0:000.0}, G:{1:000.0},B: {2:000.0}", grayValRed, grayValGreen, grayValBlue);
+                            str_value = String.Format("#{0}#{1}#{2}", (int)grayValRed, (int)grayValGreen, (int)grayValBlue);
                         }
                         else
                         {
                             str_value = "";
                         }
                     }
-                    m_Ctrl_HStatusLabel.Text = string.Format("{0}*{1}", ImageWidth, ImageHeight) + "|" + str_position + "|" + str_value;
-                    //m_Ctrl_HStatusLabel.Text = "选中ROI:" + m_l2updateList.Count.ToString() + "|" + "当前序号:" + iMoveROINum.ToString() + "|";
+
+                    qtHMouseMove?.Invoke(str_position + str_value);
                 }
                 catch (Exception ex)
                 {
@@ -643,15 +635,18 @@ namespace Wells.Controls.ImageDocEx
             {
                 if (Image != null)
                     HWindow.DispObj(Image);
-
+                
                 foreach (var obj in m_roiList)
                 {
                     obj.draw(HWindow, ImageWidth, ImageHeight);
                 }
 
+                foreach (HRegionEntry reg in m_regionList)
+                {
+                    reg.draw(HWindow);
+                }
+                
                 m_tracker.draw(HWindow);
-
-                Pcb.showPcbInfo(HWindow);
             }
             catch (Exception ex)
             {
@@ -668,6 +663,8 @@ namespace Wells.Controls.ImageDocEx
 
             #endregion
         }
+
+        #endregion
 
         private void moveImage(double motionX, double motionY)
         {
@@ -757,11 +754,15 @@ namespace Wells.Controls.ImageDocEx
         
         public void fitImage()
         {
-            setImagePart();
+            #region ***** 最适屏幕大小 *****
+
+            setImagePart(true);
             Invalidate();
+
+            #endregion
         }
 
-        public void setImagePart()
+        public void setImagePart(bool bFit = false)
         {
             #region ***** 设置图片显示区域 *****
 
@@ -773,7 +774,7 @@ namespace Wells.Controls.ImageDocEx
                 HTuple chan;
                 HOperatorSet.CountChannels(Image, out chan);
 
-                if (ImageWidth == width && ImageHeight == height)
+                if (ImageWidth == width && ImageHeight == height && !bFit)
                     return;
 
                 ImageWidth = width;
@@ -866,25 +867,46 @@ namespace Wells.Controls.ImageDocEx
             #endregion
         }
         
-        public void showStatusBar(bool bShow)
+        public void clearRegion()
         {
-            this.SuspendLayout();
+            #region ***** 清理region内存
 
-            if (bShow)
-            {
-                m_Ctrl_HStatusLabel.Visible = true;
-                m_Ctrl_HWindow.HMouseMove += m_Ctrl_HWindow_HMouseMove_2;
-            }
-            else
-            {
-                m_Ctrl_HStatusLabel.Visible = false;
-                m_Ctrl_HWindow.HMouseMove -= m_Ctrl_HWindow_HMouseMove_2;
-            }
+            foreach (HRegionEntry reg in m_regionList)
+                reg.Dispose();
 
-            //tsbtn_showStatusBar.Checked = bShow;
-            
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            m_regionList.Clear();
+
+            Invalidate();
+
+            #endregion
+        }
+
+        public void updateRegion(List<HRegionEntry> list)
+        {
+            #region ***** 更新region显示 *****
+
+            foreach (HRegionEntry reg in m_regionList)
+                reg.Dispose();
+
+            m_regionList.Clear();
+            m_regionList = list;
+
+            Invalidate();
+
+            #endregion
+        }
+
+        public void updateROI(List<ROI> list)
+        {
+            #region ***** 更新region显示 *****
+
+            m_roiList = list;
+            m_l2updateList.Clear();
+            iMoveROINum = -2;
+
+            Invalidate();
+
+            #endregion
         }
     }
 }

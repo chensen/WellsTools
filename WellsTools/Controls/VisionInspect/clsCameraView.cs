@@ -41,7 +41,7 @@ namespace Wells.Controls.VisionInspect
         /// <summary>
         /// 绑定的视图控件
         /// </summary>
-        internal ImageDoc imageDoc;
+        internal VisionInspect imageDoc;
 
         public clsCameraView()
         {
@@ -56,7 +56,7 @@ namespace Wells.Controls.VisionInspect
             #endregion
         }
 
-        public void linkToView(ImageDoc imgdoc)
+        public void linkToView(VisionInspect imgdoc)
         {
             #region 绑定父view
 

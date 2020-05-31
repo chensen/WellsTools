@@ -52,7 +52,7 @@ namespace Wells.Controls.VisionInspect
         /// <summary>
         /// 绑定的控件
         /// </summary>
-        internal ImageDoc imageDoc = null;
+        internal VisionInspect imageDoc = null;
 
         #endregion
 
@@ -73,7 +73,7 @@ namespace Wells.Controls.VisionInspect
             #endregion
         }
 
-        public void linkToView(ImageDoc imgdoc)
+        public void linkToView(VisionInspect imgdoc)
         {
             #region 绑定父view
 

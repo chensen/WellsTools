@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.imageDocEx1 = new Wells.Controls.ImageDocEx.ImageDocEx();
+            this.imgDoc = new Wells.Controls.ImageDocEx.ImageDocEx();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -46,6 +46,16 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(114, 450);
             this.panel1.TabIndex = 1;
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(13, 73);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.TabIndex = 2;
+            this.button3.Text = "显示一张图";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button2
             // 
@@ -67,43 +77,31 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // button3
+            // imgDoc
             // 
-            this.button3.Location = new System.Drawing.Point(13, 73);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 2;
-            this.button3.Text = "显示一张图";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
-            // imageDocEx1
-            // 
-            this.imageDocEx1.BackColor = System.Drawing.Color.Transparent;
-            this.imageDocEx1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.imageDocEx1.ImageHeight = 2048;
-            this.imageDocEx1.ImageMode = Wells.Controls.ImageDocEx.ImageMode.Origin;
-            this.imageDocEx1.ImageWidth = 2448;
-            this.imageDocEx1.Location = new System.Drawing.Point(114, 0);
-            this.imageDocEx1.Margin = new System.Windows.Forms.Padding(0);
-            this.imageDocEx1.Name = "imageDocEx1";
-            this.imageDocEx1.Padding = new System.Windows.Forms.Padding(3);
-            this.imageDocEx1.Size = new System.Drawing.Size(686, 450);
-            this.imageDocEx1.StaticWnd = false;
-            this.imageDocEx1.TabIndex = 0;
+            this.imgDoc.BackColor = System.Drawing.Color.Transparent;
+            this.imgDoc.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.imgDoc.ImageHeight = 2048;
+            this.imgDoc.ImageMode = Wells.Controls.ImageDocEx.ImageMode.Origin;
+            this.imgDoc.ImageWidth = 2448;
+            this.imgDoc.Location = new System.Drawing.Point(114, 0);
+            this.imgDoc.Margin = new System.Windows.Forms.Padding(0);
+            this.imgDoc.Name = "imgDoc";
+            this.imgDoc.Padding = new System.Windows.Forms.Padding(3);
+            this.imgDoc.Size = new System.Drawing.Size(686, 450);
+            this.imgDoc.StaticWnd = false;
+            this.imgDoc.TabIndex = 0;
             // 
             // ImageDocExDemo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.imageDocEx1);
+            this.Controls.Add(this.imgDoc);
             this.Controls.Add(this.panel1);
-            this.KeyPreview = true;
             this.Name = "ImageDocExDemo";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ImageDocExDemo";
-            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ImageDocExDemo_KeyPress);
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -111,7 +109,7 @@
 
         #endregion
 
-        private Wells.Controls.ImageDocEx.ImageDocEx imageDocEx1;
+        private Wells.Controls.ImageDocEx.ImageDocEx imgDoc;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;

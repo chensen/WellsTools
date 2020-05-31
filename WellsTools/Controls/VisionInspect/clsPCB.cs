@@ -134,7 +134,7 @@ namespace Wells.Controls.VisionInspect
         /// <summary>
         /// 绑定的控件
         /// </summary>
-        internal ImageDoc imageDoc = null;
+        internal VisionInspect imageDoc = null;
 
         #endregion
 

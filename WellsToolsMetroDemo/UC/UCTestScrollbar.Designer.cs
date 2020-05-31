@@ -116,7 +116,7 @@
             this.panel1.AutoScroll = true;
             this.panel1.BackColor = System.Drawing.Color.Silver;
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Location = new System.Drawing.Point(30, 22);
+            this.panel1.Location = new System.Drawing.Point(35, 22);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(246, 93);
             this.panel1.TabIndex = 1;
@@ -372,7 +372,7 @@
             this.uchScrollbar5.SmallChange = 1;
             this.uchScrollbar5.TabIndex = 5;
             this.uchScrollbar5.ThumbColor = System.Drawing.Color.White;
-            this.uchScrollbar5.Value = 0;
+            this.uchScrollbar5.Value = 20;
             // 
             // uchScrollbar3
             // 
@@ -460,7 +460,7 @@
             this.ucvScrollbar6.Name = "ucvScrollbar6";
             this.ucvScrollbar6.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.ucvScrollbar6.RectWidth = 1;
-            this.ucvScrollbar6.Size = new System.Drawing.Size(23, 343);
+            this.ucvScrollbar6.Size = new System.Drawing.Size(30, 343);
             this.ucvScrollbar6.SmallChange = 1;
             this.ucvScrollbar6.TabIndex = 4;
             this.ucvScrollbar6.ThumbColor = System.Drawing.Color.White;

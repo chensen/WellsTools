@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace Wells.Controls.VisionInspect
 {
-    public partial class ImageDoc : Panel
+    public partial class VisionInspect : Panel
     {
         #region ***** 参数字段变量 *****
 
@@ -66,7 +66,7 @@ namespace Wells.Controls.VisionInspect
 
         #endregion
 
-        public ImageDoc()
+        public VisionInspect()
         {
             InitializeComponent();
             this.MouseWheel += new System.Windows.Forms.MouseEventHandler(this.ImageDoc_MouseWheel);

@@ -23,7 +23,7 @@
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <NoWarn>0168,1717,0414,0618,1685,</NoWarn>
+    <NoWarn>0168,1717,0414,0618,1685,0809,0108,0649,0067,0219</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -43,8 +43,8 @@
     </AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="hvppledotnet">
-      <HintPath>Dll\hvppledotnet.dll</HintPath>
+    <Reference Include="hvppledotnetxl">
+      <HintPath>Dll\hvppledotnetxl.dll</HintPath>
     </Reference>
     <Reference Include="ICSharpCode.SharpZipLib">
       <HintPath>Dll\ICSharpCode.SharpZipLib.dll</HintPath>
@@ -189,7 +189,7 @@
     </Compile>
     <Compile Include="Controls\Docking\Win32\Enums.cs" />
     <Compile Include="Controls\Docking\Win32\NativeMethods.cs" />
-    <None Include="Controls\ImageDocEx\Model\HRegionEntry.cs" />
+    <Compile Include="Controls\ImageDocEx\Model\HRegionEntry.cs" />
     <Compile Include="Controls\ImageDocEx\ImageDocEx.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -201,13 +201,9 @@
     <Compile Include="Controls\ImageDocEx\Model\Model.cs" />
     <Compile Include="Controls\ImageDocEx\Model\ROI.cs" />
     <Compile Include="Controls\ImageDocEx\Model\ROICircle.cs" />
-    <None Include="Controls\ImageDocEx\Model\ROIController.cs" />
     <Compile Include="Controls\ImageDocEx\Model\ROIRectangle1.cs" />
     <None Include="Controls\ImageDocEx\Model\ROIRectangle2.cs" />
     <Compile Include="Controls\ImageDocEx\Model\Tracker.cs" />
-    <Compile Include="Controls\ImageDocEx\Model\qtCameraView.cs" />
-    <Compile Include="Controls\ImageDocEx\Model\qtImage.cs" />
-    <Compile Include="Controls\ImageDocEx\Model\qtPCB.cs" />
     <Compile Include="Controls\ImageDoc\Config\Circle.cs" />
     <Compile Include="Controls\ImageDoc\Config\CircularArc.cs" />
     <Compile Include="Controls\ImageDoc\Config\HRegionEntry.cs" />
@@ -268,11 +264,11 @@
     <Compile Include="Controls\VisionInspect\clsPart.cs" />
     <Compile Include="Controls\VisionInspect\clsPCB.cs" />
     <Compile Include="Controls\VisionInspect\clsPublic.cs" />
-    <Compile Include="Controls\VisionInspect\ImageDoc.cs">
+    <Compile Include="Controls\VisionInspect\VisionInspect.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Controls\VisionInspect\ImageDoc.designer.cs">
-      <DependentUpon>ImageDoc.cs</DependentUpon>
+    <Compile Include="Controls\VisionInspect\VisionInspect.designer.cs">
+      <DependentUpon>VisionInspect.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmType\frmBaseForm.cs">
       <SubType>Form</SubType>
@@ -944,6 +940,9 @@
     <Compile Include="WellsMetroControl\Controls\ScrollBar\UCHScrollbar.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="WellsMetroControl\Controls\ScrollBar\UCHScrollBarEx.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="WellsMetroControl\Controls\ScrollBar\UCVScrollbar.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1282,6 +1281,9 @@
     <EmbeddedResource Include="WellsMetroControl\Controls\RadioButton\UCRadioButton.resx">
       <DependentUpon>UCRadioButton.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="WellsMetroControl\Controls\ScrollBar\UCHScrollBarEx.resx">
+      <DependentUpon>UCHScrollBarEx.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="WellsMetroControl\Controls\ScrollBar\UCVScrollbar.resx">
       <DependentUpon>UCVScrollbar.cs</DependentUpon>
     </EmbeddedResource>
@@ -1400,11 +1402,11 @@
     <EmbeddedResource Include="Controls\ThresholdUnit\ThresholdUnit.resx">
       <DependentUpon>ThresholdUnit.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\VisionInspect\ImageDoc.en-US.resx">
-      <DependentUpon>ImageDoc.cs</DependentUpon>
+    <EmbeddedResource Include="Controls\VisionInspect\VisionInspect.en-US.resx">
+      <DependentUpon>VisionInspect.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\VisionInspect\ImageDoc.resx">
-      <DependentUpon>ImageDoc.cs</DependentUpon>
+    <EmbeddedResource Include="Controls\VisionInspect\VisionInspect.resx">
+      <DependentUpon>VisionInspect.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmType\frmInput.resx">
       <DependentUpon>frmInput.cs</DependentUpon>

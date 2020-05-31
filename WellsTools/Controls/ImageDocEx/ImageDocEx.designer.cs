@@ -30,7 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ImageDocEx));
             this.m_Ctrl_HWindow = new hvppleDotNet.HWindowControl();
-            this.m_Ctrl_HStatusLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // m_Ctrl_HWindow
@@ -47,31 +46,21 @@
             this.m_Ctrl_HWindow.HMouseUp += new hvppleDotNet.HMouseEventHandler(this.m_Ctrl_HWindow_HMouseUp);
             this.m_Ctrl_HWindow.HMouseWheel += new hvppleDotNet.HMouseEventHandler(this.m_Ctrl_HWindow_HMouseWheel);
             // 
-            // m_Ctrl_HStatusLabel
-            // 
-            resources.ApplyResources(this.m_Ctrl_HStatusLabel, "m_Ctrl_HStatusLabel");
-            this.m_Ctrl_HStatusLabel.BackColor = System.Drawing.Color.DimGray;
-            this.m_Ctrl_HStatusLabel.ForeColor = System.Drawing.SystemColors.Info;
-            this.m_Ctrl_HStatusLabel.Name = "m_Ctrl_HStatusLabel";
-            // 
             // ImageDocEx
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Transparent;
-            this.Controls.Add(this.m_Ctrl_HStatusLabel);
             this.Controls.Add(this.m_Ctrl_HWindow);
             this.DoubleBuffered = true;
             this.Name = "ImageDocEx";
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.ImageDocEx_Paint);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
         private hvppleDotNet.HWindowControl m_Ctrl_HWindow;
-        private System.Windows.Forms.Label m_Ctrl_HStatusLabel;
     }
 }

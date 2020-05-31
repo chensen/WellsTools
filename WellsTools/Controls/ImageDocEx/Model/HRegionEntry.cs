@@ -48,7 +48,7 @@ namespace Wells.Controls.ImageDocEx
             window.DispObj(hObject);
         }
         
-        public void clear()
+        public void Dispose()
         {
             if (hObject != null && hObject.IsInitialized())
                 hObject.Dispose();

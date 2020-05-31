@@ -14,7 +14,7 @@ namespace Wells.Controls.ImageDoc
     {
         #region 私有变量定义.
 
-        private HWindow /**/                 hv_window;                                       //halcon窗体控件的句柄 this.mCtrl_HWindow.HalconWindow;
+        private HWindow /**/                 hv_window;                                       //halcon窗体控件的句柄 this.mCtrl_HWindow.hvppleWindow;
         private HImage  /**/                 hv_image;                                        //缩放时操作的图片  此处千万不要使用hv_image = new HImage(),不然在生成控件dll的时候,会导致无法序列化,去你妈隔壁,还好老子有版本控制,不然都找不到这种恶心问题
         private int /**/                     hv_imageWidth, hv_imageHeight;                   //图片宽,高
         private string /**/                  str_imgSize;                                     //图片尺寸大小 5120X3840

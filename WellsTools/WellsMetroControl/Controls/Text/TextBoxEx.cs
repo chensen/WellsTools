@@ -233,6 +233,23 @@ namespace Wells.WellsMetroControl.Controls
             }
         }
 
+        private UCHScrollbarEx uCHScrollBarEx = null;
+
+        [Description("绑定的UCScrollBarEx控件")]
+        public UCHScrollbarEx UcHScrollbarEx
+        {
+            get { return uCHScrollBarEx; }
+            set{ uCHScrollBarEx = value; }
+        }
+
+        private int uCHNum = -1;
+        [Description("绑定的UCScrollBarEx控件的低值0或者高值1")]
+        public int UCHNum
+        {
+            get { return uCHNum; }
+            set { uCHNum = value; }
+        }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="TextBoxEx" /> class.
         /// </summary>
@@ -319,6 +336,15 @@ namespace Wells.WellsMetroControl.Controls
                 else
                 {
                     this.m_strOldValue = this.Text;
+                    if (uCHScrollBarEx != null)
+                    {
+                        decimal value;
+                        if (decimal.TryParse(this.Text, out value))
+                        {
+                            if (uCHNum == 0) uCHScrollBarEx.ValueLow = value;
+                            else if (uCHNum == 1) uCHScrollBarEx.ValueHigh = value;
+                        }
+                    }
                 }
             }
         }

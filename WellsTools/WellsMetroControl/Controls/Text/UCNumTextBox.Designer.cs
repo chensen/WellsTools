@@ -45,7 +45,8 @@
             this.txtNum.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtNum.DecLength = 3;
             this.txtNum.Font = new System.Drawing.Font("Arial Unicode MS", 15F);
-            this.txtNum.InputType = TextInputType.Number;
+            this.txtNum.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.txtNum.InputType = Wells.WellsMetroControl.TextInputType.Number;
             this.txtNum.Location = new System.Drawing.Point(37, 11);
             this.txtNum.Margin = new System.Windows.Forms.Padding(0);
             this.txtNum.MaxValue = new decimal(new int[] {

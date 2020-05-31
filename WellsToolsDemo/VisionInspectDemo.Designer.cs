@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.imageDoc1 = new Wells.Controls.VisionInspect.ImageDoc();
+            this.imageDoc1 = new Wells.Controls.VisionInspect.VisionInspect();
             this.button1 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
@@ -218,7 +218,7 @@
 
         #endregion
 
-        private Wells.Controls.VisionInspect.ImageDoc imageDoc1;
+        private Wells.Controls.VisionInspect.VisionInspect imageDoc1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TextBox textBox6;

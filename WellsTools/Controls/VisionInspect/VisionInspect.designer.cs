@@ -1,6 +1,6 @@
 ﻿namespace Wells.Controls.VisionInspect
 {
-    partial class ImageDoc
+    partial class VisionInspect
     {
         /// <summary> 
         /// 必需的设计器变量。
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ImageDoc));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VisionInspect));
             this.menuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tspbtnZoomIn = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
