@@ -75,6 +75,16 @@ namespace Wells.Controls.ImageDocEx
         private bool mouseRightPressed = false;
 
         /// <summary>
+        /// 鼠标移动ROI状态
+        /// </summary>
+        private bool mouseMovingObject = false;
+
+        /// <summary>
+        /// 鼠标更新ROI大小状态
+        /// </summary>
+        private bool mouseResizingObject = false;
+
+        /// <summary>
         /// 记录鼠标当前坐标
         /// </summary>
         private double startX, startY;
@@ -95,6 +105,8 @@ namespace Wells.Controls.ImageDocEx
         public Tracker m_tracker = new Tracker();
 
         public List<HRegionEntry> m_regionList = new List<HRegionEntry>();
+
+        private bool enteredSetup = false;
 
         /// <summary>
         /// 指示当前选中roi的序号，-2表示没有，-1表示多个，其他表示单一选择项的序号
@@ -119,6 +131,9 @@ namespace Wells.Controls.ImageDocEx
             #region ***** 构造函数 *****
             
             InitializeComponent();
+
+            x = this.Width;
+            y = this.Height;
             
             try { HWindow = this.m_Ctrl_HWindow.hvppleWindow; } catch (Exception) { }//这里添加控件库时会报异常，运行不会，不知道为什么
             ImageWidth = 2448;
@@ -238,49 +253,52 @@ namespace Wells.Controls.ImageDocEx
 
             if (e.Button == MouseButtons.Left)
             {
-                bool bHasChooseOne = false;
-                int iChooseIndex = -1;
-
-                for (int igg = 0; igg < m_roiList.Count; igg++)
+                if (!enteredSetup) 
                 {
-                    if (0 <= m_roiList[igg].ptLocation(e.X, e.Y, ImageWidth, ImageHeight))
+                    bool bHasChooseOne = false;
+                    int iChooseIndex = -1;
+
+                    for (int igg = 0; igg < m_roiList.Count; igg++)
                     {
-                        bHasChooseOne = true;
-                        iChooseIndex = igg;
-                        break;
+                        if (0 <= m_roiList[igg].ptLocation(e.X, e.Y, ImageWidth, ImageHeight))
+                        {
+                            bHasChooseOne = true;
+                            iChooseIndex = igg;
+                            break;
+                        }
                     }
-                }
 
-                if (bHasChooseOne)//选中一个，判断下是本身有多个选中还是一个，也可能是0个
-                {
-                    if(m_l2updateList.Contains(m_roiList[iChooseIndex]))//判断是否在选中列表中
+                    if (bHasChooseOne)//选中一个，判断下是本身有多个选中还是一个，也可能是0个
                     {
-                        if (m_l2updateList.Count == 1)
+                        if (m_l2updateList.Contains(m_roiList[iChooseIndex]))//判断是否在选中列表中
+                        {
+                            if (m_l2updateList.Count == 1)
+                                iMoveROINum = iChooseIndex;
+                            else
+                                iMoveROINum = -1;
+                        }
+                        else//不在列表中，直接选中当前项
+                        {
+                            for (int igg = 0; igg < m_l2updateList.Count; igg++)
+                                m_l2updateList[igg].Selected = false;
+                            m_l2updateList.Clear();
+                            m_roiList[iChooseIndex].Selected = true;
+                            m_l2updateList.Add(m_roiList[iChooseIndex]);
+
                             iMoveROINum = iChooseIndex;
-                        else
-                            iMoveROINum = -1;
+                        }
                     }
-                    else//不在列表中，直接选中当前项
+                    else//没有选中任何roi，清除所有选中roi
                     {
                         for (int igg = 0; igg < m_l2updateList.Count; igg++)
                             m_l2updateList[igg].Selected = false;
                         m_l2updateList.Clear();
-                        m_roiList[iChooseIndex].Selected = true;
-                        m_l2updateList.Add(m_roiList[iChooseIndex]);
 
-                        iMoveROINum = iChooseIndex;
+                        iMoveROINum = -2;
                     }
                 }
-                else//没有选中任何roi，清除所有选中roi
-                {
-                    for (int igg = 0; igg < m_l2updateList.Count; igg++)
-                        m_l2updateList[igg].Selected = false;
-                    m_l2updateList.Clear();
-
-                    iMoveROINum = -2;
-                }
             }
-
+            
             qtHMouseDown?.Invoke(iMoveROINum);//用户自定义委托
             
             startX = e.X;
@@ -302,6 +320,9 @@ namespace Wells.Controls.ImageDocEx
                 mouseRightPressed = false;
             if (e.Button == MouseButtons.Left)
                 mouseLeftPressed = false;
+
+            mouseMovingObject = false;
+            mouseResizingObject = false;
             
             m_tracker.Actived = false;
 
@@ -340,124 +361,14 @@ namespace Wells.Controls.ImageDocEx
             double motionX = 0, motionY = 0;
             double posX, posY;
             double zoomZone;
-            int ptLocation = 0;
+            int ptLocation = -2;
             double distance = 0;
 
-            if (iMoveROINum == -1)//多选
-            {
-                bool bInROI = false;
-                for (int igg = 0; igg < m_l2updateList.Count; igg++) 
-                {
-                    ptLocation = m_l2updateList[igg].ptLocation(e.X, e.Y, ImageWidth, ImageHeight);
-                    if (0 <= ptLocation)
-                    {
-                        bInROI = true;
-                        break;
-                    }
-                }
-                if (bInROI)
-                    HWindow.SetMshape("Size All");
-                else
-                    HWindow.SetMshape("default");
-            }
-            else if(iMoveROINum >= 0)//单选
-            {
-                ptLocation = m_roiList[iMoveROINum].ptLocation(e.X, e.Y, ImageWidth, ImageHeight);
-                //distance = m_roiList[iMoveROINum].distToClosestHandle(e.X, e.Y);
-
-                if (0 == ptLocation || 2 == ptLocation)//inside
-                {
-                    HWindow.SetMshape("Size All");
-                }
-                else if(1 == ptLocation)//onside
-                {
-                    string name = m_roiList[iMoveROINum].GetType().Name;
-
-                    //if (distance > 4 * handleWidth)
-                    //    m_roiList[iMoveROINum].activeHandleIdx = -1;
-                    //if (m_roiList[iMoveROINum].activeHandleIdx == 0)
-                    //    m_roiList[iMoveROINum].activeHandleIdx = -1;
-                    
-                    if (name == "ROIRectangle1")
-                    {
-                        switch (m_roiList[iMoveROINum].activeHandleIdx)
-                        {
-                            case 0://中心
-                                HWindow.SetMshape("Size All");
-                                break;
-                            case 1://左上
-                                HWindow.SetMshape("Size NWSE");
-                                break;
-                            case 2://右上
-                                HWindow.SetMshape("Size NESW");
-                                break;
-                            case 3://右下
-                                HWindow.SetMshape("Size NWSE");
-                                break;
-                            case 4://左下
-                                HWindow.SetMshape("Size NESW");
-                                break;
-                            case 5://上中
-                                HWindow.SetMshape("Size S");
-                                break;
-                            case 6://右中
-                                HWindow.SetMshape("Size WE");
-                                break;
-                            case 7://下中
-                                HWindow.SetMshape("Size S");
-                                break;
-                            case 8://左中
-                                HWindow.SetMshape("Size WE");
-                                break;
-                            default://
-                                HWindow.SetMshape("default");
-                                break;
-                        }
-                    }
-                    else if (name == "ROICircle")
-                    {
-                        switch (m_roiList[iMoveROINum].activeHandleIdx)
-                        {
-                            case 0://中心
-                                HWindow.SetMshape("Size All");
-                                break;
-                            case 1:
-                                {
-                                    double x = ((ROICircle)m_roiList[iMoveROINum]).Column;
-                                    double y = ((ROICircle)m_roiList[iMoveROINum]).Row;
-                                    double dx = Math.Abs(e.X - x);
-                                    double dy = Math.Abs(e.Y - y);
-                                    double delta = 2 * m_roiList[iMoveROINum].getHandleWidth(ImageWidth, ImageHeight);
-                                    if (dx < delta)//上中//下中
-                                        HWindow.SetMshape("Size S");
-                                    else if (dy < delta)//右中//左中
-                                        HWindow.SetMshape("Size WE");
-                                    else if ((e.X < x && e.Y < y) || (e.X > x && e.Y > y)) //左上//右下
-                                        HWindow.SetMshape("Size NWSE");
-                                    else if ((e.X < x && e.Y > y) || (e.X > x && e.Y < y))//左下//右上
-                                        HWindow.SetMshape("Size NESW");
-                                    else
-                                        HWindow.SetMshape("default");
-                                }
-                                break;
-                            default://
-                                HWindow.SetMshape("default");
-                                break;
-                        }
-                    }
-                }
-                else
-                {
-                    HWindow.SetMshape("default");
-                }
-            }
-            else
-            {
-                HWindow.SetMshape("default");
-            }
+            
             
             if (mouseRightPressed)
             {
+                HWindow.SetMshape("crosshair");
                 if (imageShowWidth > m_Ctrl_HWindow.Width || imageShowHeight > m_Ctrl_HWindow.Height)
                 {
                     motionX = e.X - startX;
@@ -468,6 +379,119 @@ namespace Wells.Controls.ImageDocEx
                         startX = e.X - motionX;//移动图片时，图片坐标系在变换，记录坐标需要加上偏移
                         startY = e.Y - motionY;
                     }
+                }
+            }
+            else
+            {
+                if (iMoveROINum == -1)//多选
+                {
+                    bool bInROI = false;
+                    for (int igg = 0; igg < m_l2updateList.Count; igg++)
+                    {
+                        ptLocation = m_l2updateList[igg].ptLocation(e.X, e.Y, ImageWidth, ImageHeight);
+                        if (0 <= ptLocation)
+                        {
+                            bInROI = true;
+                            break;
+                        }
+                    }
+                    if (bInROI)
+                        HWindow.SetMshape("Size All");
+                    else
+                        HWindow.SetMshape("default");
+                }
+                else if (iMoveROINum >= 0)//单选
+                {
+                    if (!mouseMovingObject && !mouseResizingObject)
+                    {
+                        ptLocation = m_roiList[iMoveROINum].ptLocation(e.X, e.Y, ImageWidth, ImageHeight);
+                        //distance = m_roiList[iMoveROINum].distToClosestHandle(e.X, e.Y);
+
+                        if (0 == ptLocation)//inside
+                        {
+                            HWindow.SetMshape("Size All");
+                        }
+                        else if (2 == ptLocation)//onside
+                        {
+                            string name = m_roiList[iMoveROINum].GetType().Name;
+
+                            if (name == "ROIRectangle1")
+                            {
+                                switch (m_roiList[iMoveROINum].activeHandleIdx)
+                                {
+                                    case 0://中心
+                                        HWindow.SetMshape("Size All");
+                                        break;
+                                    case 1://左上
+                                        HWindow.SetMshape("Size NWSE");
+                                        break;
+                                    case 2://右上
+                                        HWindow.SetMshape("Size NESW");
+                                        break;
+                                    case 3://右下
+                                        HWindow.SetMshape("Size NWSE");
+                                        break;
+                                    case 4://左下
+                                        HWindow.SetMshape("Size NESW");
+                                        break;
+                                    case 5://上中
+                                        HWindow.SetMshape("Size S");
+                                        break;
+                                    case 6://右中
+                                        HWindow.SetMshape("Size WE");
+                                        break;
+                                    case 7://下中
+                                        HWindow.SetMshape("Size S");
+                                        break;
+                                    case 8://左中
+                                        HWindow.SetMshape("Size WE");
+                                        break;
+                                    default://
+                                        HWindow.SetMshape("default");
+                                        break;
+                                }
+                            }
+                            else if (name == "ROICircle")
+                            {
+                                switch (m_roiList[iMoveROINum].activeHandleIdx)
+                                {
+                                    case 0://中心
+                                        HWindow.SetMshape("Size All");
+                                        break;
+                                    case 1:
+                                        {
+                                            double x = ((ROICircle)m_roiList[iMoveROINum]).Column;
+                                            double y = ((ROICircle)m_roiList[iMoveROINum]).Row;
+                                            double dx = Math.Abs(e.X - x);
+                                            double dy = Math.Abs(e.Y - y);
+                                            double delta = 2 * m_roiList[iMoveROINum].getHandleWidth(ImageWidth, ImageHeight);
+                                            if (dx < delta)//上中//下中
+                                                HWindow.SetMshape("Size S");
+                                            else if (dy < delta)//右中//左中
+                                                HWindow.SetMshape("Size WE");
+                                            else if ((e.X < x && e.Y < y) || (e.X > x && e.Y > y)) //左上//右下
+                                                HWindow.SetMshape("Size NWSE");
+                                            else if ((e.X < x && e.Y > y) || (e.X > x && e.Y < y))//左下//右上
+                                                HWindow.SetMshape("Size NESW");
+                                            else
+                                                HWindow.SetMshape("default");
+                                        }
+                                        break;
+                                    default://
+                                        HWindow.SetMshape("default");
+                                        break;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            HWindow.SetMshape("default");
+                        }
+                    }
+                }
+                else
+                {
+                    HWindow.SetMshape("default");
                 }
             }
 
@@ -497,6 +521,7 @@ namespace Wells.Controls.ImageDocEx
                 }
                 else if (iMoveROINum == -1) //多个一起被选中，一起执行move动作，无法执行resize动作
                 {
+                    mouseMovingObject = true;
                     motionX = e.X - startX;
                     motionY = e.Y - startY;
                     moveROI(motionX, motionY);
@@ -505,18 +530,26 @@ namespace Wells.Controls.ImageDocEx
                 }
                 else if(iMoveROINum >= 0)//单一被选中，执行move或者resize动作
                 {
-                    ptLocation = m_roiList[iMoveROINum].ptLocation(e.X, e.Y, ImageWidth, ImageHeight);
+                    if (!mouseMovingObject && !mouseResizingObject)
+                        ptLocation = m_roiList[iMoveROINum].ptLocation(e.X, e.Y, ImageWidth, ImageHeight);
+                    else
+                    {
+                        if (mouseMovingObject) ptLocation = 0;
+                        if (mouseResizingObject) ptLocation = 2;
+                    }
 
                     if (0 == ptLocation)
                     {
+                        mouseMovingObject = true;
                         motionX = e.X - startX;
                         motionY = e.Y - startY;
                         moveROI(motionX, motionY);
                         startX = e.X;//移动roi时，图片坐标系没有变更，只是roi坐标偏移，记录坐标记录当前鼠标坐标即可
                         startY = e.Y;
                     }
-                    else if (1 == ptLocation)
+                    else if (2 == ptLocation)
                     {
+                        mouseResizingObject = true;
                         m_roiList[iMoveROINum].resize(e.X, e.Y);
                     }
                 }
@@ -611,7 +644,7 @@ namespace Wells.Controls.ImageDocEx
                         }
                     }
 
-                    qtHMouseMove?.Invoke(str_position + str_value);
+                    qtHMouseMove?.Invoke(str_position + str_value + "#"+xScale.ToString()+"#"+yScale.ToString());
                 }
                 catch (Exception ex)
                 {
@@ -664,7 +697,50 @@ namespace Wells.Controls.ImageDocEx
             #endregion
         }
 
+        int x, y;
+        
+        private void ImageDocEx_SizeChanged(object sender, EventArgs e)
+        {
+            #region ***** 控件大小更改时，重新绘图 *****
+            
+            if (this.DesignMode)
+                return;
+
+            if (Image != null)
+            {
+                int dx = this.Width - x;
+                int dy = this.Height - y;
+
+                dx = (int)(dx * xScale);
+                dy = (int)(dy * yScale);
+
+                ImgCol1 -= dx / 2;
+                ImgCol2 += dx / 2;
+                ImgRow1 -= dy / 2;
+                ImgRow2 += dy / 2;
+
+                normalImagePart();
+
+                System.Drawing.Rectangle rect = m_Ctrl_HWindow.ImagePart;
+                rect.X = (int)Math.Round(ImgCol1);
+                rect.Y = (int)Math.Round(ImgRow1);
+                rect.Width = (int)Math.Round(ImgCol2 - ImgCol1);
+                rect.Height = (int)Math.Round(ImgRow2 - ImgRow1);
+                m_Ctrl_HWindow.ImagePart = rect;
+            }
+
+            x = this.Width;
+            y = this.Height;
+
+            #endregion
+        }
+
         #endregion
+
+        public void enterSetup(bool bOnOff)
+        {
+            enteredSetup = bOnOff;
+        }
 
         private void moveImage(double motionX, double motionY)
         {
@@ -739,7 +815,7 @@ namespace Wells.Controls.ImageDocEx
 
             #endregion
         }
-
+        
         private void moveROI(double dx, double dy)
         {
             #region ***** 移动ROI *****

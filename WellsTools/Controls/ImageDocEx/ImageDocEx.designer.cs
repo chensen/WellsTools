@@ -54,6 +54,7 @@
             this.Controls.Add(this.m_Ctrl_HWindow);
             this.DoubleBuffered = true;
             this.Name = "ImageDocEx";
+            this.SizeChanged += new System.EventHandler(this.ImageDocEx_SizeChanged);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.ImageDocEx_Paint);
             this.ResumeLayout(false);
 

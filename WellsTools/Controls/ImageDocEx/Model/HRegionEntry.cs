@@ -18,26 +18,14 @@ namespace Wells.Controls.ImageDocEx
             set { hObject = value; }
         }
 
-        public HRegionEntry(HObject _hbj)
-        {
-            hObject = _hbj;
-        }
-
-        public HRegionEntry(HObject _hbj, string _color, string _drawMode, string _type="")
-        {
-            hObject = _hbj;
-            Color = _color;
-            DrawMode = _drawMode;
-            Type = _type;
-        }
-
-        public HRegionEntry(HObject _hbj, string _color, string _drawMode, int _lineWidth, string _type = "")
+        public HRegionEntry(HObject _hbj, string _color = "green", string _drawMode = "margin", int _lineWidth = 1, string lineStyle = "line", string _type = "")
         {
             hObject = _hbj;
             Color = _color;
             DrawMode = _drawMode;
             LineWidth = _lineWidth;
             Type = _type;
+            LineStyle = lineStyle;
         }
 
         public override void draw(HWindow window)
@@ -45,6 +33,8 @@ namespace Wells.Controls.ImageDocEx
             window.SetColor(Color);
             window.SetDraw(DrawMode);
             window.SetLineWidth(LineWidth);
+            window.SetLineStyle(LineStyle == "dot" ? new HTuple(10, 10) : new HTuple());
+
             window.DispObj(hObject);
         }
         

@@ -341,8 +341,10 @@ namespace Wells.WellsMetroControl.Controls
                         decimal value;
                         if (decimal.TryParse(this.Text, out value))
                         {
+                            //base.TextChanged -= new EventHandler(this.TextBoxEx_TextChanged);
                             if (uCHNum == 0) uCHScrollBarEx.ValueLow = value;
                             else if (uCHNum == 1) uCHScrollBarEx.ValueHigh = value;
+                            //base.TextChanged += new EventHandler(this.TextBoxEx_TextChanged);
                         }
                     }
                 }

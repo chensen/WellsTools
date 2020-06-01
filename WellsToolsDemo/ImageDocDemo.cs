@@ -33,7 +33,7 @@ namespace WellsToolsDemo
 
         private void button2_Click(object sender, EventArgs e)
         {
-            HImage img = new HImage("D:\\01.bmp");
+            HImage img = new HImage("D:\\test.jpg");
             imageDoc1.displayImage(img);
         }
 
@@ -42,17 +42,17 @@ namespace WellsToolsDemo
             imageDoc1.genRect1(100, 100, 200, 500, ref rois);
             //imageDoc.viewWindow.genCircle(100, 100, 50, ref rois);
             //imageDoc1.genCircularArc(200, 200, 200, 0, 1.2, "", ref rois);
-            imageDoc1.genRect2(300, 300, 0.6, 50, 80, ref rois);
-            imageDoc1.genLine(200, 250, 400, 600, ref rois);
+            //imageDoc1.genRect2(300, 300, 0.6, 50, 80, ref rois);
+            //imageDoc1.genLine(200, 250, 400, 600, ref rois);
             //HObject re;
             //HOperatorSet.GenCircle(out re, 200, 100, 100);
             //imageDoc1.displayHRegion(re, "red", "fill", 10);
             //imageDoc.viewWindow.genNurbs(800, 800, ref rois);
-            int delta = (int)(40 * imageDoc1.getScale());
-            imageDoc1.displayMessage("小包子同学！", 100, 100, 40, "green", "window");
-            imageDoc1.displayMessage("我们结婚吧！", 100 + delta + 10, 100, 40, "red", "window");
-            imageDoc1.displayMessage("你是我的女王！", 300, 100, 55, "blue");
-            imageDoc1.displayMessage("你的余生就交给我吧", 400, 100, 55, "yellow");
+            //int delta = (int)(40 * imageDoc1.getScale());
+            //imageDoc1.displayMessage("小包子同学！", 100, 100, 40, "green", "window");
+            //imageDoc1.displayMessage("我们结婚吧！", 100 + delta + 10, 100, 40, "red", "window");
+            //imageDoc1.displayMessage("你是我的女王！", 300, 100, 55, "blue");
+            //imageDoc1.displayMessage("你的余生就交给我吧", 400, 100, 55, "yellow");
 
         }
 

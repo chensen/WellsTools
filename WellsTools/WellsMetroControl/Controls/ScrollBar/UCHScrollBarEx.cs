@@ -233,6 +233,9 @@ namespace Wells.WellsMetroControl.Controls
                 if (tmp < moMinimum)
                     tmp = moMinimum;
 
+                if (tmp == moValueLow)
+                    return;
+
                 moValueLow = tmp;
 
                 int nTrackWidth = this.Width;
@@ -262,6 +265,8 @@ namespace Wells.WellsMetroControl.Controls
                 float fLeft = fPerc * nPixelRange;
                 moThumbLowLeft = (int)fLeft;
 
+                if (ValueChanged != null)
+                    ValueChanged(this, new EventArgs());
 
                 Invalidate();
             }
@@ -287,6 +292,9 @@ namespace Wells.WellsMetroControl.Controls
 
                 if (tmp > moMaximum)
                     tmp = moMaximum;
+
+                if (tmp == moValueHigh)
+                    return;
 
                 moValueHigh = tmp;
 
@@ -317,6 +325,8 @@ namespace Wells.WellsMetroControl.Controls
                 float fLeft = fPerc * nPixelRange;
                 moThumbHighLeft = (int)fLeft;
 
+                if (ValueChanged != null)
+                    ValueChanged(this, new EventArgs());
 
                 Invalidate();
             }

@@ -18,6 +18,7 @@ namespace WellsToolsDemo
         {
             InitializeComponent();
             imgDoc.updateROI(m_roiList);
+            imgDoc.qtHMouseMove = new ImageDocEx.HMouseMove(qtHMouseMove);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -36,7 +37,17 @@ namespace WellsToolsDemo
 
         private void button3_Click(object sender, EventArgs e)
         {
-            
+            Wells.FrmType.frm_Log.ShowDlg(true);
+        }
+
+        private void checkBox1_Click(object sender, EventArgs e)
+        {
+            imgDoc.enterSetup(checkBox1.Checked);
+        }
+
+        public void qtHMouseMove(string str)
+        {
+            label1.Text = str;
         }
     }
 }

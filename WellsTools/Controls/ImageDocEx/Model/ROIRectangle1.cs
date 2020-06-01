@@ -108,6 +108,8 @@ namespace Wells.Controls.ImageDocEx
 
             double littleRecSize = getHandleWidth(imageWidth, imageHeight);
 
+            if (Selected)
+                window.SetColor("yellow");
             window.DispRectangle1(row1, col1, row2, col2);//body
 
             midR = (row1 + row2) / 2;
@@ -118,6 +120,7 @@ namespace Wells.Controls.ImageDocEx
 
             if (Selected)
             {
+                window.SetColor("yellow");
                 window.DispRectangle2(row1, col1, 0, littleRecSize, littleRecSize);//1,up left
                 window.DispRectangle2(row1, col2, 0, littleRecSize, littleRecSize);//2,up right
                 window.DispRectangle2(row2, col2, 0, littleRecSize, littleRecSize);//3,down right
@@ -147,39 +150,41 @@ namespace Wells.Controls.ImageDocEx
                 activeHandleIdx = 0;
                 return 0;//inside
             }
-            
+
             ffff = 0.8f;
             RectangleF rectNone = new RectangleF(centerX - ffff * width / 2.0f, centerY - ffff * height / 2.0f, ffff * width, ffff * height);
             bool bNone = rectNone.Contains(ptF);
             if (bNone)
             {
-                return 2;//no handle
+                return 1;//no handle
             }
-            
+
             ffff = 1.2f;
             RectangleF rectOnside = new RectangleF(centerX - ffff * width / 2.0f, centerY - ffff * height / 2.0f, ffff * width, ffff * height);
             bool bOnside = rectOnside.Contains(ptF);
             if (bOnside)
             {
-                if (x > col1 - 0.2 * width / 2 && x < col1 + 0.2 * width / 2 && y > row1 - 0.2 * height / 2 && y < row1 + 0.2 * height / 2)//左上
+                if (x >= col1 - 0.2 * width / 2 && x <= col1 + 0.2 * width / 2 && y >= row1 - 0.2 * height / 2 && y <= row1 + 0.2 * height / 2)//左上
                     activeHandleIdx = 1;
-                else if (x > col2 - 0.2 * width / 2 && x < col2 + 0.2 * width / 2 && y > row1 - 0.2 * height / 2 && y < row1 + 0.2 * height / 2)//右上
+                else if (x >= col2 - 0.2 * width / 2 && x <= col2 + 0.2 * width / 2 && y >= row1 - 0.2 * height / 2 && y <= row1 + 0.2 * height / 2)//右上
                     activeHandleIdx = 2;
-                else if (x > col2 - 0.2 * width / 2 && x < col2 + 0.2 * width / 2 && y > row2 - 0.2 * height / 2 && y < row2 + 0.2 * height / 2)//右下
+                else if (x >= col2 - 0.2 * width / 2 && x <= col2 + 0.2 * width / 2 && y >= row2 - 0.2 * height / 2 && y <= row2 + 0.2 * height / 2)//右下
                     activeHandleIdx = 3;
-                else if (x > col1 - 0.2 * width / 2 && x < col1 + 0.2 * width / 2 && y > row2 - 0.2 * height / 2 && y < row2 + 0.2 * height / 2)//左下
+                else if (x >= col1 - 0.2 * width / 2 && x <= col1 + 0.2 * width / 2 && y >= row2 - 0.2 * height / 2 && y <= row2 + 0.2 * height / 2)//左下
                     activeHandleIdx = 4;
-                else if (x > col1 + 0.8 * width / 2 && x < col2 - 0.8 * width / 2 && y > row1 - 0.2 * height / 2 && y < row1 + 0.2 * height / 2)//上中
+                else if (x >= col1 + 0.8 * width / 2 && x <= col2 - 0.8 * width / 2 && y >= row1 - 0.2 * height / 2 && y <= row1 + 0.2 * height / 2)//上中
                     activeHandleIdx = 5;
-                else if (x > col2 - 0.2 * width / 2 && x < col2 + 0.2 * width / 2 && y > row1 + 0.8 * height / 2 && y < row2 - 0.8 * height / 2)//右中
+                else if (x >= col2 - 0.2 * width / 2 && x <= col2 + 0.2 * width / 2 && y >= row1 + 0.8 * height / 2 && y <= row2 - 0.8 * height / 2)//右中
                     activeHandleIdx = 6;
-                else if (x > col1 + 0.8 * width / 2 && x < col2 - 0.8 * width / 2 && y > row2 - 0.2 * height / 2 && y < row2 + 0.2 * height / 2)//下中
+                else if (x >= col1 + 0.8 * width / 2 && x <= col2 - 0.8 * width / 2 && y >= row2 - 0.2 * height / 2 && y <= row2 + 0.2 * height / 2)//下中
                     activeHandleIdx = 7;
-                else if (x > col1 - 0.2 * width / 2 && x < col1 + 0.2 * width / 2 && y > row1 + 0.8 * height / 2 && y < row2 - 0.8 * height / 2)//左中
+                else if (x >= col1 - 0.2 * width / 2 && x <= col1 + 0.2 * width / 2 && y >= row1 + 0.8 * height / 2 && y <= row2 - 0.8 * height / 2)//左中
                     activeHandleIdx = 8;
-                return 1;//onside
+
+                return 2;//onside
             }
-            else return -1;//outside
+
+            return -1;//outside
         }
 
         public override bool isInRect(RectangleF rect)
