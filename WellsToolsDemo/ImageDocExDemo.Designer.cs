@@ -105,7 +105,6 @@
             this.imgDoc.Name = "imgDoc";
             this.imgDoc.Padding = new System.Windows.Forms.Padding(3);
             this.imgDoc.Size = new System.Drawing.Size(686, 450);
-            this.imgDoc.StaticWnd = false;
             this.imgDoc.TabIndex = 0;
             // 
             // panel2

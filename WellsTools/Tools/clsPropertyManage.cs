@@ -10,24 +10,29 @@ using System.Windows.Forms;
 
 namespace Wells.Tools
 {
+    [Serializable]
     /// <summary>
     /// 属性表管理类
     /// </summary>
     public class clsPropertyManage : CollectionBase, ICustomTypeDescriptor
     {
-        private System.Windows.Forms.PropertyGrid _propertyGrid;
+        //private System.Windows.Forms.PropertyGrid _propertyGrid;
 
-        public System.Windows.Forms.PropertyGrid propertyGrid
-        {
-            get
-            {
-                return _propertyGrid;
-            }
-            set
-            {
-                _propertyGrid = value;
-            }
-        }
+        //public System.Windows.Forms.PropertyGrid propertyGrid
+        //{
+        //    get
+        //    {
+        //        return _propertyGrid;
+        //    }
+        //    set
+        //    {
+        //        _propertyGrid = value;
+        //    }
+        //}
+
+        [NonSerialized]
+        public System.Windows.Forms.PropertyGrid propertyGrid = null;
+
 
         /// <summary>
         /// 添加一个属性表
@@ -196,6 +201,7 @@ namespace Wells.Tools
         #endregion
     }
     
+    [Serializable]
     /// <summary>
     /// 属性类
     /// </summary>
@@ -206,7 +212,7 @@ namespace Wells.Tools
         private bool _readonly = false;
         private bool _visible = true;
         private string _category = string.Empty;
-        TypeConverter _converter = null;
+        //TypeConverter _converter = null;
         object _editor = null;
         private string _displayname = string.Empty;
         private string _description = string.Empty;
@@ -265,20 +271,21 @@ namespace Wells.Tools
             }
         }
 
+        [NonSerialized]
         /// <summary>
         /// 类型转换器，我们在制作下拉列表时需要用到
         /// </summary>
-        public TypeConverter Converter
-        {
-            get
-            {
-                return _converter;
-            }
-            set
-            {
-                _converter = value;
-            }
-        }
+        public TypeConverter Converter = null;
+        //{
+        //    get
+        //    {
+        //        return _converter;
+        //    }
+        //    set
+        //    {
+        //        _converter = value;
+        //    }
+        //}
 
         /// <summary>
         /// 属性所属类别

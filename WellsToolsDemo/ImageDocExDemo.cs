@@ -37,12 +37,19 @@ namespace WellsToolsDemo
 
         private void button3_Click(object sender, EventArgs e)
         {
-            Wells.FrmType.frm_Log.ShowDlg(true);
+            //imgDoc.StaticWnd = true;
+            button3.Enabled = false;
+            HTuple row1, row2, col1, col2;
+            HOperatorSet.SetColor(imgDoc.HWindow, "red");
+            HOperatorSet.DrawRectangle1(imgDoc.HWindow, out row1, out col1, out row2, out col2);
+            //imgDoc.StaticWnd = false;
+            button3.Enabled = true;
+            //Wells.FrmType.frm_Log.ShowDlg(true);
         }
 
         private void checkBox1_Click(object sender, EventArgs e)
         {
-            imgDoc.enterSetup(checkBox1.Checked);
+            
         }
 
         public void qtHMouseMove(string str)

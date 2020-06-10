@@ -75,6 +75,26 @@ namespace Wells
             Wells.WellsFramework.WellsMetroMessageBox.CloseMsgForm();
         }
 
+        public static void showTips(Form form, string strMsg, MessageBoxIcon icon = MessageBoxIcon.Information, int intAutoColseTime = 3000)
+        {
+            Wells.WellsMetroControl.Forms.TipsState status = WellsMetroControl.Forms.TipsState.Default;
+            if (icon == MessageBoxIcon.Error) status = WellsMetroControl.Forms.TipsState.Error;
+            else if (icon == MessageBoxIcon.Warning) status = WellsMetroControl.Forms.TipsState.Warning;
+            else if (icon == MessageBoxIcon.None) status = WellsMetroControl.Forms.TipsState.Success;
+            else if (icon == MessageBoxIcon.Information) status = WellsMetroControl.Forms.TipsState.Info;
+
+            Wells.WellsMetroControl.Forms.FrmTips.ShowTips(form, strMsg, 
+                intAutoColseTime, false, 
+                System.Drawing.ContentAlignment.BottomCenter, null, 
+                Wells.WellsMetroControl.Forms.TipsSizeMode.Large, null, 
+                status);
+        }
+
+        public static void clearTips()
+        {
+            Wells.WellsMetroControl.Forms.FrmTips.ClearTips();
+        }
+
         public static string[] openFiles(bool bMultiselect, bool isBmp, string initDir = "")
         {
             string[] ret = null;

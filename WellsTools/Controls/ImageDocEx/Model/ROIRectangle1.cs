@@ -5,6 +5,7 @@ using System.Drawing;
 
 namespace Wells.Controls.ImageDocEx
 {
+    [Serializable]
     public class ROIRectangle1 : ROI
     {
         public double Row1

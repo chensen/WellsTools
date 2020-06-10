@@ -60,6 +60,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="clsSerialize.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="clsSerialize.Designer.cs">
+      <DependentUpon>clsSerialize.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HWindowCtrlDemo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HWindowCtrlDemo.Designer.cs">
+      <DependentUpon>HWindowCtrlDemo.cs</DependentUpon>
+    </Compile>
     <Compile Include="ImageDocDemo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -86,6 +98,12 @@
     <Compile Include="VisionInspectDemo.Designer.cs">
       <DependentUpon>VisionInspectDemo.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="clsSerialize.resx">
+      <DependentUpon>clsSerialize.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HWindowCtrlDemo.resx">
+      <DependentUpon>HWindowCtrlDemo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ImageDocDemo.resx">
       <DependentUpon>ImageDocDemo.cs</DependentUpon>
     </EmbeddedResource>

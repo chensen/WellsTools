@@ -44,11 +44,11 @@ namespace Wells.FrmType
                 {
                     string str = libView.Items[e.Index].ToString();
                     if (listDrawMode[e.Index] == 0)
-                        e.Graphics.DrawString(str, libView.Font, new SolidBrush(Color.White), e.Bounds);
+                        e.Graphics.DrawString(str, libView.Font, new SolidBrush(Color.Aqua), e.Bounds);
                     else if(listDrawMode[e.Index] == 1)
-                        e.Graphics.DrawString(str, libView.Font, new SolidBrush(Color.Lime), e.Bounds);
+                        e.Graphics.DrawString(str, libView.Font, new SolidBrush(Color.White), e.Bounds);
                     else if (listDrawMode[e.Index] == 2)
-                        e.Graphics.DrawString(str, libView.Font, new SolidBrush(Color.Red), e.Bounds);
+                        e.Graphics.DrawString(str, libView.Font, new SolidBrush(Color.Tomato), e.Bounds);
                     else
                         e.Graphics.DrawString(str, libView.Font, new SolidBrush(Color.White), e.Bounds);
                 }

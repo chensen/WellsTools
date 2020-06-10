@@ -45,6 +45,8 @@
             this.m_Ctrl_HWindow.HMouseDown += new hvppleDotNet.HMouseEventHandler(this.m_Ctrl_HWindow_HMouseDown);
             this.m_Ctrl_HWindow.HMouseUp += new hvppleDotNet.HMouseEventHandler(this.m_Ctrl_HWindow_HMouseUp);
             this.m_Ctrl_HWindow.HMouseWheel += new hvppleDotNet.HMouseEventHandler(this.m_Ctrl_HWindow_HMouseWheel);
+            this.m_Ctrl_HWindow.KeyDown += new System.Windows.Forms.KeyEventHandler(this.m_Ctrl_HWindow_KeyDown);
+            this.m_Ctrl_HWindow.KeyUp += new System.Windows.Forms.KeyEventHandler(this.m_Ctrl_HWindow_KeyUp);
             // 
             // ImageDocEx
             // 

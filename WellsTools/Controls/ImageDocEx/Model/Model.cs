@@ -7,6 +7,7 @@ using System.Text;
 
 namespace Wells.Controls.ImageDocEx
 {
+    [Serializable]
     public class Model : INotifyPropertyChanged
     {
         private string color = "green";

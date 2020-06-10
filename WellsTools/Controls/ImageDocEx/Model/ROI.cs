@@ -6,12 +6,18 @@ using System.Drawing;
 
 namespace Wells.Controls.ImageDocEx
 {
+    [Serializable]
 	public class ROI: Model
     {
         protected int   NumHandles;
+
+        [NonSerialized]
         public int activeHandleIdx;
 
+        [NonSerialized]
         public bool Selected = false;
+
+        public object objBinding = null;
 
         public ROI()
         {

@@ -33,11 +33,6 @@ namespace Wells.Controls.ImageDocEx
         /// 图片高
         /// </summary>
         public int ImageHeight { get; set; }
-
-        /// <summary>
-        /// 作为普通显示窗口,不允许缩放和鼠标右键菜单
-        /// </summary>
-        public bool StaticWnd { get; set; }
         
         /// <summary>
         /// 图片显示模式，Origin和Strech
@@ -106,7 +101,15 @@ namespace Wells.Controls.ImageDocEx
 
         public List<HRegionEntry> m_regionList = new List<HRegionEntry>();
 
-        private bool enteredSetup = false;
+        /// <summary>
+        /// 编辑状态
+        /// </summary>
+        private StatusMode __status_mode = StatusMode.Normal;
+
+        /// <summary>
+        /// 内部操作状态
+        /// </summary>
+        private ToolMode __tool_mode = ToolMode.None;
 
         /// <summary>
         /// 指示当前选中roi的序号，-2表示没有，-1表示多个，其他表示单一选择项的序号
@@ -115,10 +118,10 @@ namespace Wells.Controls.ImageDocEx
 
         public double handleWidth = 0;
 
-        public delegate void HMouseDown(int index);
+        public delegate void HMouseDown(int index, MouseButtons button);
         public HMouseDown qtHMouseDown;
 
-        public delegate void HMouseUp(int index);
+        public delegate void HMouseUp(int index, List<ROI> roiSelected, MouseButtons button);
         public HMouseUp qtHMouseUp;
 
         public delegate void HMouseMove(string strInfo);
@@ -138,7 +141,6 @@ namespace Wells.Controls.ImageDocEx
             try { HWindow = this.m_Ctrl_HWindow.hvppleWindow; } catch (Exception) { }//这里添加控件库时会报异常，运行不会，不知道为什么
             ImageWidth = 2448;
             ImageHeight = 2048;
-            StaticWnd = false;
             //HObject obj;
             //HOperatorSet.GenImageConst(out obj, "byte", ImageWidth, ImageHeight);
             //Image = new HImage(obj);
@@ -242,8 +244,158 @@ namespace Wells.Controls.ImageDocEx
         {
             #region ***** 鼠标按下事件 *****
 
-            //关闭缩放事件
-            if (StaticWnd)
+            if (e.Button == MouseButtons.Right)
+                mouseRightPressed = true;
+
+            if (e.Button == MouseButtons.Left)
+                mouseLeftPressed = true;
+
+            switch (__status_mode)
+            {
+                case StatusMode.Normal:
+                    {
+                        switch(__tool_mode)
+                        {
+                            case ToolMode.Measure:
+                                {
+                                    if (e.Button == MouseButtons.Left) 
+                                    {
+                                        m_tracker.Shape = TrackShape.Line;
+
+                                        m_tracker.Row1 = e.Y;
+                                        m_tracker.Col1 = e.X;
+                                        m_tracker.Row2 = e.Y;
+                                        m_tracker.Col2 = e.X;
+                                    }
+                                }
+                                break;
+                        }
+                    }
+                    break;
+                case StatusMode.Edit:
+                    {
+                        switch (__tool_mode)
+                        {
+                            case ToolMode.None:
+                                {
+                                    if (e.Button == MouseButtons.Left)
+                                    {
+                                        m_tracker.Shape = TrackShape.Rect1;
+
+                                        m_tracker.Row1 = e.Y;
+                                        m_tracker.Col1 = e.X;
+                                        m_tracker.Row2 = e.Y;
+                                        m_tracker.Col2 = e.X;
+
+                                        bool bHasChooseOne = false;
+                                        int iChooseIndex = -1;
+
+                                        for (int igg = 0; igg < m_roiList.Count; igg++)
+                                        {
+                                            if (0 <= m_roiList[igg].ptLocation(e.X, e.Y, ImageWidth, ImageHeight))
+                                            {
+                                                bHasChooseOne = true;
+                                                iChooseIndex = igg;
+                                                break;
+                                            }
+                                        }
+
+                                        if (bHasChooseOne)//选中一个，判断下是本身有多个选中还是一个，也可能是0个
+                                        {
+                                            if (m_l2updateList.Contains(m_roiList[iChooseIndex]))//判断是否在选中列表中
+                                            {
+                                                if (m_l2updateList.Count == 1)
+                                                    iMoveROINum = iChooseIndex;
+                                                else
+                                                    iMoveROINum = -1;
+                                            }
+                                            else//不在列表中，直接选中当前项
+                                            {
+                                                for (int igg = 0; igg < m_l2updateList.Count; igg++)
+                                                    m_l2updateList[igg].Selected = false;
+                                                m_l2updateList.Clear();
+                                                m_roiList[iChooseIndex].Selected = true;
+                                                m_l2updateList.Add(m_roiList[iChooseIndex]);
+
+                                                iMoveROINum = iChooseIndex;
+                                            }
+                                        }
+                                        else//没有选中任何roi，清除所有选中roi
+                                        {
+                                            for (int igg = 0; igg < m_l2updateList.Count; igg++)
+                                                m_l2updateList[igg].Selected = false;
+                                            m_l2updateList.Clear();
+
+                                            iMoveROINum = -2;
+                                        }
+
+                                        mouseMovingObject = false;
+                                        mouseResizingObject = false;
+
+                                        startX = e.X;
+                                        startY = e.Y;
+                                    }
+                                    else if (e.Button == MouseButtons.Right)
+                                    {
+                                        startX = e.X;
+                                        startY = e.Y;
+                                    }
+                                }
+                                break;
+                            case ToolMode.Add:
+                                {
+                                    if (e.Button == MouseButtons.Left)
+                                    {
+                                        m_tracker.Shape = TrackShape.Rect2;
+
+                                        for (int igg = 0; igg < m_l2updateList.Count; igg++)//清空选中列表
+                                            m_l2updateList[igg].Selected = false;
+                                        m_l2updateList.Clear();
+
+                                        m_tracker.Row1 = e.Y;
+                                        m_tracker.Col1 = e.X;
+                                        m_tracker.Row2 = e.Y;
+                                        m_tracker.Col2 = e.X;
+                                    }
+                                    else if (e.Button == MouseButtons.Right)
+                                    {
+                                        startX = e.X;
+                                        startY = e.Y;
+                                    }
+                                }
+                                break;
+                            case ToolMode.Copy:
+                                {
+
+                                }
+                                break;
+                            case ToolMode.Measure:
+                                {
+                                    if (e.Button == MouseButtons.Left)
+                                    {
+                                        m_tracker.Shape = TrackShape.Line;
+
+                                        m_tracker.Row1 = e.Y;
+                                        m_tracker.Col1 = e.X;
+                                        m_tracker.Row2 = e.Y;
+                                        m_tracker.Col2 = e.X;
+                                    }
+                                    else if (e.Button == MouseButtons.Right)
+                                    {
+                                        startX = e.X;
+                                        startY = e.Y;
+                                    }
+                                }
+                                break;
+                        }
+                    }
+                    break;
+            }
+
+            #region ***** 注销代码 *****
+
+            /*
+            if ((__status_mode & StatusMode.Normal) == StatusMode.Normal)
                 return;
 
             if (e.Button == MouseButtons.Right)
@@ -253,7 +405,18 @@ namespace Wells.Controls.ImageDocEx
 
             if (e.Button == MouseButtons.Left)
             {
-                if (!enteredSetup) 
+                if(addRoiOnce)
+                {
+                    m_tracker.Color = "green";
+                    m_tracker.LineStyle = "line";
+
+                    for (int igg = 0; igg < m_l2updateList.Count; igg++)
+                        m_l2updateList[igg].Selected = false;
+                    m_l2updateList.Clear();
+
+                    iMoveROINum = -2;
+                }
+                else
                 {
                     bool bHasChooseOne = false;
                     int iChooseIndex = -1;
@@ -299,12 +462,16 @@ namespace Wells.Controls.ImageDocEx
                 }
             }
             
-            qtHMouseDown?.Invoke(iMoveROINum);//用户自定义委托
+            qtHMouseDown?.Invoke(iMoveROINum, e.Button);//用户自定义委托
             
             startX = e.X;
             startY = e.Y;
             m_tracker.Row1 = e.Y;
             m_tracker.Col1 = e.X;
+
+    */
+
+            #endregion
 
             #endregion
         }
@@ -313,7 +480,117 @@ namespace Wells.Controls.ImageDocEx
         {
             #region ***** 鼠标松开事件 *****
 
-            if (StaticWnd)
+            if (e.Button == MouseButtons.Right)
+                mouseRightPressed = false;
+
+            if (e.Button == MouseButtons.Left)
+                mouseLeftPressed = false;
+
+            switch (__status_mode)
+            {
+                case StatusMode.Normal:
+                    {
+                        switch (__tool_mode)
+                        {
+                            case ToolMode.Measure:
+                                {
+                                    if (e.Button == MouseButtons.Left)
+                                    {
+                                        int X = (int)Math.Abs(m_tracker.Col2 - m_tracker.Col1);
+                                        int Y = (int)Math.Abs(m_tracker.Row1 - m_tracker.Row2);
+                                        int distance = (int)Math.Sqrt(Math.Pow(X, 2) + Math.Pow(Y, 2));
+                                        Wells.class_Public.Show(null, string.Format("水平方向（像素）：{0}；\n垂直方向（像素）：{1}；\n两点距离：{2}；", X, Y, distance), "测量结果：", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                        m_tracker.Actived = false;
+                                    }
+                                    else if (e.Button == MouseButtons.Right)
+                                    {
+                                        __tool_mode = ToolMode.None;
+
+                                        m_tracker.Actived = false;
+                                    }
+                                }
+                                break;
+                        }
+                    }
+                    break;
+                case StatusMode.Edit:
+                    {
+                        switch (__tool_mode)
+                        {
+                            case ToolMode.None:
+                                {
+                                    if (e.Button == MouseButtons.Left)
+                                    {
+                                        if (m_l2updateList.Count == 0)
+                                        {
+                                            iMoveROINum = -2;
+                                        }
+                                        else if (m_l2updateList.Count == 1)
+                                        {
+                                            iMoveROINum = m_roiList.IndexOf(m_l2updateList[0]);
+                                        }
+                                        else
+                                        {
+                                            iMoveROINum = -1;
+                                        }
+
+                                        mouseMovingObject = false;
+                                        mouseResizingObject = false;
+
+                                        m_tracker.Actived = false;
+                                    }
+                                }
+                                break;
+                            case ToolMode.Add:
+                                {
+                                    if (e.Button == MouseButtons.Left)
+                                    {
+                                        m_tracker.Shape = TrackShape.Rect1;
+
+                                        RectangleF rect = m_tracker.getRect();
+                                        ROI rOI = new ROIRectangle1(rect.X + rect.Width / 2, rect.Y + rect.Height / 2, rect.Width, rect.Height);
+                                        rOI.Selected = true;
+                                        m_l2updateList.Add(rOI);
+
+                                        iMoveROINum = m_roiList.Count;//仅告诉系统选项当前新项，与list列表中序号无关系
+
+                                        m_tracker.Actived = false;
+
+                                        __tool_mode = ToolMode.None;
+                                    }
+                                }
+                                break;
+                            case ToolMode.Copy:
+                                {
+
+                                }
+                                break;
+                            case ToolMode.Measure:
+                                {
+                                    if (e.Button == MouseButtons.Left)
+                                    {
+                                        int X = (int)Math.Abs(m_tracker.Col2 - m_tracker.Col1);
+                                        int Y = (int)Math.Abs(m_tracker.Row1 - m_tracker.Row2);
+                                        int distance = (int)Math.Sqrt(Math.Pow(X, 2) + Math.Pow(Y, 2));
+                                        Wells.class_Public.Show(null, string.Format("水平方向（像素）：{0}；\n垂直方向（像素）：{1}；\n两点距离：{2}；", X, Y, distance), "测量结果：", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                        m_tracker.Actived = false;
+                                    }
+                                    else if (e.Button == MouseButtons.Right)
+                                    {
+                                        __tool_mode = ToolMode.None;
+
+                                        m_tracker.Actived = false;
+                                    }
+                                }
+                                break;
+                        }
+                    }
+                    break;
+            }
+
+            #region ***** 注销代码 *****
+            /*
+            if ((__status_mode & StatusMode.Normal) == StatusMode.Normal)
                 return;
 
             if (e.Button == MouseButtons.Right)
@@ -328,21 +605,39 @@ namespace Wells.Controls.ImageDocEx
 
             if(e.Button == MouseButtons.Left)
             {
-                if (m_l2updateList.Count == 0)
+                if (addRoiOnce)
                 {
-                    iMoveROINum = -2;
-                }
-                else if (m_l2updateList.Count == 1)
-                {
-                    iMoveROINum = m_roiList.IndexOf(m_l2updateList[0]);
+                    ROI rOI = new ROIRectangle1((m_tracker.Col2 + m_tracker.Col1) / 2, (m_tracker.Row2 + m_tracker.Row1) / 2, m_tracker.Col2 - m_tracker.Col1, m_tracker.Row2 - m_tracker.Row1);
+                    rOI.Selected = true;
+                    m_l2updateList.Add(rOI);
+                    m_tracker.Color = "white";
+                    m_tracker.LineStyle = "dot";
+                    addRoiOnce = false;
                 }
                 else
                 {
-                    iMoveROINum = -1;
+                    if (m_l2updateList.Count == 0)
+                    {
+                        iMoveROINum = -2;
+                    }
+                    else if (m_l2updateList.Count == 1)
+                    {
+                        iMoveROINum = m_roiList.IndexOf(m_l2updateList[0]);
+                    }
+                    else
+                    {
+                        iMoveROINum = -1;
+                    }
                 }
             }
 
-            qtHMouseUp?.Invoke(iMoveROINum);//用户自定义回调委托
+            qtHMouseUp?.Invoke(iMoveROINum, m_l2updateList, e.Button);//用户自定义回调委托
+
+            HWindow.SetMshape("default");
+            */
+            #endregion
+
+            qtHMouseUp?.Invoke(iMoveROINum, m_l2updateList, e.Button);//用户自定义回调委托
 
             HWindow.SetMshape("default");
 
@@ -355,7 +650,276 @@ namespace Wells.Controls.ImageDocEx
         {
             #region ***** 鼠标移动事件 *****
 
-            if (StaticWnd)
+            switch (__status_mode)
+            {
+                case StatusMode.Normal:
+                    {
+                        switch (__tool_mode)
+                        {
+                            case ToolMode.Measure:
+                                {
+                                    if (mouseLeftPressed)
+                                    {
+                                        m_tracker.Actived = true;
+                                        m_tracker.Row2 = e.Y;
+                                        m_tracker.Col2 = e.X;
+                                    }
+                                }
+                                break;
+                        }
+                    }
+                    break;
+                case StatusMode.Edit:
+                    {
+                        double motionX = 0, motionY = 0;
+                        double posX, posY;
+                        double zoomZone;
+                        int ptLocation = -2;
+                        double distance = 0;
+
+                        #region ***** 设置鼠标形状 *****
+
+                        if (mouseRightPressed)
+                        {
+                            HWindow.SetMshape("crosshair");
+                        }
+                        else
+                        {
+                            if (iMoveROINum == -1)//多选
+                            {
+                                bool bInROI = false;
+                                for (int igg = 0; igg < m_l2updateList.Count; igg++)
+                                {
+                                    ptLocation = m_l2updateList[igg].ptLocation(e.X, e.Y, ImageWidth, ImageHeight);
+                                    if (0 <= ptLocation)
+                                    {
+                                        bInROI = true;
+                                        break;
+                                    }
+                                }
+                                if (bInROI)
+                                    HWindow.SetMshape("Size All");
+                                else
+                                    HWindow.SetMshape("default");
+                            }
+                            else if (iMoveROINum >= 0)//单选
+                            {
+                                if (!mouseMovingObject && !mouseResizingObject)
+                                {
+                                    ptLocation = m_roiList[iMoveROINum].ptLocation(e.X, e.Y, ImageWidth, ImageHeight);
+                                    //distance = m_roiList[iMoveROINum].distToClosestHandle(e.X, e.Y);
+
+                                    if (0 == ptLocation)//inside
+                                    {
+                                        HWindow.SetMshape("Size All");
+                                    }
+                                    else if (2 == ptLocation)//onside
+                                    {
+                                        string name = m_roiList[iMoveROINum].GetType().Name;
+
+                                        if (name == "ROIRectangle1")
+                                        {
+                                            switch (m_roiList[iMoveROINum].activeHandleIdx)
+                                            {
+                                                case 0://中心
+                                                    HWindow.SetMshape("Size All");
+                                                    break;
+                                                case 1://左上
+                                                    HWindow.SetMshape("Size NWSE");
+                                                    break;
+                                                case 2://右上
+                                                    HWindow.SetMshape("Size NESW");
+                                                    break;
+                                                case 3://右下
+                                                    HWindow.SetMshape("Size NWSE");
+                                                    break;
+                                                case 4://左下
+                                                    HWindow.SetMshape("Size NESW");
+                                                    break;
+                                                case 5://上中
+                                                    HWindow.SetMshape("Size S");
+                                                    break;
+                                                case 6://右中
+                                                    HWindow.SetMshape("Size WE");
+                                                    break;
+                                                case 7://下中
+                                                    HWindow.SetMshape("Size S");
+                                                    break;
+                                                case 8://左中
+                                                    HWindow.SetMshape("Size WE");
+                                                    break;
+                                                default://
+                                                    HWindow.SetMshape("default");
+                                                    break;
+                                            }
+                                        }
+                                        else if (name == "ROICircle")
+                                        {
+                                            switch (m_roiList[iMoveROINum].activeHandleIdx)
+                                            {
+                                                case 0://中心
+                                                    HWindow.SetMshape("Size All");
+                                                    break;
+                                                case 1:
+                                                    {
+                                                        double x = ((ROICircle)m_roiList[iMoveROINum]).Column;
+                                                        double y = ((ROICircle)m_roiList[iMoveROINum]).Row;
+                                                        double dx = Math.Abs(e.X - x);
+                                                        double dy = Math.Abs(e.Y - y);
+                                                        double delta = 2 * m_roiList[iMoveROINum].getHandleWidth(ImageWidth, ImageHeight);
+                                                        if (dx < delta)//上中//下中
+                                                            HWindow.SetMshape("Size S");
+                                                        else if (dy < delta)//右中//左中
+                                                            HWindow.SetMshape("Size WE");
+                                                        else if ((e.X < x && e.Y < y) || (e.X > x && e.Y > y)) //左上//右下
+                                                            HWindow.SetMshape("Size NWSE");
+                                                        else if ((e.X < x && e.Y > y) || (e.X > x && e.Y < y))//左下//右上
+                                                            HWindow.SetMshape("Size NESW");
+                                                        else
+                                                            HWindow.SetMshape("default");
+                                                    }
+                                                    break;
+                                                default://
+                                                    HWindow.SetMshape("default");
+                                                    break;
+                                            }
+                                        }
+                                    }
+                                    else
+                                    {
+                                        HWindow.SetMshape("default");
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                HWindow.SetMshape("default");
+                            }
+                        }
+
+                        #endregion
+
+                        #region ***** 通用功能，移动图片 *****
+
+                        if (mouseRightPressed)
+                        {
+                            if (imageShowWidth > m_Ctrl_HWindow.Width || imageShowHeight > m_Ctrl_HWindow.Height)
+                            {
+                                motionX = e.X - startX;
+                                motionY = e.Y - startY;
+                                if (((int)motionX != 0) || ((int)motionY != 0))
+                                {
+                                    moveImage(motionX, motionY);
+                                    startX = e.X - motionX;//移动图片时，图片坐标系在变换，记录坐标需要加上偏移
+                                    startY = e.Y - motionY;
+                                }
+                            }
+                        }
+
+                        #endregion
+
+                        switch (__tool_mode)
+                        {
+                            case ToolMode.None:
+                                {
+                                    if (mouseLeftPressed)
+                                    {
+                                        if (iMoveROINum == -2)//没有选中，显示轨迹
+                                        {
+                                            m_tracker.Actived = true;
+                                            m_tracker.Row2 = e.Y;
+                                            m_tracker.Col2 = e.X;
+
+                                            RectangleF rect = m_tracker.getRect();
+                                            for (int igg = 0; igg < m_roiList.Count; igg++)
+                                            {
+                                                if (m_roiList[igg].isInRect(rect))
+                                                {
+                                                    m_roiList[igg].Selected = true;
+                                                    if (!m_l2updateList.Contains(m_roiList[igg]))
+                                                        m_l2updateList.Add(m_roiList[igg]);
+                                                }
+                                                else
+                                                {
+                                                    m_roiList[igg].Selected = false;
+                                                    if (m_l2updateList.Contains(m_roiList[igg]))
+                                                        m_l2updateList.Remove(m_roiList[igg]);
+                                                }
+                                            }
+                                        }
+                                        else if (iMoveROINum == -1) //多个一起被选中，一起执行move动作，无法执行resize动作
+                                        {
+                                            mouseMovingObject = true;
+                                            motionX = e.X - startX;
+                                            motionY = e.Y - startY;
+                                            moveROI(motionX, motionY);
+                                            startX = e.X;//移动roi时，图片坐标系没有变更，只是roi坐标偏移，记录坐标记录当前鼠标坐标即可
+                                            startY = e.Y;
+                                        }
+                                        else if (iMoveROINum >= 0)//单一被选中，执行move或者resize动作
+                                        {
+                                            if (!mouseMovingObject && !mouseResizingObject)
+                                                ptLocation = m_roiList[iMoveROINum].ptLocation(e.X, e.Y, ImageWidth, ImageHeight);
+                                            else
+                                            {
+                                                if (mouseMovingObject) ptLocation = 0;
+                                                if (mouseResizingObject) ptLocation = 2;
+                                            }
+
+                                            if (0 == ptLocation)
+                                            {
+                                                mouseMovingObject = true;
+                                                motionX = e.X - startX;
+                                                motionY = e.Y - startY;
+                                                moveROI(motionX, motionY);
+                                                startX = e.X;//移动roi时，图片坐标系没有变更，只是roi坐标偏移，记录坐标记录当前鼠标坐标即可
+                                                startY = e.Y;
+                                            }
+                                            else if (2 == ptLocation)
+                                            {
+                                                mouseResizingObject = true;
+                                                m_roiList[iMoveROINum].resize(e.X, e.Y);
+                                            }
+                                        }
+                                    }
+                                }
+                                break;
+                            case ToolMode.Add:
+                                {
+                                    if (mouseLeftPressed)
+                                    {
+                                        m_tracker.Actived = true;
+                                        m_tracker.Row2 = e.Y;
+                                        m_tracker.Col2 = e.X;
+                                    }
+                                }
+                                break;
+                            case ToolMode.Copy:
+                                {
+
+                                }
+                                break;
+                            case ToolMode.Measure:
+                                {
+                                    if (mouseLeftPressed)
+                                    {
+                                        m_tracker.Actived = true;
+                                        m_tracker.Row2 = e.Y;
+                                        m_tracker.Col2 = e.X;
+                                    }
+                                }
+                                break;
+                        }
+                    }
+                    break;
+            }
+
+            #region ***** 注销代码 *****
+            /*
+            if ((__status_mode & StatusMode.Normal) == StatusMode.Normal)
+                return;
+
+            if (!enteredSetup)//not edit mode, disable all action
                 return;
 
             double motionX = 0, motionY = 0;
@@ -502,20 +1066,24 @@ namespace Wells.Controls.ImageDocEx
                     m_tracker.Actived = true;
                     m_tracker.Row2 = e.Y;
                     m_tracker.Col2 = e.X;
-                    RectangleF rect = m_tracker.getRect();
-                    for (int igg = 0; igg < m_roiList.Count; igg++)
+
+                    if (!addRoiOnce)
                     {
-                        if (m_roiList[igg].isInRect(rect))
+                        RectangleF rect = m_tracker.getRect();
+                        for (int igg = 0; igg < m_roiList.Count; igg++)
                         {
-                            m_roiList[igg].Selected = true;
-                            if (!m_l2updateList.Contains(m_roiList[igg]))
-                                m_l2updateList.Add(m_roiList[igg]);
-                        }
-                        else
-                        {
-                            m_roiList[igg].Selected = false;
-                            if (m_l2updateList.Contains(m_roiList[igg]))
-                                m_l2updateList.Remove(m_roiList[igg]);
+                            if (m_roiList[igg].isInRect(rect))
+                            {
+                                m_roiList[igg].Selected = true;
+                                if (!m_l2updateList.Contains(m_roiList[igg]))
+                                    m_l2updateList.Add(m_roiList[igg]);
+                            }
+                            else
+                            {
+                                m_roiList[igg].Selected = false;
+                                if (m_l2updateList.Contains(m_roiList[igg]))
+                                    m_l2updateList.Remove(m_roiList[igg]);
+                            }
                         }
                     }
                 }
@@ -554,6 +1122,8 @@ namespace Wells.Controls.ImageDocEx
                     }
                 }
             }
+            */
+            #endregion
 
             Invalidate();
 
@@ -564,11 +1134,60 @@ namespace Wells.Controls.ImageDocEx
         {
             #region ***** 鼠标滚轮事件 *****
 
-            //关闭缩放事件
-            if (StaticWnd)
+            double scale;
+
+            if (e.Delta > 0)
+                scale = 0.9;
+            else
+                scale = 1 / 0.9;
+
+            switch (__status_mode)
             {
-                return;
+                case StatusMode.Normal:
+                    {
+                        switch (__tool_mode)
+                        {
+                            case ToolMode.Measure:
+                                {
+                                    zoomImage(e.X, e.Y, scale);
+                                }
+                                break;
+                        }
+                    }
+                    break;
+                case StatusMode.Edit:
+                    {
+                        switch (__tool_mode)
+                        {
+                            case ToolMode.None:
+                                {
+                                    zoomImage(e.X, e.Y, scale);
+                                }
+                                break;
+                            case ToolMode.Add:
+                                {
+                                    zoomImage(e.X, e.Y, scale);
+                                }
+                                break;
+                            case ToolMode.Copy:
+                                {
+
+                                }
+                                break;
+                            case ToolMode.Measure:
+                                {
+                                    zoomImage(e.X, e.Y, scale);
+                                }
+                                break;
+                        }
+                    }
+                    break;
             }
+
+            #region ***** 注销代码 *****
+            /*
+            if ((__status_mode & StatusMode.Edit) != StatusMode.Edit)
+                return;
 
             double scale;
 
@@ -578,13 +1197,15 @@ namespace Wells.Controls.ImageDocEx
                 scale = 1 / 0.9;
 
             zoomImage(e.X, e.Y, scale);
+            */
+            #endregion
 
             Invalidate();
 
             #endregion
         }
 
-        private Point pt = Point.Empty;
+        private PointF pt = PointF.Empty;
 
         private void m_Ctrl_HWindow_HMouseMove_2(object sender, HMouseEventArgs e)
         {
@@ -605,7 +1226,7 @@ namespace Wells.Controls.ImageDocEx
 
                     HWindow.GetMpositionSubPix(out positionY, out positionX, out button_state);
                     
-                    str_position = String.Format("{0}#{1}", (int)positionX, (int)positionY);
+                    str_position = String.Format("{0}#{1}", (float)positionX, (float)positionY);
 
                     _isXOut = (positionX < 0 || positionX >= ImageWidth);
                     _isYOut = (positionY < 0 || positionY >= ImageHeight);
@@ -644,13 +1265,37 @@ namespace Wells.Controls.ImageDocEx
                         }
                     }
 
-                    qtHMouseMove?.Invoke(str_position + str_value + "#"+xScale.ToString()+"#"+yScale.ToString());
+                    qtHMouseMove?.Invoke(str_position + str_value);
                 }
                 catch (Exception ex)
                 {
                     //不处理
                 }
             }
+
+            #endregion
+        }
+
+        private Keys keyPressed = Keys.None;
+
+        private void m_Ctrl_HWindow_KeyDown(object sender, KeyEventArgs e)
+        {
+            #region ***** 按键按下时响应 *****
+
+            if (e.Alt) keyPressed |= Keys.Alt;
+            if (e.Control) keyPressed |= Keys.Control;
+            if (e.Shift) keyPressed |= Keys.Shift;
+
+            #endregion
+        }
+
+        private void m_Ctrl_HWindow_KeyUp(object sender, KeyEventArgs e)
+        {
+            #region ***** 按键松开时响应 *****
+
+            if (!e.Alt) keyPressed &= ~Keys.Alt;
+            if (!e.Control) keyPressed &= ~Keys.Control;
+            if (!e.Shift) keyPressed &= ~Keys.Shift;
 
             #endregion
         }
@@ -706,6 +1351,9 @@ namespace Wells.Controls.ImageDocEx
             if (this.DesignMode)
                 return;
 
+            if (this.Width == 0 || this.Height == 0)
+                return;
+
             if (Image != null)
             {
                 int dx = this.Width - x;
@@ -737,11 +1385,18 @@ namespace Wells.Controls.ImageDocEx
 
         #endregion
 
-        public void enterSetup(bool bOnOff)
+        public void setStatusMode(StatusMode mode)
         {
-            enteredSetup = bOnOff;
+            __status_mode = mode;
+            if (mode == StatusMode.Normal)
+                __tool_mode = ToolMode.None;
         }
 
+        public void setToolMode(ToolMode mode)
+        {
+            __tool_mode = mode;
+        }
+        
         private void moveImage(double motionX, double motionY)
         {
             #region ***** 移动图片 *****
@@ -819,6 +1474,9 @@ namespace Wells.Controls.ImageDocEx
         private void moveROI(double dx, double dy)
         {
             #region ***** 移动ROI *****
+
+            if ((keyPressed & Keys.Control) != Keys.Control)//仅ctrl键按下时才移动
+                return;
 
             for (int igg = 0; igg < m_l2updateList.Count; igg++) 
             {

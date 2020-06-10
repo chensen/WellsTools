@@ -16,6 +16,35 @@ namespace Wells.Controls.ImageDocEx
 
         public bool Actived = false;
 
+        private TrackShape shape = TrackShape.Rect1;
+
+        public TrackShape Shape
+        {
+            get { return shape; }
+            set
+            {
+                shape = value;
+                if(shape == TrackShape.Line)
+                {
+                    Color = "yellow";
+                    LineStyle = "line";
+                    LineWidth = 3;
+                }
+                else if(shape == TrackShape.Rect1)
+                {
+                    Color = "white";
+                    LineStyle = "dot";
+                    LineWidth = 1;
+                }
+                else if (shape == TrackShape.Rect2)
+                {
+                    Color = "green";
+                    LineStyle = "line";
+                    LineWidth = 1;
+                }
+            }
+        }
+
         public Tracker()
         {
             Row1 = 0.0;
@@ -41,7 +70,15 @@ namespace Wells.Controls.ImageDocEx
                 window.SetLineWidth(LineWidth);
                 window.SetLineStyle(LineStyle == "dot" ? new HTuple(2, 2) : new HTuple());
 
-                window.DispRectangle1(Row1 < Row2 ? Row1 : Row2, Col1 < Col2 ? Col1 : Col2, Row1 < Row2 ? Row2 : Row1, Col1 < Col2 ? Col2 : Col1);
+                if (Shape == TrackShape.Line)
+                {
+                    window.DispLine(Row1, Col1, Row2, Col2);
+                    //window.DispArrow(Row2, Col2, Row1, Col1, LineWidth);
+                }
+                else
+                {
+                    window.DispRectangle1(Row1 < Row2 ? Row1 : Row2, Col1 < Col2 ? Col1 : Col2, Row1 < Row2 ? Row2 : Row1, Col1 < Col2 ? Col2 : Col1);
+                }
             }
         }
     }
