@@ -155,8 +155,8 @@ namespace Wells.WellsMetroControl.Controls
             path.CloseAllFigures();
             g.FillPath(new SolidBrush(c1), path);
 
-            g.FillRectangle(new SolidBrush(lampstand), new Rectangle(5, m_rectWorking.Bottom - 19, this.Width - 10, 10));
-            g.FillRectangle(new SolidBrush(lampstand), new Rectangle(0, m_rectWorking.Bottom - 10, this.Width, 10));
+            g.FillRectangle(new SolidBrush(lampstand), new Rectangle(5, m_rectWorking.Bottom - 9, this.Width - 10, 5));
+            g.FillRectangle(new SolidBrush(lampstand), new Rectangle(0, m_rectWorking.Bottom - 5, this.Width, 5));
         }
     }
 }

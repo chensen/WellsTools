@@ -334,8 +334,10 @@ namespace Wells.WellsFramework.Controls
             }
             else
             {
-                foreColor = WellsMetroPaint.ForeColor.ComboBox.Normal(Theme);
-                borderColor = WellsMetroPaint.BorderColor.ComboBox.Normal(Theme);
+                foreColor = WellsMetroPaint.ForeColor.ComboBox.Hover(Theme);
+                borderColor = WellsMetroPaint.BorderColor.ComboBox.Hover(Theme);
+                //foreColor = WellsMetroPaint.ForeColor.ComboBox.Normal(Theme);//normal是有个渐隐效果，感觉没必要，一直是黑的就行
+                //borderColor = WellsMetroPaint.BorderColor.ComboBox.Normal(Theme);
             }
 
             using (Pen p = new Pen(borderColor))

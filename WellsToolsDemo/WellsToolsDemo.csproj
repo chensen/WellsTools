@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -66,6 +67,12 @@
     <Compile Include="clsSerialize.Designer.cs">
       <DependentUpon>clsSerialize.cs</DependentUpon>
     </Compile>
+    <None Include="frmMotionControl.cs">
+      <SubType>Form</SubType>
+    </None>
+    <None Include="frmMotionControl.designer.cs">
+      <DependentUpon>frmMotionControl.cs</DependentUpon>
+    </None>
     <Compile Include="HWindowCtrlDemo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -101,6 +108,9 @@
     <EmbeddedResource Include="clsSerialize.resx">
       <DependentUpon>clsSerialize.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="frmMotionControl.resx">
+      <DependentUpon>frmMotionControl.cs</DependentUpon>
+    </None>
     <EmbeddedResource Include="HWindowCtrlDemo.resx">
       <DependentUpon>HWindowCtrlDemo.cs</DependentUpon>
     </EmbeddedResource>

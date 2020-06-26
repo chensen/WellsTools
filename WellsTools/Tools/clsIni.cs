@@ -129,6 +129,26 @@ namespace Wells.Tools
             writeString(Section, Ident, Value.ToString());
         }
 
+        //Ð´¸¡µãÊý
+        public float readFloat(string Section, string Ident, float Default)
+        {
+            string intStr = readString(Section, Ident, Convert.ToString(Default));
+            try
+            {
+                return (float)Convert.ToDouble(intStr);
+            }
+            catch (Exception exc)
+            {
+                Wells.FrmType.frm_Log.Log(string.Format(clsWellsLanguage.getString(118), Section, Ident), 2, 0);
+                return Default;
+            }
+        }
+
+        public void writeFloat(string Section, string Ident, float Value)
+        {
+            writeString(Section, Ident, Value.ToString());
+        }
+
         //¶Á²¼¶û
         public bool readBool(string Section, string Ident, bool Default)
         {

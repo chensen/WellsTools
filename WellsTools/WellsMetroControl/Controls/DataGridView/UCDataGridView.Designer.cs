@@ -86,7 +86,9 @@
             // panRow
             // 
             this.panRow.AutoScroll = true;
+            this.panRow.BackColor = System.Drawing.Color.White;
             this.panRow.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panRow.ForeColor = System.Drawing.SystemColors.ControlText;
             this.panRow.Location = new System.Drawing.Point(0, 40);
             this.panRow.Name = "panRow";
             this.panRow.Size = new System.Drawing.Size(1061, 525);

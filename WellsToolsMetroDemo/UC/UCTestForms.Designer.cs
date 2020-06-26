@@ -280,6 +280,8 @@
             this.textBoxTransparent1.Size = new System.Drawing.Size(164, 20);
             this.textBoxTransparent1.TabIndex = 0;
             this.textBoxTransparent1.Text = "这是一个透明文本框";
+            this.textBoxTransparent1.UCHNum = -1;
+            this.textBoxTransparent1.UcHScrollbarEx = null;
             // 
             // groupBox3
             // 

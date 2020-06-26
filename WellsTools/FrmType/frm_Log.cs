@@ -74,16 +74,16 @@ namespace Wells.FrmType
                 graphics.PageUnit = GraphicsUnit.Pixel;
                 string strAdd = time == "" ? ("[" + GetTimeNow(3) + "]" + item) : ("[" + time + "]" + item);
                 SizeF size = graphics.MeasureString(strAdd, libView.Font, 2000, strFormat);
-                //if (size.Width > (float)(iShowWidth - 120))
-                //{
-                //    iShowWidth = (int)(size.Width + 120);
-                //    libView.HorizontalExtent = iShowWidth;
-                //}
-                if (size.Width > (float)(libView.Width))
+                if (size.Width > (float)(iShowWidth - 120))
                 {
-                    //iShowWidth = (int)(size.Width + 120);
-                    libView.HorizontalExtent = (int)size.Width + 200;
+                    iShowWidth = (int)(size.Width + 120);
+                    libView.HorizontalExtent = iShowWidth;
                 }
+                //if (size.Width > (float)(libView.Width - 30)) //30是list的边界的宽度，大概是这样。。。测试出来的，字体刚好铺满一行时，width比libview的width少30
+                //{
+                //    //iShowWidth = (int)(size.Width + 120);
+                //    libView.HorizontalExtent = (int)size.Width + 200;
+                //}
                 libView.Items.Add(strAdd);
                 m_lShowCount++;
                 libView.SelectedIndex = libView.Items.Count - 1;
@@ -214,7 +214,7 @@ namespace Wells.FrmType
                 pCurrentForm.AddItem(item, iDrawMode, timeAddItem);
                 string dir = Application.StartupPath + "\\LOG";
                 if (!Directory.Exists(dir)) Directory.CreateDirectory(dir);
-                if(iWriteMode == 1)
+                if (iWriteMode == 1) 
                 {
                     string path = dir + "\\";
                     if (iDrawMode == 0) path += GetTimeNow(1) + "-Default.txt";
@@ -315,6 +315,13 @@ namespace Wells.FrmType
         {
             if (pCurrentForm == null)
                 pCurrentForm = new frm_Log();
+            pCurrentForm.StartPosition = FormStartPosition.Manual;
+            pCurrentForm.Location = new Point(Screen.PrimaryScreen.WorkingArea.Width / 2, (Screen.PrimaryScreen.Bounds.Height + Screen.PrimaryScreen.WorkingArea.Height) / 2);
+            pCurrentForm.Show();
+            class_Thread.Sleep(10);
+            pCurrentForm.Close();
+            pCurrentForm.Location = new Point(Screen.PrimaryScreen.WorkingArea.Width / 2 - pCurrentForm.Width / 2, Screen.PrimaryScreen.WorkingArea.Height / 2 - pCurrentForm.Height / 2);
+            pCurrentForm.StartPosition = FormStartPosition.CenterScreen;
         }
 
         public static void ShowDlg(bool bShow)

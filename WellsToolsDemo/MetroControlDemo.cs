@@ -32,7 +32,7 @@ namespace WellsToolsDemo
             List<KeyValuePair<string, string>> str = new List<KeyValuePair<string, string>>();
             str.Add(new KeyValuePair<string, string>("0", "1"));
             str.Add(new KeyValuePair<string, string>("1", "2"));
-            propertyGrid1.SelectedObject = wellsMetroComboBox1;
+            propertyGrid1.SelectedObject = skinButton1;
             ucCombox1.Source = str;
             //uchScrollbarEx1.DataBindings.Add("ValueLow", textBoxEx1, "Text", true, DataSourceUpdateMode.OnValidation);
             //uchScrollbarEx1.ValueLow = 500.5M;
@@ -44,8 +44,11 @@ namespace WellsToolsDemo
 
         private void button1_Click(object sender, EventArgs e)
         {
+            Wells.FrmType.frm_Log.ShowDlg(true);
+            return;
             int index = comboBox1.SelectedIndex;
             tagPartType type1 = (tagPartType)Enum.Parse(typeof(tagPartType), comboBox1.SelectedItem.ToString());
+            wellsMetroComboBox1.SelectedIndex = -1;
             return;
             Wells.WellsMetroControl.Forms.FrmAnchorTips frmTips = Wells.WellsMetroControl.Forms.FrmAnchorTips.ShowTips(new Rectangle(100, 100, 50, 20), "ABC", Wells.WellsMetroControl.Forms.AnchorTipsLocation.TOP, Color.Lime, autoCloseTime: -1);
         }
@@ -53,6 +56,11 @@ namespace WellsToolsDemo
         private void uchScrollbarEx1_ValueChanged(object sender, EventArgs e)
         {
             System.Diagnostics.Debug.Write("value changed!\n");
+        }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            Wells.FrmType.frm_Log.Log("GTN_SetDoBit出错，错误代码：-6，错误信息：打开控制器失11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111我的妈", 2);
         }
     }
 }

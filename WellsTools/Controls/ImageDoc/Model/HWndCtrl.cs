@@ -1088,6 +1088,8 @@ namespace Wells.Controls.ImageDoc
                 if (HObjImageList[i] != null)
                     ((HObjectEntry)HObjImageList[i]).clear();
             }
+            HObjImageList.Clear();
+
 
 
 			HObjectEntry entry;

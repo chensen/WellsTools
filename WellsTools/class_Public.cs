@@ -75,7 +75,7 @@ namespace Wells
             Wells.WellsFramework.WellsMetroMessageBox.CloseMsgForm();
         }
 
-        public static void showTips(Form form, string strMsg, MessageBoxIcon icon = MessageBoxIcon.Information, int intAutoColseTime = 3000)
+        public static void excuteTips(Form form, string strMsg, MessageBoxIcon icon = MessageBoxIcon.Information, System.Drawing.ContentAlignment location = System.Drawing.ContentAlignment.MiddleCenter, int intAutoColseTime = 3000, bool bShowCloseBtn = false)
         {
             Wells.WellsMetroControl.Forms.TipsState status = WellsMetroControl.Forms.TipsState.Default;
             if (icon == MessageBoxIcon.Error) status = WellsMetroControl.Forms.TipsState.Error;
@@ -84,8 +84,8 @@ namespace Wells
             else if (icon == MessageBoxIcon.Information) status = WellsMetroControl.Forms.TipsState.Info;
 
             Wells.WellsMetroControl.Forms.FrmTips.ShowTips(form, strMsg, 
-                intAutoColseTime, false, 
-                System.Drawing.ContentAlignment.BottomCenter, null, 
+                intAutoColseTime, bShowCloseBtn, 
+                location, null, 
                 Wells.WellsMetroControl.Forms.TipsSizeMode.Large, null, 
                 status);
         }

@@ -51,7 +51,7 @@
         System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(77)))), ((int)(((byte)(59))))),
         System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))))};
             this.ucAlarmLamp1.Lampstand = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(105)))), ((int)(((byte)(105)))));
-            this.ucAlarmLamp1.Location = new System.Drawing.Point(27, 377);
+            this.ucAlarmLamp1.Location = new System.Drawing.Point(27, 394);
             this.ucAlarmLamp1.Name = "ucAlarmLamp1";
             this.ucAlarmLamp1.Size = new System.Drawing.Size(70, 71);
             this.ucAlarmLamp1.TabIndex = 28;

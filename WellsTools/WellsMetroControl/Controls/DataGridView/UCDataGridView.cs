@@ -528,7 +528,6 @@ namespace Wells.WellsMetroControl.Controls
                             row.RowIndex = Rows.IndexOf(row);
                             this.panRow.Controls.Add(rowControl);
                             rowControl.BringToFront();
-                        
                         }
                     }                 
                 }
