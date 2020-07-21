@@ -252,6 +252,68 @@ namespace Wells.Comm
             #endregion
         }
 
+        public byte[] sendCommand(byte[] byteCmd, bool bGetReturn)
+        {
+            #region 发送PLC指令
+
+            muSend.WaitOne();
+
+            byte[] ret = null;
+
+            try
+            {
+
+                if (m_bIsOpen)
+                {
+                    try
+                    {
+                        if (bGetReturn)
+                        {
+                            buffer = new byte[200];
+                            buffer_length = 0;
+                            strReturn = string.Empty;
+                            waitHandle.Reset();
+                        }
+                        byte[] tmpCmd = null;
+                        if (byteSendEnd != null && byteSendEnd.Length > 0)
+                        {
+                            tmpCmd = new byte[byteCmd.Length + byteSendEnd.Length];
+                            Array.Copy(byteCmd, 0, tmpCmd, 0, byteCmd.Length);
+                            Array.Copy(byteSendEnd, 0, tmpCmd, byteCmd.Length, byteSendEnd.Length);
+                        }
+                        else
+                        {
+                            tmpCmd = byteCmd;
+                        }
+
+                        m_instance.Write(byteCmd, 0, byteCmd.Length);
+
+                        if (bGetReturn)
+                            waitHandle.WaitOne(500);
+
+                        ret = new byte[buffer.Length];
+                        Array.Copy(buffer, 0, ret, 0, buffer.Length);
+                    }
+                    catch (System.Exception exc)
+                    {
+                        ret = null;
+                        Wells.FrmType.frm_Log.Log(string.Format(clsWellsLanguage.getString(104), BitConverter.ToString(byteCmd)) + exc.Message, 2);
+                    }
+                }
+            }
+            catch (Exception exc)
+            {
+
+            }
+            finally
+            {
+                muSend.ReleaseMutex();
+            }
+            return ret;
+
+            #endregion
+        }
+
         #region 数据转换
 
         public static byte[] hexStringToByteArray(string s)//wells0045

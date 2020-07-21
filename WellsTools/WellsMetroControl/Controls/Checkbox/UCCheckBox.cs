@@ -22,6 +22,12 @@ namespace Wells.WellsMetroControl.Controls
         /// </summary>
         [Description("选中改变事件"), Category("自定义")]
         public event EventHandler CheckedChangeEvent;
+
+        /// <summary>
+        /// 单击事件
+        /// </summary>
+        [Description("单击事件"), Category("自定义")]
+        public event EventHandler ClickEvent;
         /// <summary>
         /// 字体
         /// </summary>
@@ -180,6 +186,7 @@ namespace Wells.WellsMetroControl.Controls
                 }
             }
         }
+        
         /// <summary>
         /// Initializes a new instance of the <see cref="UCCheckBox" /> class.
         /// </summary>
@@ -193,9 +200,13 @@ namespace Wells.WellsMetroControl.Controls
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="MouseEventArgs" /> instance containing the event data.</param>
-        private void CheckBox_MouseDown(object sender, MouseEventArgs e)
+        private void CheckBox_Click(object sender, EventArgs e)
         {
             Checked = !Checked;
+            if (ClickEvent != null)
+            {
+                ClickEvent(this, e);
+            }
         }
     }
 }

@@ -42,7 +42,48 @@ namespace Wells
                 }
                 catch (Exception exc)
                 {
-                    Wells.FrmType.frm_Log.Log(clsWellsLanguage.getString(121) + exc.Message, 2);
+                    Wells.FrmType.frm_Log.Log("获取灰度直方图出错：" + exc.Message, 2);
+                }
+            }
+            return null;
+        }
+
+        public static HTuple getGrayHisto(HObject image, HTuple rectangle1 = null)
+        {
+            if (image != null)
+            {
+                try
+                {
+                    HTuple hv_AbsoluteHisto, hv_RelativeHisto;
+
+                    HOperatorSet.CountChannels(image, out HTuple channel);
+
+                    HObject imgTmp = null;
+                    if (channel == 3)
+                    {
+                        HOperatorSet.Rgb1ToGray(image, out imgTmp);
+                    }
+                    else
+                    {
+                        imgTmp = image;
+                    }
+                    HRegion region = new HRegion();
+                    if (rectangle1 == null)
+                    {
+                        HTuple col, row;
+                        HOperatorSet.GetImageSize(imgTmp, out col, out row);
+                        region.GenRectangle1(0, 0, row - 1, col - 1);
+                    }
+                    else
+                    {
+                        region.GenRectangle1(rectangle1[0].D, rectangle1[1], rectangle1[2], rectangle1[3]);
+                    }
+                    HOperatorSet.GrayHisto(region, imgTmp, out hv_AbsoluteHisto, out hv_RelativeHisto);
+                    return hv_AbsoluteHisto;
+                }
+                catch (Exception exc)
+                {
+                    Wells.FrmType.frm_Log.Log("获取灰度直方图出错：" + exc.Message, 2);
                 }
             }
             return null;

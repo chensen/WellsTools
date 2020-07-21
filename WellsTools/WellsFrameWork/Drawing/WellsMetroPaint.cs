@@ -95,7 +95,7 @@ namespace Wells.WellsFramework.Drawing
                     if (theme == WellsMetroThemeStyle.Dark)
                         return Color.FromArgb(153, 153, 153);
 
-                    return Color.FromArgb(153, 153, 153);
+                    return Color.FromArgb(200, 200, 200);
                 }
 
                 public static Color Hover(WellsMetroThemeStyle theme)
@@ -103,7 +103,7 @@ namespace Wells.WellsFramework.Drawing
                     if (theme == WellsMetroThemeStyle.Dark)
                         return Color.FromArgb(204, 204, 204);
 
-                    return Color.FromArgb(51, 51, 51);
+                    return Color.FromArgb(0, 255, 0);
                 }
 
                 public static Color Press(WellsMetroThemeStyle theme)
@@ -111,7 +111,7 @@ namespace Wells.WellsFramework.Drawing
                     if (theme == WellsMetroThemeStyle.Dark)
                         return Color.FromArgb(153, 153, 153);
 
-                    return Color.FromArgb(153, 153, 153);
+                    return Color.FromArgb(255, 255, 255);
                 }
 
                 public static Color Disabled(WellsMetroThemeStyle theme)
@@ -130,7 +130,7 @@ namespace Wells.WellsFramework.Drawing
                     if (theme == WellsMetroThemeStyle.Dark)
                         return Color.FromArgb(153, 153, 153);
 
-                    return Color.FromArgb(153, 153, 153);
+                    return Color.FromArgb(0, 0, 0);
                 }
 
                 public static Color Hover(WellsMetroThemeStyle theme)
@@ -138,7 +138,7 @@ namespace Wells.WellsFramework.Drawing
                     if (theme == WellsMetroThemeStyle.Dark)
                         return Color.FromArgb(204, 204, 204);
 
-                    return Color.FromArgb(51, 51, 51);
+                    return Color.FromArgb(255, 255, 255);
                 }
 
                 public static Color Press(WellsMetroThemeStyle theme)
@@ -146,7 +146,7 @@ namespace Wells.WellsFramework.Drawing
                     if (theme == WellsMetroThemeStyle.Dark)
                         return Color.FromArgb(153, 153, 153);
 
-                    return Color.FromArgb(153, 153, 153);
+                    return Color.FromArgb(0, 0, 0);
                 }
 
                 public static Color Disabled(WellsMetroThemeStyle theme)
@@ -600,7 +600,7 @@ namespace Wells.WellsFramework.Drawing
                     if (theme == WellsMetroThemeStyle.Dark)
                         return Color.FromArgb(170, 170, 170);
 
-                    return Color.FromArgb(17, 17, 17);
+                    return Color.FromArgb(0, 0, 0);
                 }
 
                 public static Color Hover(WellsMetroThemeStyle theme)
@@ -608,7 +608,7 @@ namespace Wells.WellsFramework.Drawing
                     if (theme == WellsMetroThemeStyle.Dark)
                         return Color.FromArgb(153, 153, 153);
 
-                    return Color.FromArgb(153, 153, 153);
+                    return Color.FromArgb(0, 0, 0);
                 }
 
                 public static Color Press(WellsMetroThemeStyle theme)
@@ -616,7 +616,7 @@ namespace Wells.WellsFramework.Drawing
                     if (theme == WellsMetroThemeStyle.Dark)
                         return Color.FromArgb(153, 153, 153);
 
-                    return Color.FromArgb(153, 153, 153);
+                    return Color.FromArgb(0, 0, 0);
                 }
 
                 public static Color Disabled(WellsMetroThemeStyle theme)
@@ -635,7 +635,7 @@ namespace Wells.WellsFramework.Drawing
                     if (theme == WellsMetroThemeStyle.Dark)
                         return Color.FromArgb(153, 153, 153);
 
-                    return Color.FromArgb(153, 153, 153);
+                    return Color.FromArgb(0, 0, 0);
                 }
 
                 public static Color Hover(WellsMetroThemeStyle theme)
@@ -643,7 +643,7 @@ namespace Wells.WellsFramework.Drawing
                     if (theme == WellsMetroThemeStyle.Dark)
                         return Color.FromArgb(170, 170, 170);
 
-                    return Color.FromArgb(17, 17, 17);
+                    return Color.FromArgb(0, 0, 0);
                 }
 
                 public static Color Press(WellsMetroThemeStyle theme)
@@ -651,7 +651,7 @@ namespace Wells.WellsFramework.Drawing
                     if (theme == WellsMetroThemeStyle.Dark)
                         return Color.FromArgb(153, 153, 153);
 
-                    return Color.FromArgb(153, 153, 153);
+                    return Color.FromArgb(0, 0, 0);
                 }
 
                 public static Color Disabled(WellsMetroThemeStyle theme)

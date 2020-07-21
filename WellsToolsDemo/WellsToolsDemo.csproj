@@ -61,6 +61,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BackroundProgress.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BackroundProgress.Designer.cs">
+      <DependentUpon>BackroundProgress.cs</DependentUpon>
+    </Compile>
     <Compile Include="clsSerialize.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -73,6 +79,18 @@
     <None Include="frmMotionControl.designer.cs">
       <DependentUpon>frmMotionControl.cs</DependentUpon>
     </None>
+    <Compile Include="Form2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form2.Designer.cs">
+      <DependentUpon>Form2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmHalcon.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmHalcon.Designer.cs">
+      <DependentUpon>frmHalcon.cs</DependentUpon>
+    </Compile>
     <Compile Include="HWindowCtrlDemo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -105,12 +123,21 @@
     <Compile Include="VisionInspectDemo.Designer.cs">
       <DependentUpon>VisionInspectDemo.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="BackroundProgress.resx">
+      <DependentUpon>BackroundProgress.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="clsSerialize.resx">
       <DependentUpon>clsSerialize.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="frmMotionControl.resx">
       <DependentUpon>frmMotionControl.cs</DependentUpon>
     </None>
+    <EmbeddedResource Include="Form2.resx">
+      <DependentUpon>Form2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmHalcon.resx">
+      <DependentUpon>frmHalcon.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="HWindowCtrlDemo.resx">
       <DependentUpon>HWindowCtrlDemo.cs</DependentUpon>
     </EmbeddedResource>

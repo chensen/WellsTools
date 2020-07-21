@@ -13,8 +13,10 @@ namespace WellsToolsDemo
 {
     public partial class ImageDocDemo : Form
     {
+        private string dir = string.Empty;
         //Wells.Tools.clsXmlEx xml = new Wells.Tools.clsXmlEx("xml.xml");
         List<ROI> rois = new List<ROI>();
+        List<ROI> rois2 = new List<ROI>();
         public ImageDocDemo()
         {
             InitializeComponent();
@@ -26,20 +28,36 @@ namespace WellsToolsDemo
         {
             //HImage img = new HImage("D:\\12.bmp");
             //imageDoc.HWindow.DispImage(img);
-            imageDoc1.HWindow.SetTposition(100, 200);
-            imageDoc1.HWindow.SetColor("red");
-            imageDoc1.HWindow.WriteString("ABCfdaaaaa");
+            //imageDoc1.HWindow.SetTposition(100, 200);
+            //imageDoc1.HWindow.SetColor("red");
+            //imageDoc1.HWindow.WriteString("ABCfdaaaaa");
+            Wells.Tools.clsFolderBrowserDialog dlg = new Wells.Tools.clsFolderBrowserDialog();
+            dlg.ShowDialog();
+            dir = dlg.SelectedPath;
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            HImage img = new HImage("D:\\test.jpg");
-            imageDoc1.displayImage(img);
+            if (!checkBox1.Checked)
+            {
+                HImage img = new HImage(dir + "\\front.jpg");
+                imageDoc1.displayImage(img);
+            }
+            else
+            {
+                HImage img = new HImage(dir + "\\back.jpg");
+                imageDoc1.displayImage(img);
+            }
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            imageDoc1.genRect1(100, 100, 200, 500, ref rois);
+            string[] str = textBox5.Text.Split(',');
+            double x1 = double.Parse(str[0]);
+            double y1 = double.Parse(str[1]);
+            double w = double.Parse(str[2]);
+            double h = double.Parse(str[3]);
+            imageDoc1.genRect1(y1, x1, y1 + h, x1 + w, ref rois);
             //imageDoc.viewWindow.genCircle(100, 100, 50, ref rois);
             //imageDoc1.genCircularArc(200, 200, 200, 0, 1.2, "", ref rois);
             //imageDoc1.genRect2(300, 300, 0.6, 50, 80, ref rois);
@@ -76,6 +94,22 @@ namespace WellsToolsDemo
             imageDoc1.clearWindow(false);
             //imageDoc1.setSelected(true);
             //imageDoc1.ImageMode = imageDoc1.ImageMode == ImageMode.Stretch ? ImageMode.Origin : ImageMode.Stretch;
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            HImage img = new HImage(dir + "\\results\\" + textBox2.Text + ".jpg");
+            imageDoc2.displayImage(img);
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            string[] str = textBox1.Text.Split(',');
+            double x1 = double.Parse(str[0]);
+            double y1 = double.Parse(str[1]);
+            double w = double.Parse(str[2]);
+            double h = double.Parse(str[3]);
+            imageDoc2.genRect1(y1, x1, y1 + h, x1 + w, ref rois2);
         }
     }
 }

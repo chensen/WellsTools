@@ -32,7 +32,7 @@ namespace WellsToolsDemo
             List<KeyValuePair<string, string>> str = new List<KeyValuePair<string, string>>();
             str.Add(new KeyValuePair<string, string>("0", "1"));
             str.Add(new KeyValuePair<string, string>("1", "2"));
-            propertyGrid1.SelectedObject = skinButton1;
+            propertyGrid1.SelectedObject = wellsMetroComboBox1;
             ucCombox1.Source = str;
             //uchScrollbarEx1.DataBindings.Add("ValueLow", textBoxEx1, "Text", true, DataSourceUpdateMode.OnValidation);
             //uchScrollbarEx1.ValueLow = 500.5M;
@@ -61,6 +61,11 @@ namespace WellsToolsDemo
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
             Wells.FrmType.frm_Log.Log("GTN_SetDoBit出错，错误代码：-6，错误信息：打开控制器失11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111我的妈", 2);
+        }
+
+        private void ucCheckBox1_ClickEvent(object sender, EventArgs e)
+        {
+            Wells.class_Public.Show(null, ucCheckBox1.Checked.ToString());
         }
     }
 }

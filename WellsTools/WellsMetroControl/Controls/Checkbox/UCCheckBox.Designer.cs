@@ -46,32 +46,33 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(18, 28);
             this.panel1.TabIndex = 0;
-            this.panel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.CheckBox_MouseDown);
+            this.panel1.Click += new System.EventHandler(this.CheckBox_Click);
             // 
             // label1
             // 
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.label1.Font = new System.Drawing.Font("宋体", 9F);
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(62)))), ((int)(((byte)(62)))));
             this.label1.Location = new System.Drawing.Point(19, 1);
             this.label1.Name = "label1";
             this.label1.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            this.label1.Size = new System.Drawing.Size(213, 28);
+            this.label1.Size = new System.Drawing.Size(128, 28);
             this.label1.TabIndex = 1;
             this.label1.Text = "复选框";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.label1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.CheckBox_MouseDown);
+            this.label1.Click += new System.EventHandler(this.CheckBox_Click);
             // 
             // UCCheckBox
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.AutoSize = true;
             this.BackColor = System.Drawing.Color.Transparent;
             this.Controls.Add(this.label1);
             this.Controls.Add(this.panel1);
             this.Name = "UCCheckBox";
             this.Padding = new System.Windows.Forms.Padding(1);
-            this.Size = new System.Drawing.Size(233, 30);
-            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.CheckBox_MouseDown);
+            this.Size = new System.Drawing.Size(148, 30);
+            this.Click += new System.EventHandler(this.CheckBox_Click);
             this.ResumeLayout(false);
 
         }

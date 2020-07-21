@@ -330,8 +330,11 @@ namespace Wells.FrmType
             {
                 if (bShow)
                 {
-                    pCurrentForm.Show();
+                    if (!pCurrentForm.Visible)
+                        pCurrentForm.Show();
+                    pCurrentForm.BringToFront();
                     pCurrentForm.TopMost = true;
+                    Thread.Sleep(50);
                     pCurrentForm.TopMost = false;
                 }
                 else

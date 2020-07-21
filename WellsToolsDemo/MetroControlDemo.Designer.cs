@@ -60,21 +60,24 @@
             this.fdasfToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fdsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.wellsMetroComboBox1 = new Wells.WellsFramework.Controls.WellsMetroComboBox();
-            this.ucCombox1 = new Wells.WellsMetroControl.Controls.UCCombox();
-            this.textBoxEx2 = new Wells.WellsMetroControl.Controls.TextBoxEx();
-            this.uchScrollbarEx1 = new Wells.WellsMetroControl.Controls.UCHScrollbarEx();
-            this.textBoxEx1 = new Wells.WellsMetroControl.Controls.TextBoxEx();
-            this.wellsMetroStyleManager1 = new Wells.WellsFramework.Components.WellsMetroStyleManager(this.components);
             this.skinButton1 = new CCWin.SkinControl.SkinButton();
             this.skinToolStrip1 = new CCWin.SkinControl.SkinToolStrip();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.wellsMetroCheckBox1 = new Wells.WellsFramework.Controls.WellsMetroCheckBox();
+            this.ucCheckBox1 = new Wells.WellsMetroControl.Controls.UCCheckBox();
+            this.wellsMetroComboBox1 = new Wells.WellsFramework.Controls.WellsMetroComboBox();
+            this.textBoxEx2 = new Wells.WellsMetroControl.Controls.TextBoxEx();
+            this.uchScrollbarEx1 = new Wells.WellsMetroControl.Controls.UCHScrollbarEx();
+            this.textBoxEx1 = new Wells.WellsMetroControl.Controls.TextBoxEx();
+            this.ucCombox1 = new Wells.WellsMetroControl.Controls.UCCombox();
+            this.wellsMetroStyleManager1 = new Wells.WellsFramework.Components.WellsMetroStyleManager(this.components);
             this.menuMain.SuspendLayout();
             this.menuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.wellsMetroStyleManager1)).BeginInit();
             this.skinToolStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.wellsMetroStyleManager1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -97,6 +100,7 @@
             // 
             // button1
             // 
+            this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
             this.button1.Location = new System.Drawing.Point(524, 328);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
@@ -358,6 +362,148 @@
             this.comboBox1.Size = new System.Drawing.Size(121, 20);
             this.comboBox1.TabIndex = 17;
             // 
+            // skinButton1
+            // 
+            this.skinButton1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
+            this.skinButton1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("skinButton1.BackgroundImage")));
+            this.skinButton1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.skinButton1.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
+            this.skinButton1.BorderColor = System.Drawing.Color.DimGray;
+            this.skinButton1.ControlState = CCWin.SkinClass.ControlState.Normal;
+            this.skinButton1.DownBack = null;
+            this.skinButton1.FadeGlow = false;
+            this.skinButton1.InnerBorderColor = System.Drawing.Color.Transparent;
+            this.skinButton1.IsDrawGlass = false;
+            this.skinButton1.Location = new System.Drawing.Point(409, 408);
+            this.skinButton1.MouseBack = null;
+            this.skinButton1.MouseBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(90)))), ((int)(((byte)(90)))));
+            this.skinButton1.Name = "skinButton1";
+            this.skinButton1.NormlBack = null;
+            this.skinButton1.Size = new System.Drawing.Size(47, 46);
+            this.skinButton1.TabIndex = 20;
+            this.skinButton1.UseVisualStyleBackColor = false;
+            // 
+            // skinToolStrip1
+            // 
+            this.skinToolStrip1.Arrow = System.Drawing.Color.Black;
+            this.skinToolStrip1.Back = System.Drawing.Color.White;
+            this.skinToolStrip1.BackRadius = 4;
+            this.skinToolStrip1.BackRectangle = new System.Drawing.Rectangle(10, 10, 10, 10);
+            this.skinToolStrip1.Base = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(200)))), ((int)(((byte)(254)))));
+            this.skinToolStrip1.BaseFore = System.Drawing.Color.Black;
+            this.skinToolStrip1.BaseForeAnamorphosis = false;
+            this.skinToolStrip1.BaseForeAnamorphosisBorder = 4;
+            this.skinToolStrip1.BaseForeAnamorphosisColor = System.Drawing.Color.White;
+            this.skinToolStrip1.BaseForeOffset = new System.Drawing.Point(0, 0);
+            this.skinToolStrip1.BaseHoverFore = System.Drawing.Color.White;
+            this.skinToolStrip1.BaseItemAnamorphosis = true;
+            this.skinToolStrip1.BaseItemBorder = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
+            this.skinToolStrip1.BaseItemBorderShow = true;
+            this.skinToolStrip1.BaseItemDown = ((System.Drawing.Image)(resources.GetObject("skinToolStrip1.BaseItemDown")));
+            this.skinToolStrip1.BaseItemHover = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
+            this.skinToolStrip1.BaseItemMouse = ((System.Drawing.Image)(resources.GetObject("skinToolStrip1.BaseItemMouse")));
+            this.skinToolStrip1.BaseItemNorml = null;
+            this.skinToolStrip1.BaseItemPressed = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
+            this.skinToolStrip1.BaseItemRadius = 4;
+            this.skinToolStrip1.BaseItemRadiusStyle = CCWin.SkinClass.RoundStyle.All;
+            this.skinToolStrip1.BaseItemSplitter = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
+            this.skinToolStrip1.BindTabControl = null;
+            this.skinToolStrip1.DropDownImageSeparator = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(197)))), ((int)(((byte)(197)))));
+            this.skinToolStrip1.Fore = System.Drawing.Color.Black;
+            this.skinToolStrip1.GripMargin = new System.Windows.Forms.Padding(2, 2, 4, 2);
+            this.skinToolStrip1.HoverFore = System.Drawing.Color.White;
+            this.skinToolStrip1.ImageScalingSize = new System.Drawing.Size(35, 35);
+            this.skinToolStrip1.ItemAnamorphosis = true;
+            this.skinToolStrip1.ItemBorder = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
+            this.skinToolStrip1.ItemBorderShow = true;
+            this.skinToolStrip1.ItemHover = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
+            this.skinToolStrip1.ItemPressed = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
+            this.skinToolStrip1.ItemRadius = 4;
+            this.skinToolStrip1.ItemRadiusStyle = CCWin.SkinClass.RoundStyle.All;
+            this.skinToolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripButton1,
+            this.toolStripButton2,
+            this.toolStripButton3});
+            this.skinToolStrip1.Location = new System.Drawing.Point(295, 50);
+            this.skinToolStrip1.Name = "skinToolStrip1";
+            this.skinToolStrip1.RadiusStyle = CCWin.SkinClass.RoundStyle.All;
+            this.skinToolStrip1.Size = new System.Drawing.Size(505, 42);
+            this.skinToolStrip1.SkinAllColor = true;
+            this.skinToolStrip1.TabIndex = 21;
+            this.skinToolStrip1.Text = "skinToolStrip1";
+            this.skinToolStrip1.TitleAnamorphosis = true;
+            this.skinToolStrip1.TitleColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(228)))), ((int)(((byte)(236)))));
+            this.skinToolStrip1.TitleRadius = 4;
+            this.skinToolStrip1.TitleRadiusStyle = CCWin.SkinClass.RoundStyle.All;
+            // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(39, 39);
+            this.toolStripButton1.Text = "toolStripButton1";
+            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
+            // 
+            // toolStripButton2
+            // 
+            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
+            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton2.Name = "toolStripButton2";
+            this.toolStripButton2.Size = new System.Drawing.Size(39, 39);
+            this.toolStripButton2.Text = "toolStripButton2";
+            // 
+            // toolStripButton3
+            // 
+            this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
+            this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton3.Name = "toolStripButton3";
+            this.toolStripButton3.Size = new System.Drawing.Size(39, 39);
+            this.toolStripButton3.Text = "toolStripButton3";
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(377, 514);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(78, 16);
+            this.checkBox1.TabIndex = 24;
+            this.checkBox1.Text = "checkBox1";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // wellsMetroCheckBox1
+            // 
+            this.wellsMetroCheckBox1.AutoSize = true;
+            this.wellsMetroCheckBox1.Checked = true;
+            this.wellsMetroCheckBox1.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.wellsMetroCheckBox1.ForeColor = System.Drawing.Color.White;
+            this.wellsMetroCheckBox1.Location = new System.Drawing.Point(575, 486);
+            this.wellsMetroCheckBox1.Name = "wellsMetroCheckBox1";
+            this.wellsMetroCheckBox1.Size = new System.Drawing.Size(152, 17);
+            this.wellsMetroCheckBox1.Style = Wells.WellsFramework.WellsMetroColorStyle.Blue;
+            this.wellsMetroCheckBox1.TabIndex = 23;
+            this.wellsMetroCheckBox1.Text = "wellsMetroCheckBox1";
+            this.wellsMetroCheckBox1.UseCustomBackColor = true;
+            this.wellsMetroCheckBox1.UseCustomForeColor = true;
+            this.wellsMetroCheckBox1.UseSelectable = true;
+            this.wellsMetroCheckBox1.UseVisualStyleBackColor = true;
+            // 
+            // ucCheckBox1
+            // 
+            this.ucCheckBox1.AutoSize = true;
+            this.ucCheckBox1.BackColor = System.Drawing.Color.Transparent;
+            this.ucCheckBox1.Checked = false;
+            this.ucCheckBox1.Location = new System.Drawing.Point(547, 423);
+            this.ucCheckBox1.Name = "ucCheckBox1";
+            this.ucCheckBox1.Padding = new System.Windows.Forms.Padding(1);
+            this.ucCheckBox1.Size = new System.Drawing.Size(233, 30);
+            this.ucCheckBox1.TabIndex = 22;
+            this.ucCheckBox1.TextValue = "复选框";
+            this.ucCheckBox1.ClickEvent += new System.EventHandler(this.ucCheckBox1_ClickEvent);
+            // 
             // wellsMetroComboBox1
             // 
             this.wellsMetroComboBox1.FormattingEnabled = true;
@@ -370,36 +516,10 @@
             this.wellsMetroComboBox1.Location = new System.Drawing.Point(634, 321);
             this.wellsMetroComboBox1.Name = "wellsMetroComboBox1";
             this.wellsMetroComboBox1.Size = new System.Drawing.Size(121, 30);
+            this.wellsMetroComboBox1.Style = Wells.WellsFramework.WellsMetroColorStyle.Orange;
             this.wellsMetroComboBox1.TabIndex = 19;
-            this.wellsMetroComboBox1.UseCustomBackColor = true;
-            this.wellsMetroComboBox1.UseCustomForeColor = true;
+            this.wellsMetroComboBox1.Theme = Wells.WellsFramework.WellsMetroThemeStyle.Light;
             this.wellsMetroComboBox1.UseSelectable = true;
-            this.wellsMetroComboBox1.UseStyleColors = true;
-            // 
-            // ucCombox1
-            // 
-            this.ucCombox1.BackColor = System.Drawing.Color.Transparent;
-            this.ucCombox1.BackColorExt = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.ucCombox1.BoxStyle = System.Windows.Forms.ComboBoxStyle.DropDown;
-            this.ucCombox1.ConerRadius = 5;
-            this.ucCombox1.DropPanelHeight = -1;
-            this.ucCombox1.FillColor = System.Drawing.Color.White;
-            this.ucCombox1.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.ucCombox1.IsRadius = true;
-            this.ucCombox1.IsShowRect = true;
-            this.ucCombox1.ItemWidth = 70;
-            this.ucCombox1.Location = new System.Drawing.Point(524, 185);
-            this.ucCombox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.ucCombox1.Name = "ucCombox1";
-            this.ucCombox1.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.ucCombox1.RectWidth = 1;
-            this.ucCombox1.SelectedIndex = -1;
-            this.ucCombox1.SelectedValue = "";
-            this.ucCombox1.Size = new System.Drawing.Size(173, 32);
-            this.ucCombox1.Source = null;
-            this.ucCombox1.TabIndex = 18;
-            this.ucCombox1.TextValue = null;
-            this.ucCombox1.TriangleColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(77)))), ((int)(((byte)(59)))));
             // 
             // textBoxEx2
             // 
@@ -509,111 +629,34 @@
             this.textBoxEx1.UCHNum = 0;
             this.textBoxEx1.UcHScrollbarEx = this.uchScrollbarEx1;
             // 
+            // ucCombox1
+            // 
+            this.ucCombox1.BackColor = System.Drawing.Color.Transparent;
+            this.ucCombox1.BackColorExt = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.ucCombox1.BoxStyle = System.Windows.Forms.ComboBoxStyle.DropDown;
+            this.ucCombox1.ConerRadius = 5;
+            this.ucCombox1.DropPanelHeight = -1;
+            this.ucCombox1.FillColor = System.Drawing.Color.White;
+            this.ucCombox1.Font = new System.Drawing.Font("微软雅黑", 12F);
+            this.ucCombox1.IsRadius = true;
+            this.ucCombox1.IsShowRect = true;
+            this.ucCombox1.ItemWidth = 70;
+            this.ucCombox1.Location = new System.Drawing.Point(524, 185);
+            this.ucCombox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ucCombox1.Name = "ucCombox1";
+            this.ucCombox1.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
+            this.ucCombox1.RectWidth = 1;
+            this.ucCombox1.SelectedIndex = -1;
+            this.ucCombox1.SelectedValue = "";
+            this.ucCombox1.Size = new System.Drawing.Size(173, 32);
+            this.ucCombox1.Source = null;
+            this.ucCombox1.TabIndex = 18;
+            this.ucCombox1.TextValue = null;
+            this.ucCombox1.TriangleColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(77)))), ((int)(((byte)(59)))));
+            // 
             // wellsMetroStyleManager1
             // 
             this.wellsMetroStyleManager1.Owner = null;
-            // 
-            // skinButton1
-            // 
-            this.skinButton1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
-            this.skinButton1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("skinButton1.BackgroundImage")));
-            this.skinButton1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.skinButton1.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
-            this.skinButton1.BorderColor = System.Drawing.Color.DimGray;
-            this.skinButton1.ControlState = CCWin.SkinClass.ControlState.Normal;
-            this.skinButton1.DownBack = null;
-            this.skinButton1.FadeGlow = false;
-            this.skinButton1.InnerBorderColor = System.Drawing.Color.Transparent;
-            this.skinButton1.IsDrawGlass = false;
-            this.skinButton1.Location = new System.Drawing.Point(409, 408);
-            this.skinButton1.MouseBack = null;
-            this.skinButton1.MouseBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(90)))), ((int)(((byte)(90)))));
-            this.skinButton1.Name = "skinButton1";
-            this.skinButton1.NormlBack = null;
-            this.skinButton1.Size = new System.Drawing.Size(47, 46);
-            this.skinButton1.TabIndex = 20;
-            this.skinButton1.UseVisualStyleBackColor = false;
-            // 
-            // skinToolStrip1
-            // 
-            this.skinToolStrip1.Arrow = System.Drawing.Color.Black;
-            this.skinToolStrip1.Back = System.Drawing.Color.White;
-            this.skinToolStrip1.BackRadius = 4;
-            this.skinToolStrip1.BackRectangle = new System.Drawing.Rectangle(10, 10, 10, 10);
-            this.skinToolStrip1.Base = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(200)))), ((int)(((byte)(254)))));
-            this.skinToolStrip1.BaseFore = System.Drawing.Color.Black;
-            this.skinToolStrip1.BaseForeAnamorphosis = false;
-            this.skinToolStrip1.BaseForeAnamorphosisBorder = 4;
-            this.skinToolStrip1.BaseForeAnamorphosisColor = System.Drawing.Color.White;
-            this.skinToolStrip1.BaseForeOffset = new System.Drawing.Point(0, 0);
-            this.skinToolStrip1.BaseHoverFore = System.Drawing.Color.White;
-            this.skinToolStrip1.BaseItemAnamorphosis = true;
-            this.skinToolStrip1.BaseItemBorder = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
-            this.skinToolStrip1.BaseItemBorderShow = true;
-            this.skinToolStrip1.BaseItemDown = ((System.Drawing.Image)(resources.GetObject("skinToolStrip1.BaseItemDown")));
-            this.skinToolStrip1.BaseItemHover = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
-            this.skinToolStrip1.BaseItemMouse = ((System.Drawing.Image)(resources.GetObject("skinToolStrip1.BaseItemMouse")));
-            this.skinToolStrip1.BaseItemNorml = null;
-            this.skinToolStrip1.BaseItemPressed = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
-            this.skinToolStrip1.BaseItemRadius = 4;
-            this.skinToolStrip1.BaseItemRadiusStyle = CCWin.SkinClass.RoundStyle.All;
-            this.skinToolStrip1.BaseItemSplitter = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
-            this.skinToolStrip1.BindTabControl = null;
-            this.skinToolStrip1.DropDownImageSeparator = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(197)))), ((int)(((byte)(197)))));
-            this.skinToolStrip1.Fore = System.Drawing.Color.Black;
-            this.skinToolStrip1.GripMargin = new System.Windows.Forms.Padding(2, 2, 4, 2);
-            this.skinToolStrip1.HoverFore = System.Drawing.Color.White;
-            this.skinToolStrip1.ImageScalingSize = new System.Drawing.Size(35, 35);
-            this.skinToolStrip1.ItemAnamorphosis = true;
-            this.skinToolStrip1.ItemBorder = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
-            this.skinToolStrip1.ItemBorderShow = true;
-            this.skinToolStrip1.ItemHover = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
-            this.skinToolStrip1.ItemPressed = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(148)))), ((int)(((byte)(212)))));
-            this.skinToolStrip1.ItemRadius = 4;
-            this.skinToolStrip1.ItemRadiusStyle = CCWin.SkinClass.RoundStyle.All;
-            this.skinToolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripButton1,
-            this.toolStripButton2,
-            this.toolStripButton3});
-            this.skinToolStrip1.Location = new System.Drawing.Point(295, 50);
-            this.skinToolStrip1.Name = "skinToolStrip1";
-            this.skinToolStrip1.RadiusStyle = CCWin.SkinClass.RoundStyle.All;
-            this.skinToolStrip1.Size = new System.Drawing.Size(505, 42);
-            this.skinToolStrip1.SkinAllColor = true;
-            this.skinToolStrip1.TabIndex = 21;
-            this.skinToolStrip1.Text = "skinToolStrip1";
-            this.skinToolStrip1.TitleAnamorphosis = true;
-            this.skinToolStrip1.TitleColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(228)))), ((int)(((byte)(236)))));
-            this.skinToolStrip1.TitleRadius = 4;
-            this.skinToolStrip1.TitleRadiusStyle = CCWin.SkinClass.RoundStyle.All;
-            // 
-            // toolStripButton1
-            // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(39, 39);
-            this.toolStripButton1.Text = "toolStripButton1";
-            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
-            // 
-            // toolStripButton2
-            // 
-            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
-            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(39, 39);
-            this.toolStripButton2.Text = "toolStripButton2";
-            // 
-            // toolStripButton3
-            // 
-            this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
-            this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton3.Name = "toolStripButton3";
-            this.toolStripButton3.Size = new System.Drawing.Size(39, 39);
-            this.toolStripButton3.Text = "toolStripButton3";
             // 
             // MetroControlDemo
             // 
@@ -621,6 +664,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
             this.ClientSize = new System.Drawing.Size(800, 672);
+            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.wellsMetroCheckBox1);
+            this.Controls.Add(this.ucCheckBox1);
             this.Controls.Add(this.skinToolStrip1);
             this.Controls.Add(this.skinButton1);
             this.Controls.Add(this.button1);
@@ -643,9 +689,9 @@
             this.menuMain.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.wellsMetroStyleManager1)).EndInit();
             this.skinToolStrip1.ResumeLayout(false);
             this.skinToolStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.wellsMetroStyleManager1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -693,5 +739,8 @@
         private System.Windows.Forms.ToolStripButton toolStripButton1;
         private System.Windows.Forms.ToolStripButton toolStripButton2;
         private System.Windows.Forms.ToolStripButton toolStripButton3;
+        private Wells.WellsMetroControl.Controls.UCCheckBox ucCheckBox1;
+        private Wells.WellsFramework.Controls.WellsMetroCheckBox wellsMetroCheckBox1;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }

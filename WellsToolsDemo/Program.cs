@@ -304,14 +304,14 @@ namespace WellsToolsDemo
             //clsSerialize theapp = new clsSerialize();
             //Application.Run(theapp);
 
-            HOperatorSet.ReadImage(out HObject img, "D:\\0.jpg");
-            HOperatorSet.GetImagePointer3(img, out HTuple R, out HTuple G, out HTuple B, out HTuple type, out HTuple w, out HTuple h);
+            //HOperatorSet.ReadImage(out HObject img, "D:\\0.jpg");
+            //HOperatorSet.GetImagePointer3(img, out HTuple R, out HTuple G, out HTuple B, out HTuple type, out HTuple w, out HTuple h);
 
             //Bitmap bmp = new Bitmap("D:\\mul.bmp");
             //Bitmap2HObjectBpp24(bmp, out HObject img);
             //HOperatorSet.WriteImage(img, "bmp", 0, "d:\\1.bmp");
-            
-            Application.Run(new MetroControlDemo());
+
+            Application.Run(new frmHalcon());
         }
 
         private static void UIThreadException(object sender, ThreadExceptionEventArgs t)
