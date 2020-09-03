@@ -91,9 +91,9 @@
             // 
             // chkTopMost
             // 
+            resources.ApplyResources(this.chkTopMost, "chkTopMost");
             this.chkTopMost.BackColor = System.Drawing.Color.Transparent;
             this.chkTopMost.Checked = false;
-            resources.ApplyResources(this.chkTopMost, "chkTopMost");
             this.chkTopMost.ForeColor = System.Drawing.Color.White;
             this.chkTopMost.Name = "chkTopMost";
             this.chkTopMost.TextValue = "总是最前";
@@ -109,11 +109,14 @@
             this.Controls.Add(this.btnClearLog);
             this.Controls.Add(this.btnOpenLog);
             this.Controls.Add(this.libView);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.Name = "frm_Log";
+            this.ShowBorder = true;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frm_Log_FormClosing);
             this.VisibleChanged += new System.EventHandler(this.frm_Log_VisibleChanged);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 

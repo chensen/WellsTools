@@ -91,6 +91,12 @@
     <Compile Include="frmHalcon.Designer.cs">
       <DependentUpon>frmHalcon.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmHWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmHWindow.Designer.cs">
+      <DependentUpon>frmHWindow.cs</DependentUpon>
+    </Compile>
     <Compile Include="HWindowCtrlDemo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -137,6 +143,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmHalcon.resx">
       <DependentUpon>frmHalcon.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmHWindow.resx">
+      <DependentUpon>frmHWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HWindowCtrlDemo.resx">
       <DependentUpon>HWindowCtrlDemo.cs</DependentUpon>

@@ -504,6 +504,11 @@ namespace Wells.Controls.ImageDoc
             this._roiController.zoomWindowImage();
         }
 
+        public void zoomImage(bool bZoomIn)
+        {
+            this._hWndControl.zoomImage(bZoomIn);
+        }
+
         public void moveWindowImage()
         {
             this._roiController.moveWindowImage();

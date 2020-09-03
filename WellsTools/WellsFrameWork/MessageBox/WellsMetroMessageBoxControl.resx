@@ -120,274 +120,503 @@
   <data name="&gt;&gt;tlpBody.Name" xml:space="preserve">
     <value>tlpBody</value>
   </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="metroButton1.TabIndex" type="System.Int32, mscorlib">
+  <data name="&gt;&gt;tlpBody.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tlpBody.Parent" xml:space="preserve">
+    <value>panelbody</value>
+  </data>
+  <data name="&gt;&gt;tlpBody.ZOrder" xml:space="preserve">
     <value>0</value>
-  </data>
-  <data name="pnlBottom.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;titleLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="panelbody.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="metroButton3.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Right</value>
-  </data>
-  <data name="&gt;&gt;messageLabel.Name" xml:space="preserve">
-    <value>messageLabel</value>
-  </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="titleLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>80, 5</value>
-  </data>
-  <data name="messageLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Left, Right</value>
-  </data>
-  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 5, 4, 5</value>
-  </data>
-  <data name="metroButton2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>89, 37</value>
-  </data>
-  <data name="metroButton3.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
-  <data name="metroButton1.Text" xml:space="preserve">
-    <value>button1</value>
-  </data>
-  <data name="&gt;&gt;metroButton2.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="panelbody.Size" type="System.Drawing.Size, System.Drawing">
-    <value>804, 211</value>
-  </data>
-  <data name="&gt;&gt;metroButton3.ZOrder" xml:space="preserve">
-    <value>0</value>
+  <data name="tlpBody.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="messageLabel" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="pnlBottom" Row="3" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="titleLabel" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,10,Percent,80,Percent,10" /&gt;&lt;Rows Styles="Absolute,5,Absolute,30,Percent,100,Absolute,40" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
   <data name="panelbody.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
-  <data name="metroButton3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>89, 37</value>
-  </data>
-  <data name="tlpBody.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="messageLabel" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="pnlBottom" Row="3" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="titleLabel" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,10,Percent,80,Percent,10" /&gt;&lt;Rows Styles="Absolute,5,Absolute,30,Percent,100,Absolute,40" /&gt;&lt;/TableLayoutSettings&gt;</value>
-  </data>
-  <data name="messageLabel.Text" xml:space="preserve">
-    <value>message here</value>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="panelbody.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
   </data>
   <data name="panelbody.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
   </data>
-  <data name="&gt;&gt;pnlBottom.Parent" xml:space="preserve">
-    <value>tlpBody</value>
-  </data>
-  <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
-    <value>Manual</value>
-  </data>
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+  <data name="panelbody.Size" type="System.Drawing.Size, System.Drawing">
     <value>804, 211</value>
   </data>
-  <data name="metroButton3.Text" xml:space="preserve">
-    <value>button3</value>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="panelbody.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;panelbody.Name" xml:space="preserve">
+    <value>panelbody</value>
+  </data>
+  <data name="&gt;&gt;panelbody.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;panelbody.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;panelbody.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="tlpBody.ColumnCount" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="messageLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
+  </data>
+  <data name="messageLabel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>思源黑体 CN Normal, 13pt</value>
+  </data>
+  <data name="messageLabel.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
   </data>
   <data name="messageLabel.Location" type="System.Drawing.Point, System.Drawing">
     <value>83, 35</value>
   </data>
+  <data name="messageLabel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 0, 0, 0</value>
+  </data>
+  <data name="messageLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>640, 136</value>
+  </data>
+  <data name="messageLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="messageLabel.Text" xml:space="preserve">
+    <value>message here</value>
+  </data>
+  <data name="&gt;&gt;messageLabel.Name" xml:space="preserve">
+    <value>messageLabel</value>
+  </data>
+  <data name="&gt;&gt;messageLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;messageLabel.Parent" xml:space="preserve">
     <value>tlpBody</value>
+  </data>
+  <data name="&gt;&gt;messageLabel.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;metroButton3.Name" xml:space="preserve">
+    <value>metroButton3</value>
+  </data>
+  <data name="&gt;&gt;metroButton3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;metroButton3.Parent" xml:space="preserve">
+    <value>pnlBottom</value>
+  </data>
+  <data name="&gt;&gt;metroButton3.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;metroButton2.Name" xml:space="preserve">
+    <value>metroButton2</value>
+  </data>
+  <data name="&gt;&gt;metroButton2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;metroButton2.Parent" xml:space="preserve">
+    <value>pnlBottom</value>
+  </data>
+  <data name="&gt;&gt;metroButton2.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;metroButton1.Name" xml:space="preserve">
+    <value>metroButton1</value>
+  </data>
+  <data name="&gt;&gt;metroButton1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;metroButton1.Parent" xml:space="preserve">
+    <value>pnlBottom</value>
+  </data>
+  <data name="&gt;&gt;metroButton1.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="pnlBottom.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="pnlBottom.Location" type="System.Drawing.Point, System.Drawing">
+    <value>80, 171</value>
+  </data>
+  <data name="pnlBottom.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="pnlBottom.Size" type="System.Drawing.Size, System.Drawing">
+    <value>643, 40</value>
+  </data>
+  <data name="pnlBottom.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;pnlBottom.Name" xml:space="preserve">
+    <value>pnlBottom</value>
+  </data>
+  <data name="&gt;&gt;pnlBottom.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;pnlBottom.Parent" xml:space="preserve">
+    <value>tlpBody</value>
+  </data>
+  <data name="&gt;&gt;pnlBottom.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="titleLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="titleLabel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>思源黑体 CN Normal, 16pt</value>
+  </data>
+  <data name="titleLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>80, 5</value>
   </data>
   <data name="titleLabel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
   </data>
   <data name="titleLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>163, 30</value>
-  </data>
-  <data name="messageLabel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 0, 0, 0</value>
-  </data>
-  <data name="tlpBody.Font" type="System.Drawing.Font, System.Drawing">
-    <value>微软雅黑, 12pt</value>
-  </data>
-  <data name="metroButton2.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;pnlBottom.Name" xml:space="preserve">
-    <value>pnlBottom</value>
-  </data>
-  <data name="&gt;&gt;metroButton3.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tlpBody.Parent" xml:space="preserve">
-    <value>panelbody</value>
-  </data>
-  <data name="&gt;&gt;metroButton3.Name" xml:space="preserve">
-    <value>metroButton3</value>
-  </data>
-  <data name="&gt;&gt;panelbody.Name" xml:space="preserve">
-    <value>panelbody</value>
-  </data>
-  <data name="&gt;&gt;metroButton2.Parent" xml:space="preserve">
-    <value>pnlBottom</value>
-  </data>
-  <data name="metroButton2.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Right</value>
-  </data>
-  <data name="messageLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;metroButton3.Parent" xml:space="preserve">
-    <value>pnlBottom</value>
-  </data>
-  <data name="&gt;&gt;tlpBody.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="messageLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>640, 136</value>
-  </data>
-  <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;panelbody.Parent" xml:space="preserve">
-    <value>$this</value>
+    <value>146, 30</value>
   </data>
   <data name="titleLabel.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
-  <data name="&gt;&gt;pnlBottom.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;metroButton2.Name" xml:space="preserve">
-    <value>metroButton2</value>
-  </data>
-  <data name="messageLabel.Font" type="System.Drawing.Font, System.Drawing">
-    <value>微软雅黑, 12pt</value>
-  </data>
-  <data name="pnlBottom.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
-  </data>
-  <data name="metroButton3.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="panelbody.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="tlpBody.ColumnCount" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;messageLabel.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="tlpBody.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="&gt;&gt;metroButton1.Name" xml:space="preserve">
-    <value>metroButton1</value>
-  </data>
   <data name="titleLabel.Text" xml:space="preserve">
     <value>message title</value>
   </data>
-  <data name="&gt;&gt;pnlBottom.ZOrder" xml:space="preserve">
-    <value>1</value>
+  <data name="&gt;&gt;titleLabel.Name" xml:space="preserve">
+    <value>titleLabel</value>
   </data>
-  <data name="tlpBody.Size" type="System.Drawing.Size, System.Drawing">
-    <value>804, 211</value>
-  </data>
-  <data name="pnlBottom.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="metroButton2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>459, 0</value>
-  </data>
-  <data name="metroButton1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>364, 0</value>
-  </data>
-  <data name="&gt;&gt;messageLabel.Type" xml:space="preserve">
+  <data name="&gt;&gt;titleLabel.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;metroButton1.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="metroButton3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>554, 0</value>
-  </data>
-  <data name="metroButton1.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
-  <data name="metroButton2.Text" xml:space="preserve">
-    <value>button2</value>
-  </data>
-  <data name="pnlBottom.Size" type="System.Drawing.Size, System.Drawing">
-    <value>643, 40</value>
-  </data>
-  <data name="&gt;&gt;metroButton2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="tlpBody.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="pnlBottom.Location" type="System.Drawing.Point, System.Drawing">
-    <value>80, 171</value>
-  </data>
-  <data name="metroButton1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>89, 37</value>
-  </data>
-  <data name="&gt;&gt;panelbody.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tlpBody.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;titleLabel.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="tlpBody.RowCount" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="titleLabel.Font" type="System.Drawing.Font, System.Drawing">
-    <value>微软雅黑, 16pt, style=Bold, Underline</value>
-  </data>
-  <data name="titleLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="&gt;&gt;metroButton1.Parent" xml:space="preserve">
-    <value>pnlBottom</value>
-  </data>
-  <data name="$this.Text" xml:space="preserve">
-    <value>提示信息</value>
-  </data>
-  <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI Light, 12pt</value>
   </data>
   <data name="&gt;&gt;titleLabel.Parent" xml:space="preserve">
     <value>tlpBody</value>
   </data>
-  <data name="metroButton1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+  <data name="&gt;&gt;titleLabel.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="tlpBody.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="tlpBody.Font" type="System.Drawing.Font, System.Drawing">
+    <value>微软雅黑, 12pt</value>
+  </data>
+  <data name="tlpBody.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="tlpBody.RowCount" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="tlpBody.Size" type="System.Drawing.Size, System.Drawing">
+    <value>804, 211</value>
+  </data>
+  <data name="tlpBody.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;tlpBody.Name" xml:space="preserve">
+    <value>tlpBody</value>
+  </data>
+  <data name="&gt;&gt;tlpBody.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tlpBody.Parent" xml:space="preserve">
+    <value>panelbody</value>
+  </data>
+  <data name="&gt;&gt;tlpBody.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="tlpBody.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="messageLabel" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="pnlBottom" Row="3" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="titleLabel" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,10,Percent,80,Percent,10" /&gt;&lt;Rows Styles="Absolute,5,Absolute,30,Percent,100,Absolute,40" /&gt;&lt;/TableLayoutSettings&gt;</value>
+  </data>
+  <data name="metroButton3.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="metroButton3.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="metroButton3.Font" type="System.Drawing.Font, System.Drawing">
+    <value>思源黑体 CN Normal, 13pt</value>
+  </data>
+  <data name="metroButton3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>554, 0</value>
+  </data>
+  <data name="metroButton3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>89, 37</value>
+  </data>
+  <data name="metroButton3.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="metroButton3.Text" xml:space="preserve">
+    <value>button3</value>
+  </data>
+  <data name="&gt;&gt;metroButton3.Name" xml:space="preserve">
+    <value>metroButton3</value>
+  </data>
+  <data name="&gt;&gt;metroButton3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;metroButton3.Parent" xml:space="preserve">
+    <value>pnlBottom</value>
+  </data>
+  <data name="&gt;&gt;metroButton3.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="metroButton2.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
   </data>
   <data name="metroButton2.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
   </data>
-  <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>WellsMetroMessageBoxControl</value>
+  <data name="metroButton2.Font" type="System.Drawing.Font, System.Drawing">
+    <value>思源黑体 CN Normal, 13pt</value>
   </data>
-  <data name="&gt;&gt;panelbody.ZOrder" xml:space="preserve">
+  <data name="metroButton2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>459, 0</value>
+  </data>
+  <data name="metroButton2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>89, 37</value>
+  </data>
+  <data name="metroButton2.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
+  </data>
+  <data name="metroButton2.Text" xml:space="preserve">
+    <value>button2</value>
+  </data>
+  <data name="&gt;&gt;metroButton2.Name" xml:space="preserve">
+    <value>metroButton2</value>
+  </data>
+  <data name="&gt;&gt;metroButton2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;metroButton2.Parent" xml:space="preserve">
+    <value>pnlBottom</value>
+  </data>
+  <data name="&gt;&gt;metroButton2.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="metroButton1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="metroButton1.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="metroButton1.Font" type="System.Drawing.Font, System.Drawing">
+    <value>思源黑体 CN Normal, 13pt</value>
+  </data>
+  <data name="metroButton1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>364, 0</value>
+  </data>
+  <data name="metroButton1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>89, 37</value>
+  </data>
+  <data name="metroButton1.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="metroButton1.Text" xml:space="preserve">
+    <value>button1</value>
+  </data>
+  <data name="&gt;&gt;metroButton1.Name" xml:space="preserve">
+    <value>metroButton1</value>
   </data>
   <data name="&gt;&gt;metroButton1.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="tlpBody.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
+  <data name="&gt;&gt;metroButton1.Parent" xml:space="preserve">
+    <value>pnlBottom</value>
   </data>
-  <data name="&gt;&gt;titleLabel.Name" xml:space="preserve">
-    <value>titleLabel</value>
+  <data name="&gt;&gt;metroButton1.ZOrder" xml:space="preserve">
+    <value>2</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>804, 211</value>
+  </data>
+  <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
+    <value>思源黑体 CN Normal, 9pt</value>
+  </data>
+  <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        AAABAAEAMDAAAAEAIACoJQAAFgAAACgAAAAwAAAAYAAAAAEAIAAAAAAAACQAAAAAAAAAAAAAAAAAAAAA
+        AAD+/v7////////////+/v7///////7+/v///////v7+/////////////v7+/////////////v7+////
+        /////////v7+/////////////v7+/////////////v7+/////////////v7+/////////////v7+////
+        /////////v7+/////////////v7+/////////////v7+/////////////v7+/////////////v7+////
+        /////////v7+///////+/v7//v7+//7+/v/+/v7//v7+//7+/v/+/v7//v7+//7+/v/+/v7//v7+//7+
+        /v/+/v7//v7+//7+/v/+/v7//v7+//7+/v/+/v7//v7+//7+/v/+/v7//v7+//7+/v/+/v7//v7+//7+
+        /v/+/v7//v7+//7+/v/+/v7//v7+//7+/v/+/v7//v7+//7+/v/+/v7//v7+//7+/v/+/v7//v7+//7+
+        /v/+/v7//v7+//7+/v/+/v7//v7+//7+/v//////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////////
+        ///////////////////////////////////////////////////+/v7////////////+/v7///////7+
+        /v///////v7+/////////////v7+/////////////v7+/////////////v7+/////////////v7+////
+        /////////v7+/////////////v7+/////////////v7+/////////////v7+/////////////v7+////
+        /////////v7+/////////////v7+/////////////v7+/////////////v7+///////+/v7//v7+//7+
+        /v/+/v7//v7+//7+/v/+/v7//v7+//7+/v/+/v7//v7+//7+/v/+/v7//v7+//7+/v/+/v7//v7+//7+
+        /v/+/v7//v7+//7+/v/+/v7//v7+//7+/v/+/v7//v7+//7+/v/+/v7//v7+//7+/v/+/v7//v7+//7+
+        /v/+/v7//v7+//7+/v/+/v7//v7+//7+/v/+/v7//v7+//7+/v/+/v7//v7+//7+/v/+/v7//v7+//7+
+        /v//////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////+PXx/7eRZv/o287/////////////////////////
+        ////////////////////////////////////////////////////////////////////////////////
+        ///////////////////+/v7////////////+/v7///////7+/v///////v7+/////////////v7+////
+        /////////v7+/////////////v7+/////////////v7+///////+/v7/vZhk/5hfFv/dy7T//v7+////
+        /////////v7+/////////////v7+/////////////v7+/////////////v7+/////////////v7+////
+        /////////v7+/////////////v7+///////+/v7//v7+//7+/v/+/v7//v7+//7+/v/+/v7//v7+//7+
+        /v/+/v7//v7+//7+/v/+/v7//v7+//7+/v/+/v7//v7+//7+/v/+/v7//v7+//7+/v/q3sn/oWwS/55n
+        Ev/w6Nz//v7+//7+/v/+/v7//v7+//7+/v/+/v7//v7+//7+/v/+/v7//v7+//7+/v/+/v7//v7+//7+
+        /v/+/v7//v7+//7+/v/+/v7//v7+//7+/v/+/v7//v7+//7+/v//////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////////
+        ///DoF3/pnMU/6t8KP/+/v7/////////////////////////////////////////////////////////
+        ///////////////////////////////////////////////////////////////////+/v7/////////
+        ///+/v7///////7+/v///////v7+/////////////v7+/////////////v7+/////////////v7+////
+        /////////v7+//Xw5f+vfR7/rHkZ/8ioa/////7//v7+/////////////v7+/////////////v7+//79
+        +//v5M3/28OX/8ShYf+sfTb/tIxe//79/f///////v7+/////////////v7+/////////////v7+////
+        ///+/v7//v7+//7+/v/+/v7//v7+//7+/v/+/v7//v7+//7+/v/+/v7//v7+//7+/v/+/v7//v7+//7+
+        /v/+/v7//v7+//7+/v/+/v7//v7+/9zEl/+0gSL/sX8f/+XVt//+/v7//v7+//7+/v/+/v7//v7+//7+
+        /v/179b/3sh5/8+uVf/Wunz/4s+r/+7k0f/6+PT//v7+//7+/v/+/v7//v7+//7+/v/+/v7//v7+//7+
+        /v/+/v7//v7+//7+/v//////////////////////////////////////////////////////////////
+        //////////////////////////////Tu4//Kq3L/59rB/8egTv+5hyX/vI01//z7+P//////////////
+        //////////////Xw4//Rt3n/0rqT/9/Ovv/39PD/////////////////////////////////////////
+        ///////////////////////////////////+/v7////////////+/v7///////7+/v///////v7+////
+        /////////v7+/////////////v7+///////69/L/1LmF/659IP+odBX/59i5/7+QJP+9jST/2r+I////
+        /////////v7+//7+/v/k1sb/s4pe/5FWGf+OURT/jlAU/45QE/+QVBn/u5dz//j18v////7//v7+////
+        /////////v7+/////////////v7+/////////////v7+///////+/v7//v7+//7+/v/+/v7//v7+//7+
+        /v/+/v7//v7+//7+/v/+/v7//v7+//7+/v/+/v7//v7+/+fXt/+8jzr/sH0e/6x5Gf+ndBT/4MyZ/8GW
+        I//ClSj/9/Ll//7+/v/+/v7/6+HV/7KIWP+TWRf/klcW/5FWFf+RVRT/j1MU/49SFP+OURT/jlAT/6Ny
+        Qf/49PD//v7+//7+/v/+/v7//v7+//7+/v/+/v7//v7+//7+/v/+/v7//v7+//7+/v//////////////
+        ///////////////////////////////////////////////////69/D/0rJv/7iHJf+0giP/sH0e/6t5
+        Gf+ncxT/2cF0/8SdIP/awXn//v7+//v59v/HqH//mWIb/5ZdF/+VXBj/lFsY/5NZF/+TWBb/klcV/5FW
+        FP+QVBT/j1MU/45SFP+0jGP//v7+////////////////////////////////////////////////////
+        ///+/v7////////////+/v7///////7+/v///////v7+/////////////v7+//Hnz//GnT7/vIsk/7iG
+        Jf+0gSL/r30d/6t4GP+mcxT/07dR/8mlIf/38+P/7OHR/6t9N/+bYxP/mmIT/5lhFf+YYBb/l18X/5Zd
+        GP+VXBj/lFoY/5NZF/+SWBb/klcV/5FVFP+QVBX/5trM/////////////v7+/////////////v7+////
+        /////////v7+///////+/v7//v7+//7+/v/+/v7//v7+//7+/v/+/v7//v7+//7+/v/+/v7/6Nmu/8OY
+        Kv++jyP/u4ok/7iGJf+0gSL/r3wd/6p4GP+mchT/za42/+DMef/bx6b/o3Aa/59pEf+eZxH/nWYS/5xk
+        Ev+bYxP/mmIU/5lhFf+YYBb/l14X/5ZdGP+VWxj/lFoY/5NZF/+SWBb/vJhw//7+/v/+/v7//v7+//7+
+        /v/+/v7//v7+//7+/v/+/v7//v7+//7+/v////////////////////////////////////////////7+
+        /v/k05v/w5kj/8CUI/++jyP/u4ok/7eFJf+zgSL/rnwc/6p3F/+lchP/xaIj/8qrbP+jbxL/om4S/6Fs
+        Ef+gaxH/n2oR/55pEf+dZxL/nGUS/5tkE/+aYxP/mmIU/5lhFf+YXxb/l14X/5VcGP+VWxj/n2sv//79
+        /f/////////////////////////////////////////////////+/v7////////////+/v7///////7+
+        /v///////v7+/+fXnv/Fnh//wpgj/8CTI/++jiP/uokk/7eFJP+zgCH/rnsc/6p3F/+lcRP/soUY/6Zz
+        FP+mchP/pXET/6RwEv+jbxL/om0R/6FsEv+gaxH/n2oR/55oEf+dZhL/nGUS/5tkE/+aYxP/mmEU/5hg
+        Fv+XXxf/ll0X//Ls5P///////v7+/////////////v7+/////////////v7+///////+/v7//v7+//7+
+        /v/+/v7//v7+//7+/v/+/v7/8OfA/8ikH//FnSD/wpgj/8CTI/+9jiP/uokk/7aEJP+ygCH/t4o1/9K3
+        hP/cyKT/tos6/6l2Fv+odRX/p3QU/6ZzFP+lchP/pHES/6NwEv+jbhL/om0R/6FsEv+gaxH/n2kR/55o
+        Ef+dZhL/nGUS/5tjE/+aYhP/mWEV/+LSvf/+/v7//v7+//7+/v/+/v7//v7+//7+/v/+/v7//v7+//7+
+        /v/////////////////////////////////8+/X/z7Ay/8eiHP/EnSD/wpcj/8CSI/+9jST/uogk/7aD
+        JP/JpmT/+/r2//7+/v/Gpmr/1b2O/6x5Gf+reBj/qncX/6l2Fv+odRX/p3QU/6ZzFP+lchP/pHES/6Nv
+        Ev+ibhL/oW0R/6BrEv+gahH/n2kR/55nEf+dZRL/nGQS/9fBof//////////////////////////////
+        ///////////////////////////////////+/v7///////7+/v/o2p7/yaYZ/8eiHf/EnCH/wpcj/7+S
+        I/+9jST/uogk/7aDJP/k0bD//v7+/97Kpf+zhTD/6t3E/658HP+texv/rHoa/6x5Gf+reBj/qncX/6l2
+        Fv+odRX/p3MU/6ZyE/+lcRP/pHAS/6NvEv+ibhH/oWwR/6BrEv+fahH/nmkR/9C2jP///////v7+////
+        /////////v7+/////////////v7+///////+/v7//v7+//7+/v/+/v7//v7+//7+/v/ZwVz/yaYZ/8eh
+        Hf/DnCH/wpYj/7+RI/+8jCT/uYck/7WDI/+4ijT/xJ5Y/698Hf+4jDr/+/n1/7OCJv+wfR7/r3wc/657
+        HP+tehv/rHkZ/6t4GP+reBj/qncX/6h1Fv+ndBX/p3MU/6ZyE/+lcRP/pHAS/6NvEv+ibRH/oWwS/8mr
+        eP/+/v7//v7+//7+/v/+/v7//v7+//7+/v/+/v7//v7+//7+/v//////////////////////////////
+        ///UuUX/yaUZ/8ehHf/DmyH/wZYj/7+RI/+8jCT/uYcl/7WCI/+0giP/s4Ei/7F+H/+5jTr//v7+/8ei
+        XP+ygCH/sn8g/7B+H/+vfR3/rnwc/657G/+tehr/rHkZ/6t4GP+qdxf/qXYW/6h1Ff+ndBT/pnMU/6Vy
+        E/+kcRL/o3AS/8qsd///////////////////////////////////////////////////////////////
+        ///+/v7///////7+/v/Vu0r/yKUZ/8agHv/DmyL/wZUj/7+QI/+8iyT/uYYl/7eFJP+4hiX/toMk/7SB
+        Iv+0gyf//fz7/+HMpv+1giT/tIIi/7OBIv+ygCH/sX4g/7B+Hv+vfR3/rnwc/617G/+tehr/rHkZ/6t4
+        GP+qdxf/qXYW/6h1Ff+ndBT/pnMU/8uueP///////v7+/////////////v7+/////////////v7+////
+        ///+/v7//v7+//7+/v/+/v7//v7+//7+/v/dyG7/yKUa/8agH//DmiL/wZUj/7+QI/+8iyT/uYcl/7uK
+        JP+6iST/uIYl/7aEJP+0giL/8+ze//n17v+5iCr/toQk/7WDJP+1giP/tIEi/7OAIf+yfyD/sX4f/7B9
+        Hv+vfB3/rnwc/617G/+sehr/rHkZ/6t4GP+qdxf/qXYW/82wef/+/v7//v7+//7+/v/+/v7//v7+//7+
+        /v/+/v7//v7+//7+/v/////////////////////////////////q3qf/yKQa/8afH//DmiL/wZQj/76P
+        I/+7iiT/vIwj/76OI/+8jCT/uokk/7mHJf+3hCT/4s+r//7+/v/SsnP/uYck/7iGJf+3hSX/toQk/7WD
+        JP+0giP/tIEi/7OAIf+yfyD/sX4f/7B9Hv+vfB3/rnsb/616Gv+seRn/q3gY/9K3hf//////////////
+        ///////////////////////////////////////////////////+/v7///////7+/v/6+O3/yaYg/8Wf
+        H//CmSL/wJQj/76PI/+8jCT/wJMi/7+RIv++jiP/vIwk/7uJJP+5hyX/zq1s//7+/v/x6NT/u4ol/7qI
+        JP+5hyT/uIYl/7iFJf+3hST/toQk/7WCJP+0giP/s4Ei/7OAIf+xfyD/sH4f/699Hf+ufBz/rnsb/9vF
+        m////////v7+/////////////v7+/////////////v7+///////+/v7//v7+//7+/v/+/v7//v7+//7+
+        /v/+/v7/2cFm/8WeH//CmSL/wJMi/76OI//AlCP/wpYj/8CUI/+/kSL/vo8j/72MJP+7iiT/vIws//j0
+        7P/+/v7/z61k/7yLJP+7iiT/uokk/7qIJP+5hyT/uIYl/7eFJf+2hCT/toMk/7WCI/+0giL/s4Ai/7KA
+        If+xfiD/sH0e/+bWuP/+/v7//v7+//7+/v/+/v7//v7+//7+/v/+/v7//v7+//7+/v//////////////
+        ////////////////////////8OfF/8SdIP/CmCP/wJMi/7+QI//EnCD/wpoi/8KXI//BlCP/v5Ii/76P
+        I/+9jST/u4ok/9e7gf///v7/5tSx/72NJP+9jST/vIwk/7yLJP+7iiT/uokk/7qIJf+5hyX/uIYl/7eF
+        Jf+2hCT/tYMk/7WCI/+0gSL/s4Ah//Lq2v//////////////////////////////////////////////
+        ///////////////////+/v7///////7+/v///////v7+/9CxT//ClyP/wJIj/8OZIP/GoB//xJ0g/8Oa
+        Iv/ClyP/wZUj/8CSIv++kCP/vY0k/7yMJf/l0qz/5dOw/7uLJP++jyP/vo8j/72OJP+9jST/vIwk/7uL
+        JP+7iST/uokk/7mIJP+5hyX/uIYl/7eFJP+2hCT/uYgu//38+////////v7+/////////////v7+////
+        /////////v7+///////+/v7//v7+//7+/v/+/v7//v7+//7+/v/+/v7//v7+/+3iv//ClyP/wJMi/8ij
+        Gv/Hoxv/x6Ae/8SdIP/DmyH/wpgj/8GVI//AkyL/v5Aj/72OI/+8iyT/uokk/7mHJP++kCL/v5Ei/7+Q
+        I/++jyP/vo4k/72NJP+9jCT/vIsk/7uKJP+7iST/uogk/7mHJf+4hiX/yaRc//7+/v/+/v7//v7+//7+
+        /v/+/v7//v7+//7+/v/+/v7//v7+//7+/v////////////////////////////////////////////7+
+        /v/RsVz/w5of/8qoGf/JpRn/yKMb/8egHv/Fnh//w5sh/8KYI//BliP/wJMi/7+QI/++jiP/vIwk/7qJ
+        JP+6iiT/wJQj/8CTI/+/kiL/v5Ei/7+QI/++jyP/vo4k/72NJP+8jCT/vIsk/7uKJP+6iST/3cSU////
+        ///////////////////////////////////////////////////////////////////+/v7///////7+
+        /v///////v7+///////07dr/yaUi/8qpGv/KqBn/yaYZ/8ikGv/HoR7/xZ4f/8OcIf/CmSL/wZYj/8CT
+        Iv+/kSP/vo4j/7yMJP+7iiT/vI0k/8KWI//BlSP/wJQj/8CTIv+/kiL/v5Ej/76QI/++jyP/vY4j/72N
+        JP+8jCT/8unV/////////////v7+/////////////v7+/////////////v7+///////+/v7//v7+//7+
+        /v/+/v7//v7+//7+/v/+/v7//v7+//7+/v/+/v7/5dWQ/8qoGv/KqRr/yqgZ/8mmGP/IpBr/x6Ed/8Wf
+        H//EnCH/wpki/8KWI//AlCL/v5Ei/76PI/+9jST/u4ok/76QJP/CmCP/wpYj/8GVI//BlSP/wJQj/8CT
+        Iv+/kiL/v5Aj/76PI//In0T//v7+//7+/v/+/v7//v7+//7+/v/+/v7//v7+//7+/v/+/v7//v7+//7+
+        /v///////////////////////////////////////////////////////v37/9e9Uv/LqRr/y6kZ/8qo
+        Gf/Jpxj/yKQa/8eiHP/Gnx//xJ0g/8KaIv/ClyP/wZQj/7+SIv++jyP/vY0k/7uKJP+/kyP/wpoi/8KZ
+        I//ClyP/wZYj/8GVI//BlCP/wJMi/8CSIv/gypX/////////////////////////////////////////
+        ///////////////////+/v7////////////+/v7///////7+/v///////v7+/////////////v7+//n2
+        6P/PsjL/yqkZ/8uoGf/KqBn/yqcZ/8ilGf/Hoxz/xqAe/8SdIP/DmiL/wpcj/8GVI//AkiL/vpAj/72N
+        JP+8iyT/v5Mi/8OcIf/DmyH/wpoj/8KYI//ClyP/wpYj/8OYKf/59ev//v7+/////////////v7+////
+        /////////v7+/////////////v7+///////+/v7//v7+//7+/v/+/v7//v7+//7+/v/+/v7//v7+//7+
+        /v/+/v7//v7+//7+/v/07tL/za0l/8qoGv/KqBr/yqgZ/8qoGf/IpRn/yKMb/8agHv/FniD/w5sh/8KY
+        I//BlSP/wJMi/7+QI/+9jiT/vIsk/76RIv/EnSD/xJ0g/8OcIf/DmiL/wpkj/9rBev/+/v7//v7+//7+
+        /v/+/v7//v7+//7+/v/+/v7//v7+//7+/v/+/v7//v7+//7+/v//////////////////////////////
+        //////////////////////////////////////7/8enG/8ysJP/LqRn/y6ka/8upGf/KqBn/yaYZ/8ij
+        G//HoR7/xZ4f/8ObIf/CmCP/wZYj/8CTIv+/kSP/vo4j/7yMJP+9jiP/xJwg/8WfH//EniD/xp8n//fy
+        4v/////////////////////////////////////////////////////////////////+/v7/////////
+        ///+/v7///////7+/v///////v7+/////////////v7+/////////////v7+//Hpx//NrSb/yqka/8uo
+        Gf/LqRr/yqgZ/8mmGf/IpBr/x6Ed/8WfH//DnCH/wpki/8GWI//AlCP/v5Ei/76PI/+8jCT/u4sk/8GV
+        If/GoB7/38uE//7+/v///////v7+/////////////v7+/////////////v7+/////////////v7+////
+        ///+/v7//v7+//7+/v/+/v7//v7+//7+/v/+/v7//v7+//7+/v/+/v7//v7+//7+/v/+/v7//v7+//7+
+        /v/179X/0LM1/8qoGv/KqBr/yqga/8qoGf/Jphj/yKQa/8eiHf/Gnx//xJwg/8KaIv/CliP/wJQj/7+S
+        Iv++jyP/vY0k/7uKJP/DmTv/+/ny//7+/v/+/v7//v7+//7+/v/+/v7//v7+//7+/v/+/v7//v7+//7+
+        /v/+/v7//v7+//7+/v//////////////////////////////////////////////////////////////
+        //////////////////////7/+vfr/9jAWP/KqRn/y6ka/8upGf/KqBn/yacZ/8ikGv/Hohz/xp8f/8Sd
+        IP/CmiL/wpcj/8GUI/+/kiL/vo8j/72NJP/r3b//////////////////////////////////////////
+        ///////////////////////////////////+/v7////////////+/v7///////7+/v///////v7+////
+        /////////v7+/////////////v7+/////////////v7+//7+/f/n2Zn/zKwj/8qpGf/LqRn/yqgZ/8qn
+        Gf/IpRn/x6Mc/8agHv/EnSD/w5si/8KYI//BlSP/wJIi/9q/gf/+/v7//v7+/////////////v7+////
+        /////////v7+/////////////v7+/////////////v7+////////////////////////////////////
+        ///////////////////////////////////////////////////////////////////+/v7/9/Le/9nB
+        Wv/KqBn/y6ka/8uoGf/KqBn/yaUZ/8ijG//HoB7/xZ4g/8ObIf/CmCP/0bFd//38+f//////////////
+        ///////////////////////////////////////////////////////////////////+/v7//v7+//7+
+        /v/+/v7//v7+//7+/v/+/v7//v7+//7+/v/+/v7//v7+//7+/v/+/v7//v7+//7+/v/+/v7//v7+//7+
+        /v/+/v7//v7+//7+/v/v5rz/1LpI/8qpGf/KqRr/yqgZ/8mmGf/IpBv/x6Ee/8WeH//UuWL//Pr1//7+
+        /v/+/v7//v7+//7+/v/+/v7//v7+//7+/v/+/v7//v7+//7+/v/+/v7//v7+//7+/v/+/v7//v7+//7+
+        /v/+/v7////////////+/v7///////7+/v///////v7+/////////////v7+/////////////v7+////
+        /////////v7+/////////////v7+/////////////v7+//Hqx//fy3X/0bQ4/8uqH//LqiL/1LlP/+rc
+        rf/+/v7//v7+/////////////v7+/////////////v7+/////////////v7+/////////////v7+////
+        /////////v7+////////////////////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////////////////////////v7+//39
+        +v/+/v3//v7+////////////////////////////////////////////////////////////////////
+        ///////////////////////////////////+/v7//v7+//7+/v/+/v7//v7+//7+/v/+/v7//v7+//7+
+        /v/+/v7//v7+//7+/v/+/v7//v7+//7+/v/+/v7//v7+//7+/v/+/v7//v7+//7+/v/+/v7//v7+//7+
+        /v/+/v7//v7+//7+/v/+/v7//v7+//7+/v/+/v7//v7+//7+/v/+/v7//v7+//7+/v/+/v7//v7+//7+
+        /v/+/v7//v7+//7+/v/+/v7//v7+//7+/v/+/v7//v7+//7+/v8AAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAA=
+</value>
+  </data>
+  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 5, 4, 5</value>
+  </data>
+  <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
+    <value>Manual</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>提示信息</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>WellsMetroMessageBoxControl</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>

@@ -1866,20 +1866,20 @@
     <value>hv_MenuStrip</value>
   </data>
   <data name="&gt;&gt;hv_MenuStrip.Type" xml:space="preserve">
-    <value>CCWin.SkinControl.SkinContextMenuStrip, siyar, Version=16.1.14.2, Culture=neutral, PublicKeyToken=null</value>
+    <value>CCWin.SkinControl.SkinContextMenuStrip, Qting, Version=16.1.14.2, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="mCtrl_HWindow.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
   <data name="mCtrl_HWindow.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 3</value>
+    <value>3, 4</value>
   </data>
   <data name="mCtrl_HWindow.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
   </data>
   <data name="mCtrl_HWindow.Size" type="System.Drawing.Size, System.Drawing">
-    <value>314, 234</value>
+    <value>367, 248</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="mCtrl_HWindow.TabIndex" type="System.Int32, mscorlib">
@@ -1889,7 +1889,7 @@
     <value>mCtrl_HWindow</value>
   </data>
   <data name="&gt;&gt;mCtrl_HWindow.Type" xml:space="preserve">
-    <value>hvppleDotNet.HWindowControl, hvppledotnet, Version=18.5.0.0, Culture=neutral, PublicKeyToken=4973bed59ddbf2b8</value>
+    <value>hvppleDotNet.HWindowControl, hvppledotnetxl, Version=18.11.0.1, Culture=neutral, PublicKeyToken=4973bed59ddbf2b8</value>
   </data>
   <data name="&gt;&gt;mCtrl_HWindow.Parent" xml:space="preserve">
     <value>$this</value>
@@ -1898,43 +1898,43 @@
     <value>2</value>
   </data>
   <data name="tsbtn_showMessage.Size" type="System.Drawing.Size, System.Drawing">
-    <value>154, 22</value>
+    <value>180, 22</value>
   </data>
   <data name="tsbtn_showMessage.Text" xml:space="preserve">
     <value>显示Text</value>
   </data>
   <data name="tsbtn_showROI.Size" type="System.Drawing.Size, System.Drawing">
-    <value>154, 22</value>
+    <value>180, 22</value>
   </data>
   <data name="tsbtn_showROI.Text" xml:space="preserve">
     <value>显示ROI</value>
   </data>
   <data name="tsbtn_showRegion.Size" type="System.Drawing.Size, System.Drawing">
-    <value>154, 22</value>
+    <value>180, 22</value>
   </data>
   <data name="tsbtn_showRegion.Text" xml:space="preserve">
     <value>显示Region</value>
   </data>
   <data name="tsbtn_showHat.Size" type="System.Drawing.Size, System.Drawing">
-    <value>154, 22</value>
+    <value>180, 22</value>
   </data>
   <data name="tsbtn_showHat.Text" xml:space="preserve">
     <value>显示中心十字线</value>
   </data>
   <data name="tsbtn_showStatusBar.Size" type="System.Drawing.Size, System.Drawing">
-    <value>154, 22</value>
+    <value>180, 22</value>
   </data>
   <data name="tsbtn_showStatusBar.Text" xml:space="preserve">
     <value>显示状态栏</value>
   </data>
   <data name="tsbtn_showHisto.Size" type="System.Drawing.Size, System.Drawing">
-    <value>130, 22</value>
+    <value>180, 22</value>
   </data>
   <data name="tsbtn_showHisto.Text" xml:space="preserve">
     <value>灰度直方图</value>
   </data>
   <data name="tsbtn_MeasureDistance.Size" type="System.Drawing.Size, System.Drawing">
-    <value>130, 22</value>
+    <value>180, 22</value>
   </data>
   <data name="tsbtn_MeasureDistance.Text" xml:space="preserve">
     <value>测量距离</value>
@@ -1946,19 +1946,22 @@
     <value>True</value>
   </data>
   <data name="m_CtrlHStatusLabelCtrl.Font" type="System.Drawing.Font, System.Drawing">
-    <value>微软雅黑, 9pt, style=Bold</value>
+    <value>思源黑体 CN Normal, 9pt</value>
   </data>
   <data name="m_CtrlHStatusLabelCtrl.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 217</value>
+    <value>7, 223</value>
   </data>
   <data name="m_CtrlHStatusLabelCtrl.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 3, 3, 3</value>
+    <value>3, 4, 3, 4</value>
   </data>
   <data name="m_CtrlHStatusLabelCtrl.Size" type="System.Drawing.Size, System.Drawing">
-    <value>0, 17</value>
+    <value>106, 17</value>
   </data>
   <data name="m_CtrlHStatusLabelCtrl.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
+  </data>
+  <data name="m_CtrlHStatusLabelCtrl.Text" xml:space="preserve">
+    <value>11111111111111</value>
   </data>
   <data name="&gt;&gt;m_CtrlHStatusLabelCtrl.Name" xml:space="preserve">
     <value>m_CtrlHStatusLabelCtrl</value>
@@ -1970,22 +1973,25 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;m_CtrlHStatusLabelCtrl.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>6, 12</value>
+    <value>7, 17</value>
+  </data>
+  <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
+    <value>思源黑体 CN Normal, 9pt</value>
   </data>
   <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 0, 0, 0</value>
   </data>
   <data name="$this.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 3, 3, 3</value>
+    <value>3, 4, 3, 4</value>
   </data>
   <data name="$this.Size" type="System.Drawing.Size, System.Drawing">
-    <value>320, 240</value>
+    <value>373, 256</value>
   </data>
   <data name="&gt;&gt;tsbtn_fitWindow.Name" xml:space="preserve">
     <value>tsbtn_fitWindow</value>

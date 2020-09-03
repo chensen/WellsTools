@@ -111,5 +111,37 @@ namespace WellsToolsDemo
             double h = double.Parse(str[3]);
             imageDoc2.genRect1(y1, x1, y1 + h, x1 + w, ref rois2);
         }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            string[] file = Wells.class_Public.openFiles(false, false);
+            if (file != null && file.Length > 0)
+            {
+                HImage img = new HImage(file[0]);
+                imageDoc1.displayImage(img);
+            }
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            List<object> objList = new List<object>();
+            objList.Add("message");
+            objList.Add(new HWndMessage("ABCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", 1000, 1000, 100, "red", "image"));
+            //objList.Add("message");
+            //objList.Add(new HWndMessage("我们都有一个家", 10, 10, 100, "red", "window"));
+            imageDoc1.updateImage(objList);
+        }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+            if (!timer1.Enabled)
+                timer1.Enabled = true;
+            Wells.FrmType.frm_Log.ShowDlg(true);
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            Wells.FrmType.frm_Log.Log("我们都有一个家！", 2);
+        }
     }
 }

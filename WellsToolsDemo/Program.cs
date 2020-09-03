@@ -311,7 +311,7 @@ namespace WellsToolsDemo
             //Bitmap2HObjectBpp24(bmp, out HObject img);
             //HOperatorSet.WriteImage(img, "bmp", 0, "d:\\1.bmp");
 
-            Application.Run(new frmHalcon());
+            Application.Run(new MetroControlDemo());
         }
 
         private static void UIThreadException(object sender, ThreadExceptionEventArgs t)

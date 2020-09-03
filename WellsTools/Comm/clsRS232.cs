@@ -18,6 +18,7 @@ namespace Wells.Comm
         public delegate void DataReceivedDelegate(string str);
         private DataReceivedDelegate m_pDataReceived;
         public string strReturn = string.Empty;
+        public int timeOut = 500;
 
         private byte[] buffer = new byte[200];
         private int buffer_length = 0;
@@ -98,6 +99,15 @@ namespace Wells.Comm
             m_instance.StopBits = StopBits;
             m_instance.Parity = Parity;
             openConnection();
+            #endregion
+        }
+
+        public void setTimeout(int iTimeout = 500)
+        {
+            #region 设置读取超时 *****
+
+            timeOut = iTimeout;
+
             #endregion
         }
 
@@ -186,6 +196,11 @@ namespace Wells.Comm
                     else
                         bGetSuccessful = false;
                 }
+                else
+                {
+                    bGetSuccessful = true;
+                }
+
                 if (bGetSuccessful)
                 {
                     strReturn = Encoding.UTF8.GetString(buffer);
@@ -218,18 +233,20 @@ namespace Wells.Comm
                 {
                     try
                     {
+                        buffer = new byte[200];
+                        buffer_length = 0;
+                        strReturn = string.Empty;
+
                         if (bGetReturn)
                         {
-                            buffer = new byte[200];
-                            buffer_length = 0;
-                            strReturn = string.Empty;
                             waitHandle.Reset();
                         }
+
                         strCmd += strSendEnd;
                         byte[] byteCmd = Encoding.UTF8.GetBytes(strCmd);
                         m_instance.Write(byteCmd, 0, byteCmd.Length);
                         if (bGetReturn)
-                            waitHandle.WaitOne(500);
+                            waitHandle.WaitOne(timeOut);
                         ret = strReturn;
                     }
                     catch (System.Exception exc)
@@ -267,13 +284,15 @@ namespace Wells.Comm
                 {
                     try
                     {
+                        buffer = new byte[200];
+                        buffer_length = 0;
+                        strReturn = string.Empty;
+
                         if (bGetReturn)
                         {
-                            buffer = new byte[200];
-                            buffer_length = 0;
-                            strReturn = string.Empty;
                             waitHandle.Reset();
                         }
+
                         byte[] tmpCmd = null;
                         if (byteSendEnd != null && byteSendEnd.Length > 0)
                         {
@@ -289,7 +308,7 @@ namespace Wells.Comm
                         m_instance.Write(byteCmd, 0, byteCmd.Length);
 
                         if (bGetReturn)
-                            waitHandle.WaitOne(500);
+                            waitHandle.WaitOne(timeOut);
 
                         ret = new byte[buffer.Length];
                         Array.Copy(buffer, 0, ret, 0, buffer.Length);

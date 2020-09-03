@@ -171,6 +171,9 @@ namespace Wells.WellsFramework
         {
             public Font ResolveFont(string familyName, float emSize, FontStyle fontStyle, GraphicsUnit unit)
             {
+                Font font = new Font("思源黑体 CN Normal", emSize, fontStyle, unit);
+                if (font.OriginalFontName == font.Name)
+                    return font;
                 return new Font(familyName, emSize, fontStyle, unit);
             }
         }
@@ -206,7 +209,7 @@ namespace Wells.WellsFramework
         {
             return FontResolver.ResolveFont("微软雅黑", size, FontStyle.Regular, GraphicsUnit.Pixel);
         }
-
+                     
         public static Font Default(float size)
         {
             return FontResolver.ResolveFont("微软雅黑", size, FontStyle.Regular, GraphicsUnit.Pixel);

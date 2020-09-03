@@ -23,9 +23,14 @@ namespace Wells.FrmType
         private static Mutex muLog = new Mutex();
         private static Mutex muLogCache = new Mutex();
         private List<int> listDrawMode = new List<int>();
-        private Font _font = new Font("宋体", 10f, FontStyle.Bold);
+        //private Font _font = new Font("宋体", 10f, FontStyle.Bold);
+        //private Font _font = new Font("思源黑体 CN Regular", 15F, FontStyle.Regular, GraphicsUnit.Point, ((byte)(134)));
         private int iShowWidth = 300;
         private List<string> listObj = new List<string>();
+
+        private static string strLogBackup = string.Empty;
+        private static long lLogTickBackup = 0;
+        private static bool IgnoreSameLog = false;
 
 
         public frm_Log()
@@ -211,6 +216,16 @@ namespace Wells.FrmType
             muLog.WaitOne();
             try
             {
+                if (IgnoreSameLog && (item == strLogBackup) && ((DateTime.Now.Ticks - lLogTickBackup) / 10000.0 < 500)) 
+                {
+                    strLogBackup = item;
+                    lLogTickBackup = DateTime.Now.Ticks;
+                    return;
+                }
+
+                strLogBackup = item;
+                lLogTickBackup = DateTime.Now.Ticks;
+
                 pCurrentForm.AddItem(item, iDrawMode, timeAddItem);
                 string dir = Application.StartupPath + "\\LOG";
                 if (!Directory.Exists(dir)) Directory.CreateDirectory(dir);
@@ -311,7 +326,7 @@ namespace Wells.FrmType
             timer1.Enabled = this.Visible;
         }
 
-        public static void InitDlg()
+        public static void InitDlg(bool bIgnoreSameLog = false)
         {
             if (pCurrentForm == null)
                 pCurrentForm = new frm_Log();
@@ -322,6 +337,8 @@ namespace Wells.FrmType
             pCurrentForm.Close();
             pCurrentForm.Location = new Point(Screen.PrimaryScreen.WorkingArea.Width / 2 - pCurrentForm.Width / 2, Screen.PrimaryScreen.WorkingArea.Height / 2 - pCurrentForm.Height / 2);
             pCurrentForm.StartPosition = FormStartPosition.CenterScreen;
+
+            IgnoreSameLog = bIgnoreSameLog;
         }
 
         public static void ShowDlg(bool bShow)

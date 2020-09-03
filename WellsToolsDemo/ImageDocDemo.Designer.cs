@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -35,14 +36,18 @@
             this.button5 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.button10 = new System.Windows.Forms.Button();
+            this.button9 = new System.Windows.Forms.Button();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.button8 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox5 = new System.Windows.Forms.TextBox();
-            this.imageDoc1 = new Wells.Controls.ImageDoc.ImageDoc();
+            this.button11 = new System.Windows.Forms.Button();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.imageDoc2 = new Wells.Controls.ImageDoc.ImageDoc();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.imageDoc1 = new Wells.Controls.ImageDoc.ImageDoc();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -108,6 +113,9 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.button11);
+            this.panel1.Controls.Add(this.button10);
+            this.panel1.Controls.Add(this.button9);
             this.panel1.Controls.Add(this.checkBox1);
             this.panel1.Controls.Add(this.textBox2);
             this.panel1.Controls.Add(this.button8);
@@ -125,6 +133,36 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(127, 720);
             this.panel1.TabIndex = 3;
+            // 
+            // button10
+            // 
+            this.button10.Location = new System.Drawing.Point(22, 143);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(75, 23);
+            this.button10.TabIndex = 15;
+            this.button10.Text = "button10";
+            this.button10.UseVisualStyleBackColor = true;
+            this.button10.Click += new System.EventHandler(this.button10_Click);
+            // 
+            // button9
+            // 
+            this.button9.Location = new System.Drawing.Point(22, 80);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(75, 56);
+            this.button9.TabIndex = 14;
+            this.button9.Text = "加载图片";
+            this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.button9_Click);
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(24, 179);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(72, 16);
+            this.checkBox1.TabIndex = 13;
+            this.checkBox1.Text = "选择背面";
+            this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // textBox2
             // 
@@ -169,24 +207,26 @@
             this.textBox5.Size = new System.Drawing.Size(100, 67);
             this.textBox5.TabIndex = 10;
             // 
-            // imageDoc1
+            // button11
             // 
-            this.imageDoc1.BackColor = System.Drawing.Color.Transparent;
-            this.imageDoc1.EditMode = true;
-            this.imageDoc1.Image = null;
-            this.imageDoc1.ImageMode = Wells.Controls.ImageDoc.ImageMode.Origin;
-            this.imageDoc1.Location = new System.Drawing.Point(127, 0);
-            this.imageDoc1.Margin = new System.Windows.Forms.Padding(0);
-            this.imageDoc1.Name = "imageDoc1";
-            this.imageDoc1.Padding = new System.Windows.Forms.Padding(3);
-            this.imageDoc1.Size = new System.Drawing.Size(731, 463);
-            this.imageDoc1.StaticWnd = false;
-            this.imageDoc1.TabIndex = 1;
+            this.button11.Location = new System.Drawing.Point(21, 595);
+            this.button11.Name = "button11";
+            this.button11.Size = new System.Drawing.Size(75, 23);
+            this.button11.TabIndex = 16;
+            this.button11.Text = "button11";
+            this.button11.UseVisualStyleBackColor = true;
+            this.button11.Click += new System.EventHandler(this.button11_Click);
+            // 
+            // timer1
+            // 
+            this.timer1.Interval = 1000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // imageDoc2
             // 
             this.imageDoc2.BackColor = System.Drawing.Color.Transparent;
             this.imageDoc2.EditMode = true;
+            this.imageDoc2.Font = new System.Drawing.Font("思源黑体 CN Normal", 9F);
             this.imageDoc2.Image = null;
             this.imageDoc2.ImageMode = Wells.Controls.ImageDoc.ImageMode.Origin;
             this.imageDoc2.Location = new System.Drawing.Point(130, 463);
@@ -197,21 +237,26 @@
             this.imageDoc2.StaticWnd = false;
             this.imageDoc2.TabIndex = 4;
             // 
-            // checkBox1
+            // imageDoc1
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(24, 179);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(72, 16);
-            this.checkBox1.TabIndex = 13;
-            this.checkBox1.Text = "选择背面";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.imageDoc1.BackColor = System.Drawing.Color.Transparent;
+            this.imageDoc1.EditMode = true;
+            this.imageDoc1.Font = new System.Drawing.Font("思源黑体 CN Normal", 9F);
+            this.imageDoc1.Image = null;
+            this.imageDoc1.ImageMode = Wells.Controls.ImageDoc.ImageMode.Origin;
+            this.imageDoc1.Location = new System.Drawing.Point(127, 0);
+            this.imageDoc1.Margin = new System.Windows.Forms.Padding(0);
+            this.imageDoc1.Name = "imageDoc1";
+            this.imageDoc1.Padding = new System.Windows.Forms.Padding(3);
+            this.imageDoc1.Size = new System.Drawing.Size(731, 463);
+            this.imageDoc1.StaticWnd = false;
+            this.imageDoc1.TabIndex = 1;
             // 
             // ImageDocDemo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
             this.ClientSize = new System.Drawing.Size(861, 720);
             this.Controls.Add(this.imageDoc2);
             this.Controls.Add(this.imageDoc1);
@@ -242,5 +287,9 @@
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.Button button10;
+        private System.Windows.Forms.Button button11;
+        private System.Windows.Forms.Timer timer1;
     }
 }

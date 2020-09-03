@@ -123,13 +123,16 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="btnOpenLog.Font" type="System.Drawing.Font, System.Drawing">
-    <value>宋体, 12pt, style=Bold</value>
+    <value>思源黑体 CN Regular, 15pt</value>
   </data>
   <data name="btnOpenLog.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 44</value>
+    <value>4, 44</value>
+  </data>
+  <data name="btnOpenLog.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 5, 2, 5</value>
   </data>
   <data name="btnOpenLog.Size" type="System.Drawing.Size, System.Drawing">
-    <value>123, 32</value>
+    <value>142, 46</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="btnOpenLog.TabIndex" type="System.Int32, mscorlib">
@@ -154,13 +157,16 @@
     <value>Flat</value>
   </data>
   <data name="btnClearLog.Font" type="System.Drawing.Font, System.Drawing">
-    <value>宋体, 12pt, style=Bold</value>
+    <value>思源黑体 CN Regular, 15pt</value>
   </data>
   <data name="btnClearLog.Location" type="System.Drawing.Point, System.Drawing">
-    <value>130, 44</value>
+    <value>154, 44</value>
+  </data>
+  <data name="btnClearLog.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 5, 2, 5</value>
   </data>
   <data name="btnClearLog.Size" type="System.Drawing.Size, System.Drawing">
-    <value>123, 32</value>
+    <value>142, 46</value>
   </data>
   <data name="btnClearLog.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -184,13 +190,16 @@
     <value>Flat</value>
   </data>
   <data name="btnShowCache.Font" type="System.Drawing.Font, System.Drawing">
-    <value>宋体, 12pt, style=Bold</value>
+    <value>思源黑体 CN Regular, 15pt</value>
   </data>
   <data name="btnShowCache.Location" type="System.Drawing.Point, System.Drawing">
-    <value>259, 44</value>
+    <value>305, 44</value>
+  </data>
+  <data name="btnShowCache.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 5, 2, 5</value>
   </data>
   <data name="btnShowCache.Size" type="System.Drawing.Size, System.Drawing">
-    <value>101, 32</value>
+    <value>117, 46</value>
   </data>
   <data name="btnShowCache.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -211,7 +220,7 @@
     <value>1</value>
   </data>
   <data name="libView.Font" type="System.Drawing.Font, System.Drawing">
-    <value>宋体, 11pt, style=Bold</value>
+    <value>思源黑体 CN Normal, 14.25pt</value>
   </data>
   <data name="libView.HorizontalExtent" type="System.Int32, mscorlib">
     <value>300</value>
@@ -220,13 +229,16 @@
     <value>True</value>
   </data>
   <data name="libView.ItemHeight" type="System.Int32, mscorlib">
-    <value>18</value>
+    <value>25</value>
   </data>
   <data name="libView.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 82</value>
+    <value>5, 95</value>
+  </data>
+  <data name="libView.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 5, 2, 5</value>
   </data>
   <data name="libView.Size" type="System.Drawing.Size, System.Drawing">
-    <value>533, 508</value>
+    <value>622, 629</value>
   </data>
   <data name="libView.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -246,17 +258,23 @@
   <metadata name="timer1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
+  <data name="chkTopMost.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
   <data name="chkTopMost.Font" type="System.Drawing.Font, System.Drawing">
-    <value>宋体, 12pt</value>
+    <value>思源黑体 CN Regular, 15pt</value>
   </data>
   <data name="chkTopMost.Location" type="System.Drawing.Point, System.Drawing">
-    <value>433, 45</value>
+    <value>495, 44</value>
+  </data>
+  <data name="chkTopMost.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 5, 2, 5</value>
   </data>
   <data name="chkTopMost.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>1, 1, 1, 1</value>
+    <value>2, 2, 2, 2</value>
   </data>
   <data name="chkTopMost.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 30</value>
+    <value>133, 43</value>
   </data>
   <data name="chkTopMost.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -277,13 +295,16 @@
     <value>True</value>
   </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>6, 12</value>
+    <value>7, 17</value>
   </data>
   <data name="$this.AutoSizeMode" type="System.Windows.Forms.AutoSizeMode, System.Windows.Forms">
     <value>GrowAndShrink</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>541, 595</value>
+    <value>632, 736</value>
+  </data>
+  <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
+    <value>思源黑体 CN Regular, 9pt</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -360,6 +381,9 @@
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAABgAAAAcAA
         AAPgAAAH8AAAD/gAAB/8AAA//gAAf/+AAf8=
 </value>
+  </data>
+  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 5, 2, 5</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>日志记录</value>

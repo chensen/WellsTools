@@ -74,6 +74,9 @@
             this.textBoxEx1 = new Wells.WellsMetroControl.Controls.TextBoxEx();
             this.ucCombox1 = new Wells.WellsMetroControl.Controls.UCCombox();
             this.wellsMetroStyleManager1 = new Wells.WellsFramework.Components.WellsMetroStyleManager(this.components);
+            this.skinComboBox1 = new CCWin.SkinControl.SkinComboBox();
+            this.textBoxEx3 = new Wells.WellsMetroControl.Controls.TextBoxEx();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.menuMain.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.skinToolStrip1.SuspendLayout();
@@ -357,7 +360,7 @@
             "123",
             "43",
             "ttt"});
-            this.comboBox1.Location = new System.Drawing.Point(346, 185);
+            this.comboBox1.Location = new System.Drawing.Point(461, 123);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(121, 20);
             this.comboBox1.TabIndex = 17;
@@ -482,7 +485,7 @@
             this.wellsMetroCheckBox1.ForeColor = System.Drawing.Color.White;
             this.wellsMetroCheckBox1.Location = new System.Drawing.Point(575, 486);
             this.wellsMetroCheckBox1.Name = "wellsMetroCheckBox1";
-            this.wellsMetroCheckBox1.Size = new System.Drawing.Size(152, 17);
+            this.wellsMetroCheckBox1.Size = new System.Drawing.Size(148, 17);
             this.wellsMetroCheckBox1.Style = Wells.WellsFramework.WellsMetroColorStyle.Blue;
             this.wellsMetroCheckBox1.TabIndex = 23;
             this.wellsMetroCheckBox1.Text = "wellsMetroCheckBox1";
@@ -507,7 +510,7 @@
             // wellsMetroComboBox1
             // 
             this.wellsMetroComboBox1.FormattingEnabled = true;
-            this.wellsMetroComboBox1.ItemHeight = 24;
+            this.wellsMetroComboBox1.ItemHeight = 23;
             this.wellsMetroComboBox1.Items.AddRange(new object[] {
             "fdfa",
             "fdasf",
@@ -515,7 +518,7 @@
             "2222"});
             this.wellsMetroComboBox1.Location = new System.Drawing.Point(634, 321);
             this.wellsMetroComboBox1.Name = "wellsMetroComboBox1";
-            this.wellsMetroComboBox1.Size = new System.Drawing.Size(121, 30);
+            this.wellsMetroComboBox1.Size = new System.Drawing.Size(121, 29);
             this.wellsMetroComboBox1.Style = Wells.WellsFramework.WellsMetroColorStyle.Orange;
             this.wellsMetroComboBox1.TabIndex = 19;
             this.wellsMetroComboBox1.Theme = Wells.WellsFramework.WellsMetroThemeStyle.Light;
@@ -658,12 +661,83 @@
             // 
             this.wellsMetroStyleManager1.Owner = null;
             // 
+            // skinComboBox1
+            // 
+            this.skinComboBox1.ArrowColor = System.Drawing.Color.White;
+            this.skinComboBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
+            this.skinComboBox1.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
+            this.skinComboBox1.BorderColor = System.Drawing.Color.White;
+            this.skinComboBox1.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.skinComboBox1.DropBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
+            this.skinComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.skinComboBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.skinComboBox1.Font = new System.Drawing.Font("思源黑体 CN Normal", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.skinComboBox1.ForeColor = System.Drawing.Color.Lime;
+            this.skinComboBox1.FormattingEnabled = true;
+            this.skinComboBox1.ItemBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
+            this.skinComboBox1.ItemHoverForeColor = System.Drawing.SystemColors.HighlightText;
+            this.skinComboBox1.Items.AddRange(new object[] {
+            "我们都有一个家",
+            "左进右出",
+            "右出左进",
+            "你们这样是不对的"});
+            this.skinComboBox1.Location = new System.Drawing.Point(314, 211);
+            this.skinComboBox1.MouseColor = System.Drawing.SystemColors.Highlight;
+            this.skinComboBox1.MouseGradientColor = System.Drawing.SystemColors.Highlight;
+            this.skinComboBox1.Name = "skinComboBox1";
+            this.skinComboBox1.Size = new System.Drawing.Size(142, 37);
+            this.skinComboBox1.TabIndex = 25;
+            this.skinComboBox1.WaterText = "";
+            // 
+            // textBoxEx3
+            // 
+            this.textBoxEx3.DecLength = 2;
+            this.textBoxEx3.InputType = Wells.WellsMetroControl.TextInputType.NotControl;
+            this.textBoxEx3.Location = new System.Drawing.Point(391, 578);
+            this.textBoxEx3.MaxValue = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
+            this.textBoxEx3.MinValue = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            -2147483648});
+            this.textBoxEx3.MyRectangle = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this.textBoxEx3.Name = "textBoxEx3";
+            this.textBoxEx3.OldText = null;
+            this.textBoxEx3.PromptColor = System.Drawing.Color.Gray;
+            this.textBoxEx3.PromptFont = new System.Drawing.Font("微软雅黑", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.textBoxEx3.PromptText = "";
+            this.textBoxEx3.RegexPattern = "";
+            this.textBoxEx3.Size = new System.Drawing.Size(364, 21);
+            this.textBoxEx3.TabIndex = 26;
+            this.textBoxEx3.UCHNum = -1;
+            this.textBoxEx3.UcHScrollbarEx = null;
+            this.textBoxEx3.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxEx3_KeyDown);
+            this.textBoxEx3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxEx3_KeyPress);
+            this.textBoxEx3.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.textBoxEx3_PreviewKeyDown_1);
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(391, 617);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(364, 21);
+            this.textBox1.TabIndex = 27;
+            this.textBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxEx3_KeyDown);
+            this.textBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxEx3_KeyPress);
+            // 
             // MetroControlDemo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
             this.ClientSize = new System.Drawing.Size(800, 672);
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.textBoxEx3);
+            this.Controls.Add(this.skinComboBox1);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.wellsMetroCheckBox1);
             this.Controls.Add(this.ucCheckBox1);
@@ -742,5 +816,8 @@
         private Wells.WellsMetroControl.Controls.UCCheckBox ucCheckBox1;
         private Wells.WellsFramework.Controls.WellsMetroCheckBox wellsMetroCheckBox1;
         private System.Windows.Forms.CheckBox checkBox1;
+        private CCWin.SkinControl.SkinComboBox skinComboBox1;
+        private Wells.WellsMetroControl.Controls.TextBoxEx textBoxEx3;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }

@@ -32,7 +32,7 @@ namespace WellsToolsDemo
             List<KeyValuePair<string, string>> str = new List<KeyValuePair<string, string>>();
             str.Add(new KeyValuePair<string, string>("0", "1"));
             str.Add(new KeyValuePair<string, string>("1", "2"));
-            propertyGrid1.SelectedObject = wellsMetroComboBox1;
+            propertyGrid1.SelectedObject = skinComboBox1;
             ucCombox1.Source = str;
             //uchScrollbarEx1.DataBindings.Add("ValueLow", textBoxEx1, "Text", true, DataSourceUpdateMode.OnValidation);
             //uchScrollbarEx1.ValueLow = 500.5M;
@@ -66,6 +66,29 @@ namespace WellsToolsDemo
         private void ucCheckBox1_ClickEvent(object sender, EventArgs e)
         {
             Wells.class_Public.Show(null, ucCheckBox1.Checked.ToString());
+        }
+
+        private void textBoxEx3_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            textBoxEx3.Text = e.KeyData.ToString();
+            e.IsInputKey = false;
+        }
+
+        private void textBoxEx3_KeyDown(object sender, KeyEventArgs e)
+        {
+            e.Handled = true;
+            e.SuppressKeyPress = false;
+            textBox1.Text = e.KeyData.ToString() + "---" + e.KeyCode.ToString() + "---" + e.KeyValue.ToString();
+        }
+
+        private void textBoxEx3_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //e.Handled = true;
+        }
+
+        private void textBoxEx3_PreviewKeyDown_1(object sender, PreviewKeyDownEventArgs e)
+        {
+            e.IsInputKey = false;
         }
     }
 }

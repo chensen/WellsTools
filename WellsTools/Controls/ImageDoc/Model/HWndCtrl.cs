@@ -530,6 +530,17 @@ namespace Wells.Controls.ImageDoc
             midY = (ImgRow2 - ImgRow1) / 2;
             zoomImage(midX, midY, 1 / percent / xScale);
 		}
+
+        public void zoomImage(bool bZoomIn)
+        {
+            double midX = 0, midY = 0;
+            midX = (ImgCol2 - ImgCol1) / 2;
+            midY = (ImgRow2 - ImgRow1) / 2;
+            if (bZoomIn)
+                zoomImage(midX, midY, 0.9);
+            else
+                zoomImage(midX, midY, 1 / 0.9);
+        }
         
 		/// <summary>
 		/// Recalculates the image-window-factor, which needs to be added to 

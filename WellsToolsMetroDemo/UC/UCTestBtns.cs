@@ -42,5 +42,10 @@ namespace WellsToolsMetroDemo.UC
             m_cacheColor = btn.FillColor;
             btn.FillColor = Color.Red;
         }
+
+        private void ucBtnsGroup1_SelectedItemChanged(object sender, EventArgs e)
+        {
+            //string str = ucBtnsGroup1.SelectItem[0];
+        }
     }
 }

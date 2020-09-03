@@ -59,7 +59,7 @@
             resources.ApplyResources(this.mCtrl_HWindow, "mCtrl_HWindow");
             this.mCtrl_HWindow.ImagePart = new System.Drawing.Rectangle(0, 0, 640, 480);
             this.mCtrl_HWindow.Name = "mCtrl_HWindow";
-            this.mCtrl_HWindow.WindowSize = new System.Drawing.Size(314, 234);
+            this.mCtrl_HWindow.WindowSize = new System.Drawing.Size(367, 248);
             this.mCtrl_HWindow.HMouseMove += new hvppleDotNet.HMouseEventHandler(this.HWindowControl_HMouseMove);
             this.mCtrl_HWindow.SizeChanged += new System.EventHandler(this.mCtrl_HWindow_SizeChanged);
             this.mCtrl_HWindow.Click += new System.EventHandler(this.mCtrl_HWindow_Click);
@@ -213,7 +213,7 @@
             // m_CtrlHStatusLabelCtrl
             // 
             resources.ApplyResources(this.m_CtrlHStatusLabelCtrl, "m_CtrlHStatusLabelCtrl");
-            this.m_CtrlHStatusLabelCtrl.BackColor = System.Drawing.Color.Transparent;
+            this.m_CtrlHStatusLabelCtrl.BackColor = System.Drawing.Color.White;
             this.m_CtrlHStatusLabelCtrl.ForeColor = System.Drawing.SystemColors.WindowText;
             this.m_CtrlHStatusLabelCtrl.Name = "m_CtrlHStatusLabelCtrl";
             // 

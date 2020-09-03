@@ -44,9 +44,9 @@
             // 
             // panelbody
             // 
-            resources.ApplyResources(this.panelbody, "panelbody");
             this.panelbody.BackColor = System.Drawing.Color.DarkGray;
             this.panelbody.Controls.Add(this.tlpBody);
+            resources.ApplyResources(this.panelbody, "panelbody");
             this.panelbody.Name = "panelbody";
             // 
             // tlpBody
@@ -66,11 +66,11 @@
             // 
             // pnlBottom
             // 
-            resources.ApplyResources(this.pnlBottom, "pnlBottom");
             this.pnlBottom.BackColor = System.Drawing.Color.Transparent;
             this.pnlBottom.Controls.Add(this.metroButton3);
             this.pnlBottom.Controls.Add(this.metroButton2);
             this.pnlBottom.Controls.Add(this.metroButton1);
+            resources.ApplyResources(this.pnlBottom, "pnlBottom");
             this.pnlBottom.Name = "pnlBottom";
             // 
             // metroButton3
@@ -100,8 +100,8 @@
             // 
             // WellsMetroMessageBoxControl
             // 
-            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            resources.ApplyResources(this, "$this");
             this.Controls.Add(this.panelbody);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.MaximizeBox = false;

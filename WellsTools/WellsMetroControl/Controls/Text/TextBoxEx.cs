@@ -296,8 +296,8 @@ namespace Wells.WellsMetroControl.Controls
         /// <param name="e">The <see cref="EventArgs" /> instance containing the event data.</param>
         private void TextBoxEx_GotFocus(object sender, EventArgs e)
         {
-            this.blnFocus = true;
-            base.SelectAll();
+            //this.blnFocus = true;
+            //base.SelectAll();
         }
 
         /// <summary>
