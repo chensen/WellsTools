@@ -833,8 +833,22 @@ namespace Wells.Controls.ImageDoc
                 _hWndControl.zoomImageByPercent(per/100.0);
         }
 
+        private int bacWidth = 0;
+        private int bacHeight = 0;
+
         private void mCtrl_HWindow_SizeChanged(object sender, EventArgs e)
         {
+            if (this.DesignMode)
+                return;
+
+            if (mCtrl_HWindow.Width == 0 || mCtrl_HWindow.Height == 0)
+                return;
+
+            if (mCtrl_HWindow.Width == bacWidth && mCtrl_HWindow.Height == bacHeight)
+                return;
+
+            bacWidth = mCtrl_HWindow.Width;
+            bacHeight = mCtrl_HWindow.Height;
             dispImageFit();
         }
 

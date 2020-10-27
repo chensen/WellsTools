@@ -67,6 +67,7 @@
     <Compile Include="BackroundProgress.Designer.cs">
       <DependentUpon>BackroundProgress.cs</DependentUpon>
     </Compile>
+    <Compile Include="clsProject.cs" />
     <Compile Include="clsSerialize.cs">
       <SubType>Form</SubType>
     </Compile>

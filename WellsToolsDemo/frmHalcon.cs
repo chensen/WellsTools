@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using hvppleDotNet;
 using System.IO;
+using Wells.Controls.ImageDoc;
 
 namespace WellsToolsDemo
 {
@@ -23,6 +24,7 @@ namespace WellsToolsDemo
 
         private void button1_Click(object sender, EventArgs e)
         {
+            imageDoc1.clearWindow();
             //HOperatorSet.SetBarCodeParam(barReader, "element_size_min",);
             //HOperatorSet.SetBarCodeParam(barReader, "element_size_max",);
             //HOperatorSet.SetBarCodeParam(barReader, "persistence",);
@@ -38,9 +40,9 @@ namespace WellsToolsDemo
             if (file != null && file.Length > 0)
             {
                 img = new HImage(file[0]);
-                img = img.RotateImage(180d, "constant");
-                img = img.InvertImage();
-                imageDoc1.Image = img;
+                //img = img.RotateImage(180d, "constant");
+                //img = img.InvertImage();
+                imageDoc1.Image = img.Clone();
             }
         }
 
@@ -51,7 +53,11 @@ namespace WellsToolsDemo
 
         private void button4_Click(object sender, EventArgs e)
         {
-
+            HOperatorSet.Threshold(img, out clsProject.Instance.region, 100, 255);
+            List<object> objlist = new List<object>();
+            objlist.Add("region");
+            objlist.Add(new HRegionEntry(clsProject.Instance.region, "red", "fill"));
+            imageDoc1.updateImage(objlist);
         }
 
         private void copyFile(string path)
@@ -82,6 +88,25 @@ namespace WellsToolsDemo
                     }
                 }
             }
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            HOperatorSet.MoveRegion(clsProject.Instance.region, out clsProject.Instance.region, 5000, 5000);
+            HOperatorSet.WriteRegion(clsProject.Instance.region, "D:/ttt.tiff");
+            clsProject.writeProject("D:\\aaa.proj");
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            clsProject.readProject("D:\\aaa.proj");
+            List<object> objlist = new List<object>();
+            objlist.Add("region");
+            objlist.Add(new HRegionEntry(clsProject.Instance.region, "red", "fill"));
+
+            imageDoc1.Image = img.Clone();
+            imageDoc1.updateImage(objlist);
+            HOperatorSet.WriteRegion(clsProject.Instance.region, "D:\\a.tiff");
         }
     }
 

@@ -267,6 +267,8 @@ namespace Wells
                 {
                     //Restore previous behaviour
                     hv_Size_COPY_INP_TMP = ((1.13677 * hv_Size_COPY_INP_TMP)).TupleInt();
+                    if (hv_Size_COPY_INP_TMP < 1)
+                        hv_Size_COPY_INP_TMP = 1;
                 }
                 if ((int)(new HTuple(hv_Font_COPY_INP_TMP.TupleEqual("Courier"))) != 0)
                 {

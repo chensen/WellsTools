@@ -13,135 +13,116 @@ namespace WellsToolsDemo
 {
     public partial class ImageDocDemo : Form
     {
-        private string dir = string.Empty;
-        //Wells.Tools.clsXmlEx xml = new Wells.Tools.clsXmlEx("xml.xml");
-        List<ROI> rois = new List<ROI>();
-        List<ROI> rois2 = new List<ROI>();
+        List<Rectangle> rois = new List<Rectangle>();
+        List<Rectangle> rois2 = new List<Rectangle>();
         public ImageDocDemo()
         {
             InitializeComponent();
-            //imageDoc.setStaticWnd(true);
-            //imageDoc1.ImageMode = ImageMode.Stretch;
+        }
+
+        public void showRois(List<Rectangle> tmp, string color = "green", string mode = "margin")
+        {
+            imageDoc1.clearWindow(false);
+            HOperatorSet.GenEmptyRegion(out HObject region);
+            for (int igg = 0; igg < tmp.Count; igg++)
+            {
+                HOperatorSet.GenRectangle1(out HObject rectangle, tmp[igg].Y, tmp[igg].X, tmp[igg].Height - 1 + tmp[igg].Y, tmp[igg].Width - 1 + tmp[igg].X);
+                //HOperatorSet.Union2(region, rectangle, out region);
+                HOperatorSet.ConcatObj(region, rectangle, out region);
+            }
+            List<object> obj = new List<object>();
+            obj.Add("region");
+            obj.Add(new HRegionEntry(region, color, mode));
+            imageDoc1.updateImage(obj);
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //HImage img = new HImage("D:\\12.bmp");
-            //imageDoc.HWindow.DispImage(img);
-            //imageDoc1.HWindow.SetTposition(100, 200);
-            //imageDoc1.HWindow.SetColor("red");
-            //imageDoc1.HWindow.WriteString("ABCfdaaaaa");
-            Wells.Tools.clsFolderBrowserDialog dlg = new Wells.Tools.clsFolderBrowserDialog();
-            dlg.ShowDialog();
-            dir = dlg.SelectedPath;
+            HOperatorSet.GenImageConst(out HObject img, "byte", 5000, 5000);
+            imageDoc1.Image = new HImage(img);
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (!checkBox1.Checked)
-            {
-                HImage img = new HImage(dir + "\\front.jpg");
-                imageDoc1.displayImage(img);
-            }
-            else
-            {
-                HImage img = new HImage(dir + "\\back.jpg");
-                imageDoc1.displayImage(img);
-            }
+            rois.Add(new Rectangle(100, 100, 10, 10));
+            rois.Add(new Rectangle(150, 100, 10, 10));
+            rois.Add(new Rectangle(100, 120, 10, 10));
+            rois.Add(new Rectangle(300, 400, 10, 10));
+            rois.Add(new Rectangle(200, 150, 10, 10));
+            rois.Add(new Rectangle(800, 500, 10, 10));
+            rois.Add(new Rectangle(200, 100, 10, 10));
+            rois.Add(new Rectangle(330, 190, 10, 10));
+            rois.Add(new Rectangle(450, 900, 10, 10));
+            rois.Add(new Rectangle(660, 80, 10, 10));
+            rois.Add(new Rectangle(220, 350, 10, 10));
+            rois.Add(new Rectangle(474, 222, 10, 10));
+            rois.Add(new Rectangle(333, 50, 10, 10));
+            rois.Add(new Rectangle(2111, 500, 10, 10));
+            rois.Add(new Rectangle(1000, 1000, 10, 10));
+            //rois.Add(new Rectangle(100, 100, 100, 100));
+            //rois.Add(new Rectangle(150, 100, 100, 100));
+            //rois.Add(new Rectangle(100, 120, 100, 100));
+            //rois.Add(new Rectangle(300, 400, 100, 100));
+            //rois.Add(new Rectangle(200, 150, 100, 100));
+            //rois.Add(new Rectangle(800, 500, 100, 100));
+            //rois.Add(new Rectangle(200, 100, 100, 100));
+            //rois.Add(new Rectangle(330, 190, 100, 100));
+            //rois.Add(new Rectangle(450, 900, 100, 100));
+            //rois.Add(new Rectangle(660, 80, 100, 100));
+            //rois.Add(new Rectangle(220, 350, 100, 100));
+            //rois.Add(new Rectangle(474, 222, 100, 100));
+            //rois.Add(new Rectangle(333, 50, 100, 100));
+            //rois.Add(new Rectangle(2111, 500, 100, 100));
+            //rois.Add(new Rectangle(1000, 1000, 100, 100));
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            string[] str = textBox5.Text.Split(',');
-            double x1 = double.Parse(str[0]);
-            double y1 = double.Parse(str[1]);
-            double w = double.Parse(str[2]);
-            double h = double.Parse(str[3]);
-            imageDoc1.genRect1(y1, x1, y1 + h, x1 + w, ref rois);
-            //imageDoc.viewWindow.genCircle(100, 100, 50, ref rois);
-            //imageDoc1.genCircularArc(200, 200, 200, 0, 1.2, "", ref rois);
-            //imageDoc1.genRect2(300, 300, 0.6, 50, 80, ref rois);
-            //imageDoc1.genLine(200, 250, 400, 600, ref rois);
-            //HObject re;
-            //HOperatorSet.GenCircle(out re, 200, 100, 100);
-            //imageDoc1.displayHRegion(re, "red", "fill", 10);
-            //imageDoc.viewWindow.genNurbs(800, 800, ref rois);
-            //int delta = (int)(40 * imageDoc1.getScale());
-            //imageDoc1.displayMessage("小包子同学！", 100, 100, 40, "green", "window");
-            //imageDoc1.displayMessage("我们结婚吧！", 100 + delta + 10, 100, 40, "red", "window");
-            //imageDoc1.displayMessage("你是我的女王！", 300, 100, 55, "blue");
-            //imageDoc1.displayMessage("你的余生就交给我吧", 400, 100, 55, "yellow");
-
+            showRois(rois, "green", "margin");
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            List<int> data = new List<int>();
-            data.AddRange(new int[] { 1, 5, 100, 4, 88, 87, 99, 2, 545, 9 });
-            Wells.Tools.clsDataSort.insertSort(data);
-            
-            imageDoc1.saveROI(rois, "rois.xml");
+            List<Rectangle> tmp = new List<Rectangle>();
+            for(int igg=0;igg<rois.Count;igg++)
+            {
+                Rectangle rr = rois[igg];
+                tmp.Add(rr);
+            }
+            rois2 = clsPublic.getRegionFromRects(tmp);
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
-            rois = new List<ROI>();
-            imageDoc1.loadROI("rois.xml", out rois);
+            showRois(rois2, "red", "margin");
         }
 
         private void button6_Click(object sender, EventArgs e)
         {
             imageDoc1.clearWindow(false);
-            //imageDoc1.setSelected(true);
-            //imageDoc1.ImageMode = imageDoc1.ImageMode == ImageMode.Stretch ? ImageMode.Origin : ImageMode.Stretch;
-        }
 
-        private void button7_Click(object sender, EventArgs e)
-        {
-            HImage img = new HImage(dir + "\\results\\" + textBox2.Text + ".jpg");
-            imageDoc2.displayImage(img);
-        }
-
-        private void button8_Click(object sender, EventArgs e)
-        {
-            string[] str = textBox1.Text.Split(',');
-            double x1 = double.Parse(str[0]);
-            double y1 = double.Parse(str[1]);
-            double w = double.Parse(str[2]);
-            double h = double.Parse(str[3]);
-            imageDoc2.genRect1(y1, x1, y1 + h, x1 + w, ref rois2);
-        }
-
-        private void button9_Click(object sender, EventArgs e)
-        {
-            string[] file = Wells.class_Public.openFiles(false, false);
-            if (file != null && file.Length > 0)
+            HOperatorSet.GenEmptyRegion(out HObject region);
+            for (int igg = 0; igg < rois.Count; igg++)
             {
-                HImage img = new HImage(file[0]);
-                imageDoc1.displayImage(img);
+                HOperatorSet.GenRectangle1(out HObject rectangle, rois[igg].Y, rois[igg].X, rois[igg].Height - 1 + rois[igg].Y, rois[igg].Width - 1 + rois[igg].X);
+                //HOperatorSet.Union2(region, rectangle, out region);
+                HOperatorSet.ConcatObj(region, rectangle, out region);
             }
-        }
 
-        private void button10_Click(object sender, EventArgs e)
-        {
-            List<object> objList = new List<object>();
-            objList.Add("message");
-            objList.Add(new HWndMessage("ABCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", 1000, 1000, 100, "red", "image"));
-            //objList.Add("message");
-            //objList.Add(new HWndMessage("我们都有一个家", 10, 10, 100, "red", "window"));
-            imageDoc1.updateImage(objList);
-        }
+            HOperatorSet.GenEmptyRegion(out HObject region2);
+            for (int igg = 0; igg < rois2.Count; igg++)
+            {
+                HOperatorSet.GenRectangle1(out HObject rectangle, rois2[igg].Y, rois2[igg].X, rois2[igg].Height - 1 + rois2[igg].Y, rois2[igg].Width - 1 + rois2[igg].X);
+                //HOperatorSet.Union2(region, rectangle, out region);
+                HOperatorSet.ConcatObj(region2, rectangle, out region2);
+            }
 
-        private void button11_Click(object sender, EventArgs e)
-        {
-            if (!timer1.Enabled)
-                timer1.Enabled = true;
-            Wells.FrmType.frm_Log.ShowDlg(true);
-        }
-
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            Wells.FrmType.frm_Log.Log("我们都有一个家！", 2);
+            List<object> obj = new List<object>();
+            obj.Add("region");
+            obj.Add(new HRegionEntry(region, "red", "margin"));
+            obj.Add("region");
+            obj.Add(new HRegionEntry(region2, "green", "margin"));
+            imageDoc1.updateImage(obj);
         }
     }
 }

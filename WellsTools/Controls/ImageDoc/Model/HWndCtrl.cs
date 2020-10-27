@@ -534,8 +534,8 @@ namespace Wells.Controls.ImageDoc
         public void zoomImage(bool bZoomIn)
         {
             double midX = 0, midY = 0;
-            midX = (ImgCol2 - ImgCol1) / 2;
-            midY = (ImgRow2 - ImgRow1) / 2;
+            midX = (ImgCol2 + ImgCol1) / 2;
+            midY = (ImgRow2 + ImgRow1) / 2;
             if (bZoomIn)
                 zoomImage(midX, midY, 0.9);
             else

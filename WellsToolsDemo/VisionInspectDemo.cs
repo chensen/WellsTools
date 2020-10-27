@@ -30,7 +30,7 @@ namespace WellsToolsDemo
                 string path = @"D:\";
                 for (int igg = 0; igg < 12; igg++)
                 {
-                    clsPCB.m_pPCB.m_CameraViewList[igg].m_image.ImgBuffer = clsPublic.getImageData(path + (igg + 1).ToString("00") + ".bmp");
+                    clsPCB.m_pPCB.m_CameraViewList[igg].m_image.ImgBuffer = Wells.Controls.VisionInspect.clsPublic.getImageData(path + (igg + 1).ToString("00") + ".bmp");
                     imageDoc1.m_AreaView.update(imageDoc1.ClientRectangle, imageDoc1.m_AreaView.m_lptCenter);
                     Wells.class_Thread.Sleep(50);
                 }
