@@ -59,24 +59,18 @@
             this.fdsfToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fdasfToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fdsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.skinButton1 = new CCWin.SkinControl.SkinButton();
             this.skinToolStrip1 = new CCWin.SkinControl.SkinToolStrip();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.wellsMetroCheckBox1 = new Wells.WellsFramework.Controls.WellsMetroCheckBox();
-            this.ucCheckBox1 = new Wells.WellsMetroControl.Controls.UCCheckBox();
             this.wellsMetroComboBox1 = new Wells.WellsFramework.Controls.WellsMetroComboBox();
             this.textBoxEx2 = new Wells.WellsMetroControl.Controls.TextBoxEx();
             this.uchScrollbarEx1 = new Wells.WellsMetroControl.Controls.UCHScrollbarEx();
             this.textBoxEx1 = new Wells.WellsMetroControl.Controls.TextBoxEx();
-            this.ucCombox1 = new Wells.WellsMetroControl.Controls.UCCombox();
             this.wellsMetroStyleManager1 = new Wells.WellsFramework.Components.WellsMetroStyleManager(this.components);
             this.skinComboBox1 = new CCWin.SkinControl.SkinComboBox();
-            this.textBoxEx3 = new Wells.WellsMetroControl.Controls.TextBoxEx();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.button2 = new System.Windows.Forms.Button();
             this.menuMain.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.skinToolStrip1.SuspendLayout();
@@ -104,7 +98,7 @@
             // button1
             // 
             this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
-            this.button1.Location = new System.Drawing.Point(524, 328);
+            this.button1.Location = new System.Drawing.Point(452, 441);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 2;
@@ -353,39 +347,6 @@
             this.fdsToolStripMenuItem.Size = new System.Drawing.Size(99, 22);
             this.fdsToolStripMenuItem.Text = "fds";
             // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "123",
-            "43",
-            "ttt"});
-            this.comboBox1.Location = new System.Drawing.Point(461, 123);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 20);
-            this.comboBox1.TabIndex = 17;
-            // 
-            // skinButton1
-            // 
-            this.skinButton1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
-            this.skinButton1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("skinButton1.BackgroundImage")));
-            this.skinButton1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.skinButton1.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
-            this.skinButton1.BorderColor = System.Drawing.Color.DimGray;
-            this.skinButton1.ControlState = CCWin.SkinClass.ControlState.Normal;
-            this.skinButton1.DownBack = null;
-            this.skinButton1.FadeGlow = false;
-            this.skinButton1.InnerBorderColor = System.Drawing.Color.Transparent;
-            this.skinButton1.IsDrawGlass = false;
-            this.skinButton1.Location = new System.Drawing.Point(409, 408);
-            this.skinButton1.MouseBack = null;
-            this.skinButton1.MouseBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(90)))), ((int)(((byte)(90)))));
-            this.skinButton1.Name = "skinButton1";
-            this.skinButton1.NormlBack = null;
-            this.skinButton1.Size = new System.Drawing.Size(47, 46);
-            this.skinButton1.TabIndex = 20;
-            this.skinButton1.UseVisualStyleBackColor = false;
-            // 
             // skinToolStrip1
             // 
             this.skinToolStrip1.Arrow = System.Drawing.Color.Black;
@@ -467,16 +428,6 @@
             this.toolStripButton3.Size = new System.Drawing.Size(39, 39);
             this.toolStripButton3.Text = "toolStripButton3";
             // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(377, 514);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(78, 16);
-            this.checkBox1.TabIndex = 24;
-            this.checkBox1.Text = "checkBox1";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            // 
             // wellsMetroCheckBox1
             // 
             this.wellsMetroCheckBox1.AutoSize = true;
@@ -494,19 +445,6 @@
             this.wellsMetroCheckBox1.UseSelectable = true;
             this.wellsMetroCheckBox1.UseVisualStyleBackColor = true;
             // 
-            // ucCheckBox1
-            // 
-            this.ucCheckBox1.AutoSize = true;
-            this.ucCheckBox1.BackColor = System.Drawing.Color.Transparent;
-            this.ucCheckBox1.Checked = false;
-            this.ucCheckBox1.Location = new System.Drawing.Point(547, 423);
-            this.ucCheckBox1.Name = "ucCheckBox1";
-            this.ucCheckBox1.Padding = new System.Windows.Forms.Padding(1);
-            this.ucCheckBox1.Size = new System.Drawing.Size(233, 30);
-            this.ucCheckBox1.TabIndex = 22;
-            this.ucCheckBox1.TextValue = "复选框";
-            this.ucCheckBox1.ClickEvent += new System.EventHandler(this.ucCheckBox1_ClickEvent);
-            // 
             // wellsMetroComboBox1
             // 
             this.wellsMetroComboBox1.FormattingEnabled = true;
@@ -516,7 +454,7 @@
             "fdasf",
             "111",
             "2222"});
-            this.wellsMetroComboBox1.Location = new System.Drawing.Point(634, 321);
+            this.wellsMetroComboBox1.Location = new System.Drawing.Point(562, 434);
             this.wellsMetroComboBox1.Name = "wellsMetroComboBox1";
             this.wellsMetroComboBox1.Size = new System.Drawing.Size(121, 29);
             this.wellsMetroComboBox1.Style = Wells.WellsFramework.WellsMetroColorStyle.Orange;
@@ -528,7 +466,7 @@
             // 
             this.textBoxEx2.DecLength = 0;
             this.textBoxEx2.InputType = Wells.WellsMetroControl.TextInputType.Number;
-            this.textBoxEx2.Location = new System.Drawing.Point(547, 286);
+            this.textBoxEx2.Location = new System.Drawing.Point(597, 315);
             this.textBoxEx2.MaxValue = new decimal(new int[] {
             1000000,
             0,
@@ -568,7 +506,7 @@
             this.uchScrollbarEx1.IsShowDouble = true;
             this.uchScrollbarEx1.IsShowRect = false;
             this.uchScrollbarEx1.IsShowTips = true;
-            this.uchScrollbarEx1.Location = new System.Drawing.Point(338, 295);
+            this.uchScrollbarEx1.Location = new System.Drawing.Point(432, 315);
             this.uchScrollbarEx1.LowThumbColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(77)))), ((int)(((byte)(58)))));
             this.uchScrollbarEx1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.uchScrollbarEx1.Maximum = new decimal(new int[] {
@@ -585,7 +523,7 @@
             this.uchScrollbarEx1.Name = "uchScrollbarEx1";
             this.uchScrollbarEx1.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
             this.uchScrollbarEx1.RectWidth = 1;
-            this.uchScrollbarEx1.Size = new System.Drawing.Size(150, 78);
+            this.uchScrollbarEx1.Size = new System.Drawing.Size(150, 38);
             this.uchScrollbarEx1.TabIndex = 5;
             this.uchScrollbarEx1.TipsBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.uchScrollbarEx1.TipsForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
@@ -609,7 +547,7 @@
             // 
             this.textBoxEx1.DecLength = 0;
             this.textBoxEx1.InputType = Wells.WellsMetroControl.TextInputType.Number;
-            this.textBoxEx1.Location = new System.Drawing.Point(524, 369);
+            this.textBoxEx1.Location = new System.Drawing.Point(325, 332);
             this.textBoxEx1.MaxValue = new decimal(new int[] {
             1000000,
             0,
@@ -631,31 +569,6 @@
             this.textBoxEx1.TabIndex = 6;
             this.textBoxEx1.UCHNum = 0;
             this.textBoxEx1.UcHScrollbarEx = this.uchScrollbarEx1;
-            // 
-            // ucCombox1
-            // 
-            this.ucCombox1.BackColor = System.Drawing.Color.Transparent;
-            this.ucCombox1.BackColorExt = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.ucCombox1.BoxStyle = System.Windows.Forms.ComboBoxStyle.DropDown;
-            this.ucCombox1.ConerRadius = 5;
-            this.ucCombox1.DropPanelHeight = -1;
-            this.ucCombox1.FillColor = System.Drawing.Color.White;
-            this.ucCombox1.Font = new System.Drawing.Font("微软雅黑", 12F);
-            this.ucCombox1.IsRadius = true;
-            this.ucCombox1.IsShowRect = true;
-            this.ucCombox1.ItemWidth = 70;
-            this.ucCombox1.Location = new System.Drawing.Point(524, 185);
-            this.ucCombox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.ucCombox1.Name = "ucCombox1";
-            this.ucCombox1.RectColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(220)))), ((int)(((byte)(220)))));
-            this.ucCombox1.RectWidth = 1;
-            this.ucCombox1.SelectedIndex = -1;
-            this.ucCombox1.SelectedValue = "";
-            this.ucCombox1.Size = new System.Drawing.Size(173, 32);
-            this.ucCombox1.Source = null;
-            this.ucCombox1.TabIndex = 18;
-            this.ucCombox1.TextValue = null;
-            this.ucCombox1.TriangleColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(77)))), ((int)(((byte)(59)))));
             // 
             // wellsMetroStyleManager1
             // 
@@ -681,7 +594,7 @@
             "左进右出",
             "右出左进",
             "你们这样是不对的"});
-            this.skinComboBox1.Location = new System.Drawing.Point(314, 211);
+            this.skinComboBox1.Location = new System.Drawing.Point(301, 113);
             this.skinComboBox1.MouseColor = System.Drawing.SystemColors.Highlight;
             this.skinComboBox1.MouseGradientColor = System.Drawing.SystemColors.Highlight;
             this.skinComboBox1.Name = "skinComboBox1";
@@ -689,45 +602,15 @@
             this.skinComboBox1.TabIndex = 25;
             this.skinComboBox1.WaterText = "";
             // 
-            // textBoxEx3
+            // button2
             // 
-            this.textBoxEx3.DecLength = 2;
-            this.textBoxEx3.InputType = Wells.WellsMetroControl.TextInputType.NotControl;
-            this.textBoxEx3.Location = new System.Drawing.Point(391, 578);
-            this.textBoxEx3.MaxValue = new decimal(new int[] {
-            1000000,
-            0,
-            0,
-            0});
-            this.textBoxEx3.MinValue = new decimal(new int[] {
-            1000000,
-            0,
-            0,
-            -2147483648});
-            this.textBoxEx3.MyRectangle = new System.Drawing.Rectangle(0, 0, 0, 0);
-            this.textBoxEx3.Name = "textBoxEx3";
-            this.textBoxEx3.OldText = null;
-            this.textBoxEx3.PromptColor = System.Drawing.Color.Gray;
-            this.textBoxEx3.PromptFont = new System.Drawing.Font("微软雅黑", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.textBoxEx3.PromptText = "";
-            this.textBoxEx3.RegexPattern = "";
-            this.textBoxEx3.Size = new System.Drawing.Size(364, 21);
-            this.textBoxEx3.TabIndex = 26;
-            this.textBoxEx3.UCHNum = -1;
-            this.textBoxEx3.UcHScrollbarEx = null;
-            this.textBoxEx3.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxEx3_KeyDown);
-            this.textBoxEx3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxEx3_KeyPress);
-            this.textBoxEx3.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.textBoxEx3_PreviewKeyDown_1);
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(391, 617);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(364, 21);
-            this.textBox1.TabIndex = 27;
-            this.textBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxEx3_KeyDown);
-            this.textBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxEx3_KeyPress);
+            this.button2.Location = new System.Drawing.Point(325, 383);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 26;
+            this.button2.Text = "button2";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // MetroControlDemo
             // 
@@ -735,21 +618,15 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
             this.ClientSize = new System.Drawing.Size(800, 672);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.textBoxEx3);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.skinComboBox1);
-            this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.wellsMetroCheckBox1);
-            this.Controls.Add(this.ucCheckBox1);
             this.Controls.Add(this.skinToolStrip1);
-            this.Controls.Add(this.skinButton1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.wellsMetroComboBox1);
             this.Controls.Add(this.textBoxEx2);
             this.Controls.Add(this.textBoxEx1);
             this.Controls.Add(this.uchScrollbarEx1);
-            this.Controls.Add(this.ucCombox1);
-            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.propertyGrid1);
             this.Controls.Add(this.menuMain);
             this.Controls.Add(this.menuStrip1);
@@ -804,20 +681,14 @@
         private System.Windows.Forms.ToolStripMenuItem fdsfToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem fdasfToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem fdsToolStripMenuItem;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private Wells.WellsMetroControl.Controls.UCCombox ucCombox1;
         private Wells.WellsFramework.Controls.WellsMetroComboBox wellsMetroComboBox1;
         private Wells.WellsFramework.Components.WellsMetroStyleManager wellsMetroStyleManager1;
-        private CCWin.SkinControl.SkinButton skinButton1;
         private CCWin.SkinControl.SkinToolStrip skinToolStrip1;
         private System.Windows.Forms.ToolStripButton toolStripButton1;
         private System.Windows.Forms.ToolStripButton toolStripButton2;
         private System.Windows.Forms.ToolStripButton toolStripButton3;
-        private Wells.WellsMetroControl.Controls.UCCheckBox ucCheckBox1;
         private Wells.WellsFramework.Controls.WellsMetroCheckBox wellsMetroCheckBox1;
-        private System.Windows.Forms.CheckBox checkBox1;
         private CCWin.SkinControl.SkinComboBox skinComboBox1;
-        private Wells.WellsMetroControl.Controls.TextBoxEx textBoxEx3;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button button2;
     }
 }

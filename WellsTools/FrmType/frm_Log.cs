@@ -353,6 +353,9 @@ namespace Wells.FrmType
                     pCurrentForm.TopMost = true;
                     Thread.Sleep(50);
                     pCurrentForm.TopMost = false;
+
+                    if (pCurrentForm.chkTopMost.Checked)
+                        pCurrentForm.TopMost = true;
                 }
                 else
                     pCurrentForm.Close();

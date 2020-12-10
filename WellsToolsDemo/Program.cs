@@ -313,7 +313,7 @@ namespace WellsToolsDemo
 
             HOperatorSet.SetSystem("clip_region", "false");
 
-            Application.Run(new ImageDocDemo());
+            Application.Run(new MetroControlDemo());
         }
 
         private static void UIThreadException(object sender, ThreadExceptionEventArgs t)

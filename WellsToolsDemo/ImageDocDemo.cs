@@ -38,12 +38,17 @@ namespace WellsToolsDemo
 
         private void button1_Click(object sender, EventArgs e)
         {
-            HOperatorSet.GenImageConst(out HObject img, "byte", 5000, 5000);
-            imageDoc1.Image = new HImage(img);
+            //HOperatorSet.GenImageConst(out HObject img, "byte", 5000, 5000);
+            //imageDoc1.Image = new HImage(img);
+            imageDoc1.Image = new HImage("D:/F49.jpg");
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
+            string str = Wells.class_Public.getInputInfo("", "", "", false);
+            string[] list = str.Split('#');
+            imageDoc1.moveImageToPoint(double.Parse(list[0]), double.Parse(list[1]));
+            return;
             rois.Add(new Rectangle(100, 100, 10, 10));
             rois.Add(new Rectangle(150, 100, 10, 10));
             rois.Add(new Rectangle(100, 120, 10, 10));

@@ -514,6 +514,11 @@ namespace Wells.Controls.ImageDoc
             this._roiController.moveWindowImage();
         }
 
+        public void moveImageToPoint(double x, double y)
+        {
+            this._hWndControl.moveImageToPoint(x, y);
+        }
+
         public void noneWindowImage()
         {
             this._roiController.noneWindowImage();

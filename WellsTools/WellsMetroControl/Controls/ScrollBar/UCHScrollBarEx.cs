@@ -868,6 +868,14 @@ namespace Wells.WellsMetroControl.Controls
                 }
             }
         }
+
+        public void reset()
+        {
+            this.ValueLow = this.Minimum;
+            this.ValueHigh = this.Maximum;
+            if (this.txtBoxLow != null) txtBoxLow.Text = this.ValueLow.ToString();
+            if (this.txtBoxHigh != null) txtBoxHigh.Text = this.ValueHigh.ToString();
+        }
     }
 
 }

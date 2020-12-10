@@ -41,11 +41,11 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("思源黑体 CN Regular", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(14, 73);
+            this.label1.Location = new System.Drawing.Point(14, 56);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(69, 28);
+            this.label1.Size = new System.Drawing.Size(69, 56);
             this.label1.TabIndex = 0;
-            this.label1.Text = "label1";
+            this.label1.Text = "label1\r\nlabel2";
             // 
             // textBox1
             // 
@@ -125,11 +125,9 @@
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("思源黑体 CN Regular", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmInput";
-            this.ShowBorder = true;
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "frmInput";

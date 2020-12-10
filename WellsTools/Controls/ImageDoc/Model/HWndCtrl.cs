@@ -582,6 +582,14 @@ namespace Wells.Controls.ImageDoc
 			repaint();
 		}
 
+        public void moveImageToPoint(double x, double y)
+        {
+            double motionX = (ImgCol1 + ImgCol2) / 2 - x;
+            double motionY = (ImgRow1 + ImgRow2) / 2 - y;
+
+            moveImage(motionX, motionY);
+        }
+
 
 		/// <summary>
 		/// Resets all parameters that concern the HALCON window display 
